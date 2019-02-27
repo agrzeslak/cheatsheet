@@ -1,0 +1,38 @@
+<div>
+    <input id="topic-filter" type="text"/>
+    <table id="topic-table">
+        <tbody>
+            {% for topic in site.topics %}
+            <tr class="topic" title="{{ topic.title }}" tags="{% for tag in topic.tags %}{{ tag }} {% endfor %}">
+                <td><a href="{{ topic.url }}"><b>{{ topic.title }}</b></a></td>
+                <td>{% for tag in topic.tags %}{{ tag }} {% endfor %}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<script>
+    // Hide all table rows whose titles or tags do not contain the search terms
+    function filter_results() {
+        var search_terms = document.getElementById("topic-filter").value.split(" ");
+        var table = document.getElementById("topic-table");
+        console.log(table);
+
+        for (var i = 0, row; row = table.rows[i]; i++) {
+            console.log("i: ".concat(i));
+            var title = row.attributes.title.value;
+            var tags = row.attributes.tags.value;
+            row.style.display = "block"; // Visible by default
+
+            for (var j = 0; j < search_terms.length; j++) {
+                if (!title.toLowerCase().includes(search_terms[j].toLowerCase()) && !tags.toLowerCase().includes(search_terms[j].toLowerCase())) { 
+                    row.style.display = "none"; // no match - hide row
+                }
+            }
+        }
+    }
+
+    addEventListener('input', function(event){
+        filter_results();
+    });
+</script>
