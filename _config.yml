@@ -13,12 +13,11 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Cheatsheet
-
-description: >- # this means to ignore newlines until "baseurl:"
-  A comprehensive cheatsheet for penetration testing.
+title: Pentest Cheatsheet
 
 include: ['_topics']
+
+baseurl: cheatsheet/
 
 permalinks: pretty
 
@@ -32,14 +31,9 @@ defaults:
   values:
     layout: bin
 
-# Exclude from processing.
-# The following items will not be processed, by default. Create a custom list
-# to override the default setting.
-# exclude:
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+sass:
+  sass_dir: _sass
+  style: :compressed
+
+markdown: kramdown
+highlighter: rouge

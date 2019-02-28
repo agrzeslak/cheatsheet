@@ -1,10 +1,10 @@
 <div>
-    <input id="topic-filter" type="text"/>
+    <input id="topic-filter" class="search-bar" type="text"/>
     <table id="topic-table">
         <tbody>
             {% for topic in site.topics %}
             <tr class="topic" title="{{ topic.title }}" tags="{% for tag in topic.tags %}{{ tag }} {% endfor %}">
-                <td><a href="{{ topic.url }}"><b>{{ topic.title }}</b></a></td>
+                <td><a href="{{ topic.url }}"><b class="topic-title">{{ topic.title }}</b></a></td>
                 <td>{% for tag in topic.tags %}{{ tag }} {% endfor %}</td>
             </tr>
             {% endfor %}
@@ -22,7 +22,7 @@
             console.log("i: ".concat(i));
             var title = row.attributes.title.value;
             var tags = row.attributes.tags.value;
-            row.style.display = "block"; // Visible by default
+            row.style.display = ""; // Visible by default
 
             for (var j = 0; j < search_terms.length; j++) {
                 if (!title.toLowerCase().includes(search_terms[j].toLowerCase()) && !tags.toLowerCase().includes(search_terms[j].toLowerCase())) { 

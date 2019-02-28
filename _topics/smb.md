@@ -1,9 +1,10 @@
 ---
-title: SMB
+layout: default
+title: smb 
 tags:
     - 139
     - 445
     - smbclient
 ---
-## smb page
+# smb
 Test

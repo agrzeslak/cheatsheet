@@ -1,4 +1,5 @@
 ---
+layout: default
 title: nmap
 tags:
     - discovery
@@ -6,46 +7,46 @@ tags:
     - network
     - ports
     - scanning
-    - TCP
-    - UDP
+    - tcp 
+    - udp
 ---
 # nmap
-## Host Discovery
-**No port scan**
+### Host Discovery
+No port scan
 
 `nmap -sn -oA nmap 10.10.10.10/24`
 
-**ARP scan**
+ARP scan
 
 `nmap -PR -oA nmap 10.10.10.10/24`
 
 _can also use **netdiscover**_
-## Scanning a Known Host
+### Scanning a Known Host
 
-**TCP scan**
+TCP scan
 
 `nmap -sV -sC -vv -oA nmap 10.10.10.10`
 
-**UDP scan**
+UDP scan
 
 `nmap -sU -sC -vv -oA nmap 10.10.10.10`
 
-**Aggressive TCP Scan**
+Aggressive TCP Scan
 
 `nmap -A -vv -oA nmap 10.10.10.10`
 
-**`-A`** is the equivalent of:
-- **`-O`**: OS detection
-- **`-sV`**: version scanning
-- **`-sC`**: default script scanning
-- **`--traceroute`**
+where `-A` is the equivalent of:
+- `-O`: OS detection
+- `-sV`: version scanning
+- `-sC`: default script scanning
+- `--traceroute`
 
-**Additional Options:**
-- **`-p-`**: full portscan (1-65535)
-- **`-T4`**: faster scan
-- **`-sT`**: TCP connect scan (for when default `-sS` SYN scan is unavailable; e.g. lack of root permissions)
-- **`-sF`**: FIN scan (can be used to bypass firewalls that filter the SYN packet)
-- **`-sP`**: Ping scan (use ICMP packets)
+Additional Options:
+- `-p-`: full portscan (1-65535)
+- `-T4`: faster scan
+- `-sT`: TCP connect scan (for when default `-sS` SYN scan is unavailable; e.g. lack of root permissions)
+- `-sF`: FIN scan (can be used to bypass firewalls that filter the SYN packet)
+- `-sP`: Ping scan (use ICMP packets)
 
 Result | Meaning
 :--- | :---
