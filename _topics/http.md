@@ -13,8 +13,6 @@ tags:
     - wpscan
 ---
 # http(s)
-### Curl
-
 ### Gobuster
 
 Standard
@@ -26,7 +24,7 @@ Some other wordlists:
 - `/usr/share/dirbuster/wordlists/directory-list-2.3-small.txt`
 - `/usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt`
 
-Additional Options:
+Additional options:
 - `-a`: User-Agent
 - `-s`: positive status codes (default "`200,204,301,302,307,403`")
 - `-t`: threads
@@ -38,7 +36,23 @@ Additional Options:
 
 ### wfuzz
 
-`wfuzz -c -z file,users.txt -z file,pass.txt https://10.10.10.10/login?user=FUZZ&pass=FUZ2Z`
+GET request
+
+`wfuzz -c -w users.txt -w pass.txt https://10.10.10.10/login?user=FUZZ&pass=FUZ2Z`
+
+POST request
+
+`wfuzz -c -w users.txt -w pass.txt -d "login=FUZZ&pwd=FUZ2Z" https://10.10.10.10/`
+
+Additional options:
+- `-b`: specify cookie(s)
+- `-H`: add/replace header
+- `--oF <filename>`: output to file
+- `-X`: HTTP method
+- `-z`: specify payload (`-w` is an alias for `-z file,<wordlist>`)
+- `--hc/hl/hw/hh`: hide responses with specified code/lines/words/chars
+- `--sc/sl/sw/sh`: show responses with specified code/lines/words/chars
+- `--ss/hs`: show/hide responses with specified regex
 
 ### wpscan
 

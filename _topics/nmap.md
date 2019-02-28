@@ -31,7 +31,7 @@ UDP scan
 
 `nmap -sU -sC -vv -oA nmap 10.10.10.10`
 
-Aggressive TCP Scan
+Aggressive TCP scan
 
 `nmap -A -vv -oA nmap 10.10.10.10`
 
@@ -41,7 +41,7 @@ where `-A` is the equivalent of:
 - `-sC`: default script scanning
 - `--traceroute`
 
-Additional Options:
+Additional options:
 - `-p-`: full portscan (1-65535)
 - `-T4`: faster scan
 - `-sT`: TCP connect scan (for when default `-sS` SYN scan is unavailable; e.g. lack of root permissions)
