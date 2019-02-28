@@ -17,6 +17,8 @@ title: Pentest Cheatsheet
 
 permalinks: pretty
 
+baseurl: /cheatsheet
+
 collections:
   topics:
     output: true
