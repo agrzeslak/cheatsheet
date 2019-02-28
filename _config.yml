@@ -17,7 +17,7 @@ title: Pentest Cheatsheet
 
 include: ['_topics']
 
-baseurl: cheatsheet/
+# baseurl: cheatsheet/
 
 permalinks: pretty
 
