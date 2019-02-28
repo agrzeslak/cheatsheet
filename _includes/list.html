@@ -4,7 +4,7 @@
         <tbody>
             {% for topic in site.topics %}
             <tr class="topic" title="{{ topic.title }}" tags="{% for tag in topic.tags %}{{ tag }} {% endfor %}">
-                <td><a href="{{ topic.url }}"><b class="topic-title">{{ topic.title }}</b></a></td>
+                <td><a href="{{ site.baseurl }}{{ topic.url }}"><b class="topic-title">{{ topic.title }}</b></a></td>
                 <td>{% for tag in topic.tags %}{{ tag }} {% endfor %}</td>
             </tr>
             {% endfor %}
