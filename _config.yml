@@ -15,10 +15,6 @@
 # in the templates via {{ site.myvariable }}.
 title: Pentest Cheatsheet
 
-include: ['_topics']
-
-# baseurl: cheatsheet/
-
 permalinks: pretty
 
 collections:
