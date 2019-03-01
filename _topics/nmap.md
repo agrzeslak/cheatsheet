@@ -35,7 +35,7 @@ Aggressive TCP scan
 
 `nmap -A -vv -oA nmap 10.10.10.10`
 
-where `-A` is the equivalent of:
+Where `-A` is the equivalent of:
 - `-O`: OS detection
 - `-sV`: version scanning
 - `-sC`: default script scanning
@@ -47,6 +47,12 @@ Additional options:
 - `-sT`: TCP connect scan (for when default `-sS` SYN scan is unavailable; e.g. lack of root permissions)
 - `-sF`: FIN scan (can be used to bypass firewalls that filter the SYN packet)
 - `-sP`: Ping scan (use ICMP packets)
+
+Scripts
+
+`nmap -p <port> --script <script name> -Pn 10.10.10.10`
+
+`ls -al /usr/share/nmap/scripts`
 
 Result | Meaning
 :--- | :---

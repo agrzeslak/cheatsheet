@@ -231,6 +231,17 @@ ARP cache
 
 `arp`
 
+### Kernel exploits
+
+[Dirty Cow](https://dirtycow.ninja/)
+- < 4.8.0-26.28 for Ubuntu 16.10
+- < 4.4.0-45.66 for Ubuntu 16.04 LTS
+- < 3.13.0-100.147 for Ubuntu 14.04 LTS
+- < 3.2.0-113.155 for Ubuntu 12.04 LTS
+- < 3.16.36-1+deb8u2 for Debian 8
+- < 3.2.82-1 for Debian 7
+- < 4.7.8-1 for Debian unstable 4.8
+
 Useful links:
 - <https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/>
 
