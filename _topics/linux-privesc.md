@@ -9,21 +9,54 @@ tags:
     - unix
 ---
 # linux privesc
-Enumeration scripts:
+### Improving QoL
+`python -c 'import pty;pty.spawn("/bin/bash")'`
 
+`echo os.system('/bin/bash')`
+
+`/bin/sh -i`
+
+### Enumeration Scripts
 [LinEnum.sh](https://github.com/rebootuser/LinEnum) `./LinEnum.sh -r report -e /tmp/ -t`
+
 - `-s`: supply current user password to check permissions
 - `-k <keyword>`: search .conf and .log files for keyword
 
 [LinuxPrivChecker.py](https://github.com/sleventyeleven/linuxprivchecker) `python linuxprivchecker.py`
 
+### OS
 Distribution details
-
-`uname -a`
 
 `cat /proc/version`
 
 `cat /etc/issue`
+
+Kernel
+
+`uname -a`
+
+### Users
+Who are we?
+
+`id`
+
+Legacy password management?
+
+`cat /etc/passwd`
+
+Shadow access?
+
+`cat /etc/shadow`
+
+Groups
+
+`cat /etc/group`
+
+Sudo permissions
+
+`sudo -l`
+
+`cat /etc/sudoers`
 
 Environment variables
 
@@ -33,15 +66,40 @@ History
 
 `cat ~/.bash_history`
 
+`cat ~/.nano_history`
+
+`cat ~/.atftp_history`
+
+`cat ~/.mysql_history`
+
+`cat ~/.php_history`
+
+SSH keys
+
+`ls -alR ~/.ssh/`
+
+`cat ~/.ssh/*`
+
+`ls -alR /etc/ssh/`
+
+`cat /etc/ssh/*`
+
+Who else is logged in?
+
+`w`
+
+`who`
+
+Last logged in users
+
+`last`
+
+### Applications
 Running services
 
 `ps -ef` (standard syntax)
 
 `ps aux` (BSD syntax)
-
-`top`
-
-`cat /etc/services`
 
 Installed applications
 
@@ -57,6 +115,13 @@ Installed applications
 
 `ls -al /var/cache/yum`
 
+### File system
+Check home directories
+
+`ls -alR /root/`
+
+`ls -alR /home/`
+
 Configs
 
 `find / -iname "/etc/*.conf" -exec ls -al {} \;`
@@ -67,32 +132,104 @@ Cron jobs
 
 `crontab -l`
 
-`ls -al /var/spool/cron `
-
-`ls -al /etc/ | grep cron `
-
 `ls -al /etc/cron* `
 
 `cat /etc/cron* `
 
-`cat /etc/at.allow `
+SUID/SGID
 
-`cat /etc/at.deny `
+`find / -perm -g=s -type f 2>/dev/null`
 
-`cat /etc/cron.allow `
+`find / -perm -u=s -type f 2>/dev/null`
 
-`cat /etc/cron.deny `
+Readable files in /etc/
 
-`cat /etc/crontab `
+`find /etc/ -readable -type f 2>/dev/null`
 
-`cat /etc/anacrontab `
+Writable files in /etc/ - check if can alter settings
 
-`cat /var/spool/cron/crontabs/root`
+`find /etc/ -writable -type f 2>/dev/null`
 
+Writable/executable directories (/tmp, /var/tmp and /dev/shm are standard)
 
-Search for passwords (takes ages)
+`find / -writable -type d 2>/dev/null` _writable_
+
+`find / -executable -type d 2>/dev/null` _executable_
+
+`find / -writable -executable -type d 2>/dev/null` _writable and executable_
+
+What files are being accessed?
+
+`lsof -i`
+
+`lsof -i :<port>`
+
+Log files
+
+`find /etc/ -type f -iname "*log" 2>/dev/null`
+
+`find /var/ -type f -iname "*log" 2>/dev/null`
+
+`ls -al /var/log/`
+
+Look for passwords in file system (takes ages)
 
 `grep -iR pass /`
+
+Mounted file systems
+
+`mount`
+
+`df`
+
+Unmounted file systems
+
+`cat /etc/fstab`
+
+### Networking
+NIC(s) and other networks
+
+`ifconfig -a`
+
+`cat /etc/network/interfaces`
+
+`cat /etc/sysconfig/network`
+
+`cat /etc/networks`
+
+What's exposed?
+
+`netstat -antup`
+
+DNS
+
+`cat /etc/resolv.conf`
+
+`dnsdomainname`
+
+`hostname`
+
+Packet filtering and NAT
+
+`iptables -L`
+
+Routing
+
+`route`
+
+Communications with other users and hosts
+
+`lsof -i`
+
+Packet sniffing
+
+`tcpdump -i <interface>`
+
+`tcpdump tcp dst <ip> <port>`
+
+ARP cache
+
+`arp`
 
 Useful links:
 - <https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/>
