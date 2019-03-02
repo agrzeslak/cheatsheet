@@ -11,7 +11,7 @@ tags:
 ---
 # ldap
 
-Dump info (`-x` for anonymous bind)
+Dump info (anonymous bind)
 
 `nmap -p 389 --script ldap-search -Pn 10.10.10.10`
 

