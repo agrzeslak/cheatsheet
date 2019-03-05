@@ -1,6 +1,6 @@
 ---
 layout: default
-title: http
+title: HTTP(S)
 tags:
     - 80
     - 443
@@ -12,7 +12,7 @@ tags:
     - wordpress
     - wpscan
 ---
-# http(s)
+# HTTP(S)
 ### Gobuster
 
 Standard

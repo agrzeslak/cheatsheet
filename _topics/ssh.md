@@ -1,8 +1,8 @@
 ---
 layout: default
-title: ssh
+title: SSH
 tags:
 ---
-# ssh
+# SSH
 
 todo

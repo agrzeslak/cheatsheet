@@ -1,6 +1,6 @@
 ---
 layout: default
-title: smb
+title: SMB
 tags:
     - 445
     - block
@@ -10,8 +10,8 @@ tags:
     - smbd
     - smbmap
 ---
-# smb
-### nmap scripts
+# SMB
+### Nmap scripts
 safe vulnerability scan
 
 ```shell

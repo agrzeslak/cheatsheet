@@ -1,12 +1,12 @@
 ---
 layout: default
-title: ftp
+title: FTP
 tags:
     - 21
     - file
     - protocol
     - transfer
 ---
-# ftp
+# FTP
 
 todo

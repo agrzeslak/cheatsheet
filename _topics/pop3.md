@@ -1,8 +1,8 @@
 ---
 layout: default
-title: pop3
+title: POP3
 tags:
 ---
-# pop3
+# POP3
 
 todo

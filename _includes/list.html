@@ -1,6 +1,6 @@
 <div>
     <h1 style="text-align: center">Pentest Cheatsheet</h1>
-    <input id="topic-filter" class="search-bar" placeholder="Search by keywords..." type="text"/>
+    <input id="topic-filter" class="search-bar" placeholder="Search by keywords..." autofocus="autofocus" onfocus="this.select()" type="text"/>
     <table id="topic-table">
         <tbody>
             {% for topic in site.topics %}

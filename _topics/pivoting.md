@@ -1,6 +1,6 @@
 ---
 layout: default
-title: pivoting
+title: Pivoting
 tags:
     - chisel
     - meterpreter
@@ -8,6 +8,6 @@ tags:
     - ssh
     - tunneling
 ---
-# pivoting
+# Pivoting
 
 todo

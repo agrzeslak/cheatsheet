@@ -1,6 +1,6 @@
 ---
 layout: default
-title: linux privesc
+title: Linux Privesc
 tags:
     - escalation
     - openbsd
@@ -8,7 +8,7 @@ tags:
     - root
     - unix
 ---
-# linux privesc
+# Linux Privesc
 ### Upgrading shells
 ```shell
 python -c 'import pty;pty.spawn("/bin/bash")'

@@ -1,12 +1,12 @@
 ---
 layout: default
-title: xss
+title: XSS
 tags:
     - cross-site
     - exploit
     - scripting
     - web
 ---
-# xss
+# XSS
 
 todo

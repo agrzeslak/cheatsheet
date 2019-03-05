@@ -1,6 +1,6 @@
 ---
 layout: default
-title: reverse shells
+title: Reverse Shells
 tags:
     - bash
     - java
@@ -13,7 +13,7 @@ tags:
     - telnet
     - xterm
 ---
-# reverse shells
+# Reverse Shells
 
 ### Linux
 **Bash**

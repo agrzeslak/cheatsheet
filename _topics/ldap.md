@@ -1,6 +1,6 @@
 ---
 layout: default
-title: ldap
+title: LDAP
 tags:
     - 389
     - access
@@ -9,7 +9,7 @@ tags:
     - lightweight
     - protocol
 ---
-# ldap
+# LDAP
 
 Dump info (anonymous bind)
 
@@ -22,8 +22,8 @@ _or_
 ```shell
 ldapsearch -x -h 10.10.10.10 -s base namingcontexts
 ```
+- use result to fill in dc values below
 
 ```shell
 ldapsearch -x -h 10.10.10.10 -s sub -b 'dc=<dc>,dc=<dc>'
 ```
-- dc taken from above result

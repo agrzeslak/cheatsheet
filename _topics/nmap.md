@@ -1,6 +1,6 @@
 ---
 layout: default
-title: nmap
+title: Nmap
 tags:
     - discovery
     - enumeration
@@ -10,7 +10,7 @@ tags:
     - tcp 
     - udp
 ---
-# nmap
+# Nmap
 ### Host Discovery
 No port scan
 

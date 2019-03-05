@@ -1,6 +1,6 @@
 ---
 layout: default
-title: windows privesc
+title: Windows Privesc
 tags:
     - administrator
     - escalation
@@ -9,6 +9,6 @@ tags:
     - privilege
     - system
 ---
-# windows privesc
+# Windows Privesc
 
 todo

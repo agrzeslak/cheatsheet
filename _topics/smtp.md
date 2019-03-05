@@ -1,8 +1,8 @@
 ---
 layout: default
-title: smtp
+title: SMTP
 tags:
 ---
-# smtp
+# SMTP
 
 todo
