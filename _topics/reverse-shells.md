@@ -113,7 +113,7 @@ p.waitFor();
 ```shell
 xterm -display [IP]:1
 ```
-- port 6001
+- Port 6001
 - Locally, to catch the incoming session on port 6001 `Xnest :1`
 - Locally, to authorise the target's connection `xhost +[TARGETIP]`
 
