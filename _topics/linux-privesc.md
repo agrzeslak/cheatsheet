@@ -10,220 +10,364 @@ tags:
 ---
 # linux privesc
 ### Upgrading shells
-`python -c 'import pty;pty.spawn("/bin/bash")'`
+```shell
+python -c 'import pty;pty.spawn("/bin/bash")'
+```
 
-`echo os.system('/bin/bash')`
+```shell
+echo os.system('/bin/bash')
+```
 
-`/bin/sh -i`
+```shell
+/bin/sh -i
+```
 
 ### Enumeration Scripts
-[LinEnum.sh](https://github.com/rebootuser/LinEnum) `./LinEnum.sh -r report -e /tmp/ -t`
-
+[LinEnum.sh](https://github.com/rebootuser/LinEnum)
+```shell
+./LinEnum.sh -r report -e /tmp/ -t
+```
 - `-s`: supply current user password to check permissions
 - `-k <keyword>`: search .conf and .log files for keyword
 
-[LinuxPrivChecker.py](https://github.com/sleventyeleven/linuxprivchecker) `python linuxprivchecker.py`
+[LinuxPrivChecker.py](https://github.com/sleventyeleven/linuxprivchecker)
+```shell
+python linuxprivchecker.py
+```
 
 ### OS
 Distribution details
 
-`cat /proc/version`
+```shell
+cat /proc/version
+```
 
-`cat /etc/issue`
+```shell
+cat /etc/issue
+```
 
 Kernel
 
-`uname -a`
+```shell
+uname -a
+```
 
 ### Users
 Who are we?
 
-`id`
+```shell
+id
+```
 
 Legacy password management?
 
-`cat /etc/passwd`
+```shell
+cat /etc/passwd
+```
 
 Shadow access?
 
-`cat /etc/shadow`
+```shell
+cat /etc/shadow
+```
 
 Groups
 
-`cat /etc/group`
+```shell
+cat /etc/group
+```
 
 Sudo permissions
 
-`sudo -l`
+```shell
+sudo -l
+```
 
-`cat /etc/sudoers`
+```shell
+cat /etc/sudoers
+```
 
 Environment variables
 
-`env`
+```shell
+env
+```
 
 History
 
-`cat ~/.bash_history`
+```shell
+cat ~/.bash_history
+```
 
-`cat ~/.*_history`
+```shell
+cat ~/.*_history
+```
 
 SSH keys
 
-`ls -alR ~/.ssh/`
+```shell
+ls -alR ~/.ssh/
+```
 
-`cat ~/.ssh/*`
+```shell
+cat ~/.ssh/*
+```
 
-`ls -alR /etc/ssh/`
+```shell
+ls -alR /etc/ssh/
+```
 
-`cat /etc/ssh/*`
+```shell
+cat /etc/ssh/*
+```
 
 Who else is logged in?
 
-`w`
+```shell
+w
+```
 
-`who`
+```shell
+who
+```
 
 Last logged in users
 
-`last`
+```shell
+last
+```
 
 ### Applications
 Running services
 
-`ps -ef` (standard syntax)
+```shell
+ps -ef
+```
+- standard syntax
 
-`ps aux` (BSD syntax)
+```shell
+ps aux
+```
+- BSD syntax
 
 Installed applications
 
-`ls -al /usr/bin`
+```shell
+ls -al /usr/bin
+```
 
-`ls -al /sbin`
+```shell
+ls -al /sbin
+```
 
-`dpkg -l`
+```shell
+dpkg -l
+```
 
-`rpm -qa`
+```shell
+rpm -qa
+```
 
-`ls -al /var/cache/apt/archives`
+```shell
+ls -al /var/cache/apt/archives
+```
 
-`ls -al /var/cache/yum`
+```shell
+ls -al /var/cache/yum
+```
 
 ### File system
 Check home directories
 
-`ls -alR /root/`
+```shell
+ls -alR /root/
+```
 
-`ls -alR /home/`
+```shell
+ls -alR /home/
+```
 
 Configs
 
-`find / -iname "/etc/*.conf" -exec ls -al {} \;`
+```shell
+find /etc/ -iname "*.conf" -exec ls -al {} \;
+```
 
-`find / -iname "/opt/*.conf" -exec ls -al {} \;`
+```shell
+find /opt/ -iname "*.conf" -exec ls -al {} \;
+```
 
 Cron jobs
 
-`crontab -l`
+```shell
+crontab -l
+```
 
-`ls -al /etc/cron* `
+```shell
+ls -al /etc/cron* 
+```
 
-`cat /etc/cron* `
+```shell
+cat /etc/cron* 
+```
 
 SUID/SGID
 
-`find / -perm -g=s -type f 2>/dev/null`
+```shell
+find / -perm -g=s -type f 2>/dev/null
+```
 
-`find / -perm -u=s -type f 2>/dev/null`
+```shell
+find / -perm -u=s -type f 2>/dev/null
+```
 
 Readable files in /etc/
 
-`find /etc/ -readable -type f 2>/dev/null`
+```shell
+find /etc/ -readable -type f 2>/dev/null
+```
 
 Writable files in /etc/ - check if can alter settings
 
-`find /etc/ -writable -type f 2>/dev/null`
+```shell
+find /etc/ -writable -type f 2>/dev/null
+```
 
 Writable/executable directories (/tmp, /var/tmp and /dev/shm are standard)
 
-`find / -writable -type d 2>/dev/null` _writable_
+```shell
+find / -writable -type d 2>/dev/null
+```
+- writable
 
-`find / -executable -type d 2>/dev/null` _executable_
+```shell
+find / -executable -type d 2>/dev/null
+```
+- executable
 
-`find / -writable -executable -type d 2>/dev/null` _writable and executable_
+```shell
+find / -writable -executable -type d 2>/dev/null
+```
+- writable and executable
 
 What files are being accessed?
 
-`lsof -i`
+```shell
+lsof -i
+```
 
-`lsof -i :<port>`
+```shell
+lsof -i :<port>
+```
 
 Log files
 
-`find /etc/ -type f -iname "*log" 2>/dev/null`
+```shell
+find /etc/ -type f -iname "*log" 2>/dev/null
+```
 
-`find /var/ -type f -iname "*log" 2>/dev/null`
+```shell
+find /var/ -type f -iname "*log" 2>/dev/null
+```
 
-`ls -al /var/log/`
+```shell
+ls -al /var/log/
+```
 
 Look for passwords in file system (takes ages)
 
-`grep -iR pass /`
+```shell
+grep -iR pass /
+```
 
 Mounted file systems
 
-`mount`
+```shell
+mount
+```
 
-`df`
+```shell
+df
+```
 
 Unmounted file systems
 
-`cat /etc/fstab`
+```shell
+cat /etc/fstab
+```
 
 ### Networking
 NIC(s) and other networks
 
-`ifconfig -a`
+```shell
+ifconfig -a
+```
 
-`cat /etc/network/interfaces`
+```shell
+cat /etc/network/interfaces
+```
 
-`cat /etc/sysconfig/network`
+```shell
+cat /etc/sysconfig/network
+```
 
-`cat /etc/networks`
+```shell
+cat /etc/networks
+```
 
 What's exposed?
 
-`netstat -antup`
+```shell
+netstat -antup
+```
 
 DNS
 
-`cat /etc/resolv.conf`
+```shell
+cat /etc/resolv.conf
+```
 
-`dnsdomainname`
+```shell
+dnsdomainname
+```
 
-`hostname`
+```shell
+hostname
+```
 
 Packet filtering and NAT
 
-`iptables -L`
+```shell
+iptables -L
+```
 
 Routing
 
-`route`
+```shell
+route
+```
 
 Communications with other users and hosts
 
-`lsof -i`
+```shell
+lsof -i
+```
 
 Packet sniffing
 
-`tcpdump -i <interface>`
+```shell
+tcpdump -i [INTERFACE]
+```
 
-`tcpdump tcp dst <ip> <port>`
+```shell
+tcpdump tcp dst [IP] [PORT]
+```
 
 ARP cache
 
-`arp`
+```shell
+arp
+```
 
 ### Kernel exploits
 
@@ -238,4 +382,3 @@ ARP cache
 
 ### Useful links
 - <https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/>
-

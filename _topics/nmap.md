@@ -14,26 +14,36 @@ tags:
 ### Host Discovery
 No port scan
 
-`nmap -sn -oA nmap 10.10.10.10/24`
+```shell
+nmap -sn -oA nmap 10.10.10.10/24
+```
 
 ARP scan
 
-`nmap -PR -oA nmap 10.10.10.10/24`
+```shell
+nmap -PR -oA nmap 10.10.10.10/24
+```
 
 _can also use **netdiscover**_
 ### Scanning a Known Host
 
 TCP scan
 
-`nmap -sV -sC -vv -oA nmap 10.10.10.10`
+```shell
+nmap -sV -sC -vv -oA nmap 10.10.10.10
+```
 
 UDP scan
 
-`nmap -sU -sC -vv -oA nmap 10.10.10.10`
+```shell
+nmap -sU -sC -vv -oA nmap 10.10.10.10
+```
 
 Aggressive TCP scan
 
-`nmap -A -vv -oA nmap 10.10.10.10`
+```shell
+nmap -A -vv -oA nmap 10.10.10.10
+```
 
 Where `-A` is the equivalent of:
 - `-O`: OS detection
@@ -50,9 +60,13 @@ Additional options:
 
 Scripts
 
-`nmap -p <port> --script <script name> -Pn 10.10.10.10`
+```shell
+nmap -p <port> --script <script name> -Pn 10.10.10.10
+```
 
-`ls -al /usr/share/nmap/scripts`
+```shell
+ls -al /usr/share/nmap/scripts
+```
 
 Result | Meaning
 :--- | :---

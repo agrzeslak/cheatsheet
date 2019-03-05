@@ -17,7 +17,9 @@ tags:
 
 Standard
 
-`gobuster -u 10.10.10.10 -w /usr/share/SecLists/Discovery/Web_Content/common.txt -o gobuster`
+```shell
+gobuster -u 10.10.10.10 -w /usr/share/SecLists/Discovery/Web_Content/common.txt -o gobuster
+```
 
 Some other wordlists:
 - `/usr/share/dirb/wordlists/common.txt`
@@ -32,17 +34,23 @@ Additional options:
 
 ### Nikto
 
-`nikto -h 10.10.10.10`
+```shell
+nikto -h 10.10.10.10
+```
 
 ### wfuzz
 
 GET request
 
-`wfuzz -c -w users.txt -w pass.txt https://10.10.10.10/login?user=FUZZ&pass=FUZ2Z`
+```shell
+wfuzz -c -w users.txt -w pass.txt https://10.10.10.10/login?user=FUZZ&pass=FUZ2Z
+```
 
 POST request
 
-`wfuzz -c -w users.txt -w pass.txt -d "login=FUZZ&pwd=FUZ2Z" https://10.10.10.10/`
+```shell
+wfuzz -c -w users.txt -w pass.txt -d "login=FUZZ&pwd=FUZ2Z" https://10.10.10.10/
+```
 
 Additional options:
 - `-b`: specify cookie(s)
@@ -56,4 +64,6 @@ Additional options:
 
 ### wpscan
 
-`wpscan -u 10.10.10.10/wp/`
+```shell
+wpscan -u 10.10.10.10/wp/
+```
