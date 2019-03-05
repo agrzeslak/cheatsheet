@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  {% include head.html %}
+
+  <body>
+    <div class="container content">
+      <a href="{{ site.baseurl }}/">← Home</a>
+      <main>
+        <input id="attacker-ip-input" placeholder="Attacker IP Address" type="text"/>
+        <input id="attacker-port-input" placeholder="Attacker Port" type="text"/>
+        {{ content }}
+      </main>
+    </div>
+  </body>
+  <script>
+    var current_ip = "[IP]";
+    var current_port = "[PORT]"
+
+    function update_ip() {
+        var attacker_ip = document.getElementById("attacker-ip-input").value;
+        replaceText("span", current_ip, attacker_ip, "g");
+        current_ip = attacker_ip;
+    }
+
+    function update_port() {
+        var attacker_port = document.getElementById("attacker-port-input").value;
+        replaceText("span", current_port, attacker_port, "g");
+        current_port = attacker_port;
+    }
+
+    function replaceText(selector, targetText, newText, flags) {
+      var elems = document.querySelectorAll(selector), i;
+
+      for (i = 0; i < elems.length; i++) {
+        //if (!elems[i].childNodes.length) {
+          console.log(elems[i].innerHTML);
+          elems[i].innerHTML = elems[i].innerHTML.replace(targetText, newText);
+        // }
+      }
+    }
+
+    function init() {
+      var ip_input = document.getElementById("attacker-ip-input");
+      ip_input.addEventListener('input', function(event){
+          update_ip();
+      });
+
+      var port_input = document.getElementById("attacker-port-input");
+      port_input.addEventListener('input', function(event){
+          update_port();
+      });
+    }
+
+    init();
+  </script>
+</html>

@@ -12,7 +12,7 @@ tags:
 ---
 # SMB
 ### Nmap scripts
-safe vulnerability scan
+Safe vulnerability scan
 
 ```shell
 nmap -p 445 -vv --script smb-vuln-ms06-025,smb-vuln-ms07-029,smb-vuln-ms08-067,smb-vuln-ms10-061,smb-vuln-ms17-010,smb-vuln-cve-2017-7494 10.10.10.10
