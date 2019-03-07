@@ -30,19 +30,19 @@ _can also use **netdiscover**_
 TCP scan
 
 ```shell
-nmap -sV -sC -vv -oA nmap 10.10.10.10
+nmap -sV -sC --reason -vv -oA nmap 10.10.10.10
 ```
 
 UDP scan
 
 ```shell
-nmap -sU -sC -vv -oA nmap 10.10.10.10
+nmap -sU -sC --reason -vv -oA nmap 10.10.10.10
 ```
 
 Aggressive TCP scan
 
 ```shell
-nmap -A -vv -oA nmap 10.10.10.10
+nmap -A --reason -vv -oA nmap 10.10.10.10
 ```
 
 Where `-A` is the equivalent of:
