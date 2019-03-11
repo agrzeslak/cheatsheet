@@ -9,6 +9,7 @@ tags:
     - scanning
     - tcp 
     - udp
+    - unicornscan
 ---
 # Nmap
 ### Host Discovery
@@ -38,6 +39,11 @@ UDP scan
 ```shell
 nmap -sU -sC --reason -vv -oA nmap 10.10.10.10
 ```
+
+```shell
+unicornscan -m U -Iv 10.10.10.10:a
+```
+- all ports with `:a`
 
 Aggressive TCP scan
 
