@@ -85,5 +85,13 @@ Drivers can have vulns
 DRIVERQUERY
 ```
 
+### WMIC
+[FuzzySecurity .bat script for extracting relevant info using WMIC](http://www.fuzzysecurity.com/tutorials/files/wmic_info.rar)
+
+System Patches
+```powershell
+wmic qfe get Caption,Description,HotFixID,InstalledOn
+```
+
 ### Helpful links
 - <https://www.fuzzysecurity.com/tutorials/16.html>

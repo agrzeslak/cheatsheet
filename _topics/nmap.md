@@ -9,6 +9,7 @@ tags:
     - scanning
     - tcp 
     - udp
+    - unicornscan
 ---
 # Nmap
 ### Host Discovery
@@ -30,19 +31,24 @@ _can also use **netdiscover**_
 TCP scan
 
 ```shell
-nmap -sV -sC -vv -oA nmap 10.10.10.10
+nmap -sV -sC --reason -vv -oA nmap 10.10.10.10
 ```
 
 UDP scan
 
 ```shell
-nmap -sU -sC -vv -oA nmap 10.10.10.10
+nmap -sU -sC --reason -vv -oA nmap 10.10.10.10
 ```
+
+```shell
+unicornscan -m U -Iv 10.10.10.10:a
+```
+- all ports with `:a`
 
 Aggressive TCP scan
 
 ```shell
-nmap -A -vv -oA nmap 10.10.10.10
+nmap -A --reason -vv -oA nmap 10.10.10.10
 ```
 
 Where `-A` is the equivalent of:
@@ -54,7 +60,7 @@ Where `-A` is the equivalent of:
 Additional options:
 - `-p-`: full portscan (1-65535)
 - `-T4`: faster scan
-- `-sT`: TCP connect scan (for when default `-sS` SYN scan is unavailable; e.g. lack of root permissions)
+- `-sT`: TCP connect scan (for when default `-sS` SYN scan is unavailable; e.g. lack of root permissions - also ensures the connection doesn't stay open and have DOS potential)
 - `-sF`: FIN scan (can be used to bypass firewalls that filter the SYN packet)
 - `-sP`: Ping scan (use ICMP packets)
 
