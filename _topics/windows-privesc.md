@@ -13,90 +13,90 @@ tags:
 ### OS
 
 General details
-```ps
+```powershell
 systeminfo
 ```
 
-```ps
+```powershell
 hostname
 ```
 
 Our user and their permissions
-```ps
+```powershell
 echo %username%
 ```
 
-```ps
+```powershell
 net users
 ```
 
-```ps
+```powershell
 net user [USERNAME]
 ```
 
 ### Networking
 Network interfaces
-```ps
+```powershell
 ipconfig /all
 ```
 
 Routing table
-```ps
+```powershell
 route print
 ```
 
 ARP cache for all interfaces
-```ps
+```powershell
 arp -A
 ```
 
 Network connections
-```ps
+```powershell
 netstat -ano
 ```
 
 Firewall rules
-```ps
+```powershell
 netsh firewall show state
 ```
 
-```ps
+```powershell
 netsh firewall show config
 ```
 
 ### Applications
 Scheduled tasks
-```ps
+```powershell
 schtasks /query /fo LIST /v
 ```
 
 Running processes and services
-```ps
+```powershell
 tasklist /SVC
 ```
 
 Windows services
-```ps
+```powershell
 net start
 ```
 
 Drivers can have vulns
-```ps
+```powershell
 DRIVERQUERY
 ```
 
 ### File system
 Files modified in last _n_ days
-```ps
+```powershell
 forfiles /P directory /S /D +(today'date - [DAYS] days)
 ```
 
 Files modified since date
-```ps
+```powershell
 forfiles /P directory /S /D +dd/mm/yyyy
 ```
 
-```ps
+```powershell
 Dir C:\ -r | ? {! $_.PSIsContainer -AND $_.lastwritetime -ge 'dd/mm/yy'} 
 ```
 - check date format on machine; you might be dealing with Americans
@@ -105,7 +105,7 @@ Dir C:\ -r | ? {! $_.PSIsContainer -AND $_.lastwritetime -ge 'dd/mm/yy'}
 [FuzzySecurity .bat script for extracting relevant info using WMIC](http://www.fuzzysecurity.com/tutorials/files/wmic_info.rar)
 
 System Patches
-```ps
+```powershell
 wmic qfe get Caption,Description,HotFixID,InstalledOn
 ```
 
