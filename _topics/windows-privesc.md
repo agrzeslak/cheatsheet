@@ -13,83 +13,99 @@ tags:
 ### OS
 
 General details
-```powershell
+```ps
 systeminfo
 ```
 
-```powershell
+```ps
 hostname
 ```
 
 Our user and their permissions
-```powershell
+```ps
 echo %username%
 ```
 
-```powershell
+```ps
 net users
 ```
 
-```powershell
+```ps
 net user [USERNAME]
 ```
 
 ### Networking
 Network interfaces
-```powershell
+```ps
 ipconfig /all
 ```
 
 Routing table
-```powershell
+```ps
 route print
 ```
 
 ARP cache for all interfaces
-```powershell
+```ps
 arp -A
 ```
 
 Network connections
-```powershell
+```ps
 netstat -ano
 ```
 
 Firewall rules
-```powershell
+```ps
 netsh firewall show state
 ```
 
-```powershell
+```ps
 netsh firewall show config
 ```
 
 ### Applications
 Scheduled tasks
-```powershell
+```ps
 schtasks /query /fo LIST /v
 ```
 
 Running processes and services
-```powershell
+```ps
 tasklist /SVC
 ```
 
 Windows services
-```powershell
+```ps
 net start
 ```
 
 Drivers can have vulns
-```powershell
+```ps
 DRIVERQUERY
 ```
+
+### File system
+Files modified in last _n_ days
+```ps
+forfiles /P directory /S /D +(today'date - [DAYS] days)
+```
+
+Files modified since date
+```ps
+forfiles /P directory /S /D +dd/mm/yyyy
+```
+
+```ps
+Dir C:\ -r | ? {! $_.PSIsContainer -AND $_.lastwritetime -ge 'dd/mm/yy'} 
+```
+- check date format on machine; you might be dealing with Americans
 
 ### WMIC
 [FuzzySecurity .bat script for extracting relevant info using WMIC](http://www.fuzzysecurity.com/tutorials/files/wmic_info.rar)
 
 System Patches
-```powershell
+```ps
 wmic qfe get Caption,Description,HotFixID,InstalledOn
 ```
 

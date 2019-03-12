@@ -201,6 +201,12 @@ find / -perm -g=s -type f 2>/dev/null
 find / -perm -u=s -type f 2>/dev/null
 ```
 
+Files modified in last _n_ days
+```shell
+find / -type f -mtime -[DAYS] -printf "%M %u %g %TR %TD %p\n" 2>/dev/null
+```
+- can also use `-exec -ls -al {}\;`, but it's slower due to subshells spawning
+
 Readable files in /etc/
 ```shell
 find /etc/ -readable -type f 2>/dev/null
