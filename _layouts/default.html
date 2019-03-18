@@ -4,17 +4,21 @@
   {% include head.html %}
 
   <body>
-    <div class="sidenav" id="sidebar">
-      <input id="topic-filter-sidebar" class="search-bar-sidebar" placeholder="Search by keywords..." type="text"/>
-      {% for topic in site.topics %}
-      <a href="{{ site.baseurl }}{{ topic.url }}" class="sidebar-topic" tags="{% for tag in topic.tags %}{{ tag }} {% endfor %}" title="{{ topic.title }}">{{ topic.title }}</a>
-      {% endfor %}
+    <div class="sidenav left" id="sidebar">
+        <input id="topic-filter-sidebar" class="search-bar-sidebar" placeholder="Search by keywords..." type="text"/>
+        {% for topic in site.topics %}
+        <a href="{{ site.baseurl }}{{ topic.url }}" class="sidebar-topic" tags="{% for tag in topic.tags %}{{ tag }} {% endfor %}" title="{{ topic.title }}">{{ topic.title }}</a>
+        {% endfor %}
+    </div>
+    <div class="sidenav right" id="sidebar">
+        <h3 style="margin: 0 0 10px 20px">Table of Contents</h3>
+        {% include toc.html html=content sanitize=true class="inline_toc" id="my_toc" h_min=2 %}
     </div>
     <div class="container content">
-      <a href="{{ site.baseurl }}/">← Home</a>
-      <main>
-        {{ content }}
-      </main>
+        <a href="{{ site.baseurl }}/">← Home</a>
+        <main>
+            {{ content }}
+        </main>
     </div>
     <script>
         // Hide all sidebar entries whose titles or tags do not contain the search terms
