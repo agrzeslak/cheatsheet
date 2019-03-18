@@ -4,6 +4,7 @@ title: Network Recon
 tags:
     - discovery
     - enumeration
+    - netdiscover
     - network
     - nmap
     - ports
@@ -14,20 +15,21 @@ tags:
 ---
 # Network Recon
 ## Host Discovery
-No port scan
-
+No port scan (TCP SYN to 443, TCP ACK to 80 and ICMP)
 ```shell
 nmap -sn -oA nmap 10.10.10.10/24
 ```
 
-ARP scan
+ARP scan (for discovery on same LAN)
+```shell
+netdiscover -i eth0 -r 10.10.10.10/24
+```
 
 ```shell
 nmap -PR -oA nmap 10.10.10.10/24
 ```
 
-_can also use **netdiscover**_
-## Scanning a Known Host
+## Port Scanning
 
 TCP scan
 

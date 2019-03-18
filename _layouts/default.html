@@ -12,7 +12,7 @@
     </div>
     <div class="sidenav right" id="sidebar">
         <h3 style="margin: 0 0 10px 20px">Table of Contents</h3>
-        {% include toc.html html=content sanitize=true class="inline_toc" id="my_toc" h_min=2 %}
+        {% include toc.html html=content sanitize=true ordered="true" id="toc" h_min=2 %}
     </div>
     <div class="container content">
         <a href="{{ site.baseurl }}/">← Home</a>
