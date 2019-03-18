@@ -3,13 +3,12 @@ layout: default
 title: LDAP
 tags:
     - 389
-    - access
-    - directory
     - enumeration
-    - lightweight
-    - protocol
+    - injection
+    - lightweight directory access protocol
 ---
 # LDAP
+## Enumeration
 
 Dump info (anonymous bind)
 
@@ -27,3 +26,7 @@ ldapsearch -x -h 10.10.10.10 -s base namingcontexts
 ```shell
 ldapsearch -x -h 10.10.10.10 -s sub -b 'dc=<dc>,dc=<dc>'
 ```
+
+## Injection
+
+todo

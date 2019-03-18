@@ -60,7 +60,7 @@ Where `-A` is the equivalent of:
 
 Additional options:
 - `-p-`: full portscan (1-65535)
-- `-T4`: faster scan
+- `-T4`: faster scan (`-TN` where `N` is the timing mode; default is `T3`)
 - `-sT`: TCP connect scan (for when default `-sS` SYN scan is unavailable; e.g. lack of root permissions - also ensures the connection doesn't stay open and have DOS potential)
 - `-sF`: FIN scan (can be used to bypass firewalls that filter the SYN packet)
 - `-sP`: Ping scan (use ICMP packets)

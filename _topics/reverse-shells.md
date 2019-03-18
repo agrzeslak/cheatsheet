@@ -15,7 +15,7 @@ tags:
 ---
 # Reverse Shells
 
-### Linux
+## Linux
 **Bash**
 
 ```shell
@@ -119,7 +119,7 @@ xterm -display [IP]:1
 
 ---
 
-### Windows
+## Windows
 **Perl**
 
 ```powershell
