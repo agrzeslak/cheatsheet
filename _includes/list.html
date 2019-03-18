@@ -17,17 +17,16 @@
     function filter_results() {
         var search_terms = document.getElementById("topic-filter").value.split(" ");
         var table = document.getElementById("topic-table");
-        console.log(table);
 
+        var tags, title;
         for (var i = 0, row; row = table.rows[i]; i++) {
-            console.log("i: ".concat(i));
-            var title = row.attributes.title.value;
-            var tags = row.attributes.tags.value;
-            row.style.display = ""; // Visible by default
+            title = row.attributes.title.value;
+            tags = row.attributes.tags.value;
+            row.style.display = "";  // Visible by default
 
             for (var j = 0; j < search_terms.length; j++) {
                 if (!title.toLowerCase().includes(search_terms[j].toLowerCase()) && !tags.toLowerCase().includes(search_terms[j].toLowerCase())) { 
-                    row.style.display = "none"; // no match - hide row
+                    row.style.display = "none";  // No match - hide row
                 }
             }
         }

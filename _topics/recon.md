@@ -1,18 +1,19 @@
 ---
 layout: default
-title: Nmap
+title: Recon
 tags:
     - discovery
     - enumeration
     - network
+    - nmap
     - ports
     - scanning
     - tcp 
     - udp
     - unicornscan
 ---
-# Nmap
-### Host Discovery
+# Recon
+## Host Discovery
 No port scan
 
 ```shell
@@ -26,7 +27,7 @@ nmap -PR -oA nmap 10.10.10.10/24
 ```
 
 _can also use **netdiscover**_
-### Scanning a Known Host
+## Scanning a Known Host
 
 TCP scan
 

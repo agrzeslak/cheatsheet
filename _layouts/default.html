@@ -4,11 +4,42 @@
   {% include head.html %}
 
   <body>
+    <div class="sidenav" id="sidebar">
+      <input id="topic-filter-sidebar" class="search-bar-sidebar" placeholder="Search by keywords..." type="text"/>
+      {% for topic in site.topics %}
+      <a href="{{ site.baseurl }}{{ topic.url }}" class="sidebar-topic" tags="{% for tag in topic.tags %}{{ tag }} {% endfor %}" title="{{ topic.title }}">{{ topic.title }}</a>
+      {% endfor %}
+    </div>
     <div class="container content">
       <a href="{{ site.baseurl }}/">← Home</a>
       <main>
         {{ content }}
       </main>
     </div>
+    <script>
+        // Hide all sidebar entries whose titles or tags do not contain the search terms
+        function filter_results() {
+            var search_terms = document.getElementById("topic-filter-sidebar").value.split(" ");
+            var sidebar = document.getElementById("sidebar");
+            var topics = sidebar.getElementsByClassName("sidebar-topic");
+            
+            var tags, title, topic;
+            for (i = 0; i < topics.length; ++i) {
+                topic = topics[i];
+                title = topic.attributes.title.value;
+                tags = topic.attributes.tags.value;
+                topic.style.display = "";  // Visible by default
+                for (var j = 0; j < search_terms.length; j++) {
+                    if (!title.toLowerCase().includes(search_terms[j].toLowerCase()) && !tags.toLowerCase().includes(search_terms[j].toLowerCase())) { 
+                        topic.style.display = "none";  // No match - hide topic
+                    }
+                }
+            }
+        }
+
+        addEventListener('input', function(event){
+            filter_results();
+        });
+    </script>
   </body>
 </html>
