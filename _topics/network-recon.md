@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Recon
+title: Network Recon
 tags:
     - discovery
     - enumeration
@@ -12,7 +12,7 @@ tags:
     - udp
     - unicornscan
 ---
-# Recon
+# Network Recon
 ## Host Discovery
 No port scan
 

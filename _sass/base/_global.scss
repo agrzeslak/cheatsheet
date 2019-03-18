@@ -20,7 +20,6 @@ html {
 body {
   color: $body-text-color;
   background-color: $body-background-color;
-  border-top: $body-top-border-width solid $body-top-border-color;
 }
 
 a {
@@ -39,8 +38,7 @@ a {
 
 footer {
     text-align: center;
-    text-transform: lowercase;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 img {
