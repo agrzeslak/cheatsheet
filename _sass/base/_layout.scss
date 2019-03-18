@@ -65,3 +65,9 @@
 .topic-title {
   font-size: 16px;
 }
+
+@media all and (max-width: 1350px) { 
+  .sidenav {
+    display: none;
+  }
+}
