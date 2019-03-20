@@ -34,24 +34,24 @@ nmap -PR -oA nmap 10.10.10.10/24
 TCP scan
 
 ```shell
-nmap -sV -sC --reason -vv -oA nmap 10.10.10.10
+nmap -sV -sC --reason -vv -p- -oA full-tcp 10.10.10.10
 ```
 
 UDP scan
 
 ```shell
-nmap -sU -sC --reason -vv -oA nmap 10.10.10.10
+nmap -sU -sC --reason -vv -oA udp 10.10.10.10
 ```
 
 ```shell
-unicornscan -m U -Iv 10.10.10.10:a
+unicornscan -m U -Iv -l full-udp 10.10.10.10:a
 ```
 - all ports with `:a`
 
 Aggressive TCP scan
 
 ```shell
-nmap -A --reason -vv -oA nmap 10.10.10.10
+nmap -A --reason -vv -p- -oA full-tcp 10.10.10.10
 ```
 
 Where `-A` is the equivalent of:
@@ -70,7 +70,7 @@ Additional options:
 Scripts
 
 ```shell
-nmap -p <port> --script <script name> -Pn 10.10.10.10
+nmap -p [PORT] --script [SCRIPT NAME] -Pn 10.10.10.10
 ```
 
 ```shell

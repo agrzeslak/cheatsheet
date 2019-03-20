@@ -9,17 +9,33 @@ tags:
     - unix
 ---
 # Linux Privesc
-### Upgrading shells
+### Upgrading Shells
+Spawning shells
 ```shell
 python -c 'import pty;pty.spawn("/bin/bash")'
 ```
-
 ```shell
 echo os.system('/bin/bash')
 ```
-
 ```shell
 /bin/sh -i
+```
+
+Pseudo terminal
+```shell
+# In reverse shell
+python -c 'import pty; pty.spawn("/bin/bash")'
+Ctrl-Z
+
+# In Kali
+stty raw -echo
+fg
+
+# In reverse shell
+reset
+export SHELL=bash
+export TERM=xterm-256color
+stty rows [ROWS] columns [COLS]
 ```
 
 ### Enumeration Scripts
@@ -239,8 +255,9 @@ lsof -i
 ```
 
 ```shell
-lsof -i :<port>
+lsof -i :[PORT]
 ```
+- `-i` can take `[46][protocol][@hostname|hostaddr][:service|port]` (where `[46]` determines IPv4/6)
 
 Log files
 ```shell
@@ -351,3 +368,4 @@ arp
 
 ### Useful links
 - <https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/>
+- <https://blog.ropnop.com/upgrading-simple-shells-to-fully-interactive-ttys/#method3upgradingfromnetcatwithmagic>
