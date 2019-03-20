@@ -51,3 +51,15 @@ Open specific directory
 ```shell
 smbclient -U <user>%<hash> --pw-nt-hash //10.10.10.10/<directory>
 ```
+
+### Regular usage
+Mount
+```shell
+mount -t cifs -o username=[USERNAME] //10.10.10.10/ /mnt/smb/
+```
+
+SMBMap
+```shell
+smbmap -u [USERNAME] -H 10.10.10.10
+```
+- Add anything to `username` field if you have no creds

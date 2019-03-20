@@ -21,6 +21,17 @@ echo os.system('/bin/bash')
 /bin/sh -i
 ```
 
+Spawning shells and maintaining euid and groups
+```shell
+python -c 'import os,pty; os.setresuid(new_id,new_id,new_id); pty.spawn("/bin/bash")'
+```
+- Without:
+    - Pre: &nbsp; `uid=1000(<u1>) gid=1000(<g1>) euid=1001(<u2>) groups=1001(<g2>),1000(<g1>)`
+    - Post: `uid=1000(<u1>) gid=1000(<g1>)                 groups=1000(<g1>)`
+- With:
+    - Pre: &nbsp; `uid=1000(<u1>) gid=1000(<g1>) euid=1001(<u2>) groups=1001(<g2>),1000(<g1>)`
+    - Post: `uid=1001(<u2>) gid=1000(<g1>)                 groups=1001(<g2>),1000(<g1>)`
+
 Pseudo terminal
 ```shell
 # In reverse shell
@@ -369,3 +380,4 @@ arp
 ### Useful links
 - <https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/>
 - <https://blog.ropnop.com/upgrading-simple-shells-to-fully-interactive-ttys/#method3upgradingfromnetcatwithmagic>
+- <https://blog.pentests.pl>
