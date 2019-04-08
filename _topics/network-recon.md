@@ -32,15 +32,13 @@ nmap -PR -oA nmap 10.10.10.10/24
 ## Port Scanning
 
 TCP scan
-
 ```shell
-nmap -sV -sC --reason -vv -p- -oA full-tcp 10.10.10.10
+nmap -sV -sC -vv -p- -oA full-tcp 10.10.10.10
 ```
 
 UDP scan
-
 ```shell
-nmap -sU -sC --reason -vv -oA udp 10.10.10.10
+nmap -sU -sC -vv -oA udp 10.10.10.10
 ```
 
 ```shell
@@ -49,10 +47,16 @@ unicornscan -m U -Iv -l full-udp 10.10.10.10:a
 - all ports with `:a`
 
 Aggressive TCP scan
-
 ```shell
 nmap -A --reason -vv -p- -oA full-tcp 10.10.10.10
 ```
+
+Full TCP and UDP
+```shell
+masscan -e tun0 -p 0-65535,U:0-65535 --interactive -oL masscan 10.10.10.10
+```
+- default `--rate` is 100; if the network/target permits, consider higher values for substantially faster scans
+- follow up with nmap, e.g. `nmap -sT -sU -A -p 22,139,445 -oA nmap 10.10.10.10`
 
 Where `-A` is the equivalent of:
 - `-O`: OS detection
