@@ -32,14 +32,23 @@ Additional options:
 - `-t`: threads
 - `-x`: file extension(s) to search for e.g. "`.txt,.php`"
 
-### Nikto
+[recursive-gobuster](https://github.com/epi052/recursive-gobuster) wrapper by epi
+```shell
+./recursive-gobuster.pyz -w /usr/share/SecLists/Discovery/Web_Content/common.txt 10.10.10.10
+```
 
+Generating a custom wordlist
+```shell
+cewl http://10.10.10.10 -w original.cewl
+john --wordlist=original.cewl --rules --stdout > transformed.cewl
+```
+
+### Nikto
 ```shell
 nikto -h 10.10.10.10
 ```
 
 ### wfuzz
-
 GET request
 
 ```shell
