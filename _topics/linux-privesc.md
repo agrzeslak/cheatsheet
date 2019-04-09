@@ -228,6 +228,11 @@ find / -perm -g=s -type f 2>/dev/null
 find / -perm -u=s -type f 2>/dev/null
 ```
 
+Capabilities
+```shell
+getcap -r / 2>/dev/null
+```
+
 Files modified in last _n_ days
 ```shell
 find / -type f -mtime -[DAYS] -printf "%M %u %g %TR %TD %p\n" 2>/dev/null

@@ -21,11 +21,6 @@ Standard
 gobuster -u 10.10.10.10 -w /usr/share/SecLists/Discovery/Web_Content/common.txt -o gobuster
 ```
 
-Some other wordlists:
-- `/usr/share/dirb/wordlists/common.txt`
-- `/usr/share/dirbuster/wordlists/directory-list-2.3-small.txt`
-- `/usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt`
-
 Additional options:
 - `-a`: User-Agent
 - `-s`: positive status codes (default "`200,204,301,302,307,403`")
@@ -34,14 +29,20 @@ Additional options:
 
 [recursive-gobuster](https://github.com/epi052/recursive-gobuster) wrapper by epi
 ```shell
-./recursive-gobuster.pyz -w /usr/share/SecLists/Discovery/Web_Content/common.txt 10.10.10.10
+./recursive-gobuster.pyz -w /usr/share/SecLists/Discovery/Web_Content/common.txt -x html,php 10.10.10.10
 ```
 
 Generating a custom wordlist
 ```shell
 cewl http://10.10.10.10 -w original.cewl
 john --wordlist=original.cewl --rules --stdout > transformed.cewl
+cat /usr/share/SecLists/Discovery/Web_Content/common.txt >> transformed.cewl
 ```
+
+Some other wordlists:
+- `/usr/share/dirb/wordlists/common.txt`
+- `/usr/share/dirbuster/wordlists/directory-list-2.3-small.txt`
+- `/usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt`
 
 ### Nikto
 ```shell
