@@ -14,9 +14,6 @@ tags:
 ---
 # HTTP(S)
 ### Gobuster
-
-Standard
-
 ```shell
 gobuster -u 10.10.10.10 -w /usr/share/SecLists/Discovery/Web_Content/common.txt -o gobuster
 ```
