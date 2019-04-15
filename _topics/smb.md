@@ -60,6 +60,10 @@ mount -t cifs -o username=[USERNAME] //10.10.10.10/ /mnt/smb/
 
 SMBMap
 ```shell
-smbmap -u [USERNAME] -H 10.10.10.10
+smbmap -H 10.10.10.10
 ```
-- Add anything to `username` field if you have no creds
+
+```shell
+smbmap -H 10.10.10.10 -u [USERNAME] 
+```
+- Sometimes adding anything to the `-u` field will return results
