@@ -68,12 +68,12 @@ sudo docker inspect $(sudo docker ps -aq)
 
 Get all IP addresses and ports
 ```shell
-sudo docker inspect -f '{{.Id}} {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}} {{ .NetworkSettings.Ports }}' $(sudo docker ps -aq)
+sudo docker inspect -f '{{printf "%.12s" .Id}} {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}} {{ .NetworkSettings.Ports }}' $(sudo docker ps -aq)
 ```
 
 One liner for interesting info
 ```shell
-sudo docker inspect -f '{{.Id}} User:{{.Config.User}} Priv:{{.HostConfig.Privileged}} IPs:{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}} Ports:{{ .NetworkSettings.Ports }}' $(sudo docker ps -aq)
+sudo docker inspect -f '{{printf "%.12s" .Id}} User:{{.Config.User}} Priv:{{.HostConfig.Privileged}} IPs:{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}} Ports:{{ .NetworkSettings.Ports }}' $(sudo docker ps -aq)
 ```
 
 ### CVE-2019-5736 runc Docker escape
