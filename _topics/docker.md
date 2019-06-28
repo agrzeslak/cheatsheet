@@ -6,6 +6,7 @@ tags:
     - containerisation
     - kubernetes
 ---
+{% raw %}
 # Docker
 ### Are we in a Docker container?
 - Check for `/.dockerenv` or `/.dockerinit` (pre-v1.11)
@@ -58,7 +59,7 @@ sudo docker inspect [CONTAINER]
 
 Get IP address
 ```shell
-sudo docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' [CONTAINER]
+sudo docker inspect -f'{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' [CONTAINER]
 ```
 
 Get container settings for all containers
@@ -87,3 +88,4 @@ sudo docker inspect -f '{{printf "%.12s" .Id}} User:{{.Config.User}} Priv:{{.Hos
 ```shell
 for port in {1..65535}; do timeout 1 bash -c "echo > /dev/tcp/[HOST]/$port" >& /dev/null && echo "$port open"; done
 ```
+{% endraw %}
