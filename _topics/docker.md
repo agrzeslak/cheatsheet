@@ -38,22 +38,42 @@ docker version
 
 List all running containers
 ```shell
-docker container ls -a
+sudo docker container ls -a
 ```
 
 List all containers
 ```shell
-docker ps -a
+sudo docker ps -a
 ```
 
 Spawn shell inside container
 ```shell
-docker exec -it [CONTAINER] /bin/sh
+sudo docker exec -it [CONTAINER] /bin/sh
+```
+
+Get container settings for a single container
+```shell
+sudo docker inspect [CONTAINER]
 ```
 
 Get IP address
 ```shell
-docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' [CONTAINER]
+sudo docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' [CONTAINER]
+```
+
+Get container settings for all containers
+```shell
+sudo docker inspect $(sudo docker ps -aq)
+```
+
+Get all IP addresses and ports
+```shell
+sudo docker inspect -f '{{.Id}} {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}} {{ .NetworkSettings.Ports }}' $(sudo docker ps -aq)
+```
+
+One liner for interesting info
+```shell
+sudo docker inspect -f '{{.Id}} User:{{.Config.User}} Priv:{{.HostConfig.Privileged}} IPs:{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}} Ports:{{ .NetworkSettings.Ports }}' $(sudo docker ps -aq)
 ```
 
 ### CVE-2019-5736 runc Docker escape
