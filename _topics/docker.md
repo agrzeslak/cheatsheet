@@ -9,7 +9,10 @@ tags:
 {% raw %}
 # Docker
 ### Are we in a Docker container?
-- Check for `/.dockerenv` or `/.dockerinit` (pre-v1.11)
+```shell
+ls -al /.dockerenv
+ls -al /.dockerinit  # pre-v1.11
+```
 
 ```shell
 cat /proc/1/cgroup

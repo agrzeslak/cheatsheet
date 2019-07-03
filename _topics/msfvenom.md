@@ -6,6 +6,7 @@ tags:
     - metasploit
     - meterpreter
     - msfpayload
+    - obfuscation
     - reverse
     - shell
 ---
