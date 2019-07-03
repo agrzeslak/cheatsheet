@@ -77,6 +77,11 @@ One liner for interesting info
 sudo docker inspect -f '{{printf "%.12s" .Id}} User:{{.Config.User}} Priv:{{.HostConfig.Privileged}} IPs:{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}} Ports:{{ .NetworkSettings.Ports }}' $(sudo docker ps -aq)
 ```
 
+Execute command in all containers (e.g. all listening port)
+```shell
+for container in $(sudo docker ps -q); do echo $container; out=$(sudo docker exec $container netstat -ntlp); echo $out | grep -i listen; done
+```
+
 ### CVE-2019-5736 runc Docker escape
 - Docker versions < 18.09.2 (`docker version`)
 - runc versions <= 1.0-rc6 (`docker-runc -version`)
