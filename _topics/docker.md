@@ -82,7 +82,7 @@ sudo docker inspect -f '{{printf "%.12s" .Id}} User:{{.Config.User}} Priv:{{.Hos
 
 Execute command in all containers (e.g. all listening port)
 ```shell
-for container in $(sudo docker ps -q); do echo $container; out=$(sudo docker exec $container netstat -ntlp); echo $out | grep -i listen; done
+sudo docker ps -q | xargs -I% sh -c 'echo %; sudo docker exec % netstat -ntlp | grep -i listen;'
 ```
 
 ### CVE-2019-5736 runc Docker escape
