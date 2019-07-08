@@ -62,7 +62,7 @@ sudo docker inspect [CONTAINER]
 
 Get IP address
 ```shell
-sudo docker inspect -f'{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' [CONTAINER]
+sudo docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' [CONTAINER]
 ```
 
 Get container settings for all containers
