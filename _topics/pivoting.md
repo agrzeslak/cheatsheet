@@ -114,7 +114,7 @@ Run remotely (client)
 chisel client [SERVER IP]:[SERVER PORT] R:[TUNNEL LISTEN PORT ON SERVER]:[TUNNEL TARGET]:[TUNNEL PORT]
 ```
 
-# References
+## References
 - <https://raw.githubusercontent.com/21y4d/Notes/master/Pivoting.txt>
 - <https://www.bogotobogo.com/Linux/linux_Secure_Shell_SSH_V_ssh_Reverse_SSH_Tunnel_Remote_Port_Forwarding.php>
     - All credit for SSH tunelling diagrams goes here; they are simply too good to pass up
