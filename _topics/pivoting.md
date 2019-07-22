@@ -70,14 +70,45 @@ plink.exe [SSH IP] -P 22 -C -N -R [REMOTE PORT]:[TARGET IP]:[TARGET PORT] -l use
 ## SOCAT (Linux)
 On dual-homed host
 ```shell
-./socat TCP4-LISTEN:[LOCAL PORT],fork TCP4:[TARGET IP]:[TARGET PORT]
+socat TCP4-LISTEN:[LOCAL PORT],fork TCP4:[TARGET IP]:[TARGET PORT]
 ```
-- Forwards `localhost:[LOCAL PORT]` to `[TARGET IP]:[TARGET PORT]`
+- Forwards `[LOCAL PORT]` to `[TARGET IP]:[TARGET PORT]`
 
 ## Chisel
+- SSH, but reversed; you are the Chisel server, remote host is the client
+### Reverse Pivot
+- Local port (server) -> remote port (client)
+- We are listening (we are the server)
+- Useful for reaching machines through a remote host
+
+Run locally (server)
+```shell
+chisel server -p [LISTEN PORT] -reverse
+```
+
+Run remotely (client)
+```shell
+chisel client [SERVER IP]:[SERVER PORT] R:[TUNNEL LISTEN PORT ON SERVER]:[TUNNEL TARGET]:[TUNNEL PORT]
+```
+
+### Local Pivot
+- Remote port (client) -> local port (server)
+- We are listening (we are the server)
+- Useful for forwarding reverse shells from remote host to our machine
+
+Run locally (server)
+```shell
+chisel server -p [LISTEN PORT]
+```
+
+Run remotely (client)
+```shell
+chisel client [SERVER IP]:[SERVER PORT] [TUNNEL LISTEN PORT ON CLIENT]:[TUNNEL TARGET]:[TUNNEL PORT]
+```
 
 
 # References
 - <https://raw.githubusercontent.com/21y4d/Notes/master/Pivoting.txt>
 - <https://www.bogotobogo.com/Linux/linux_Secure_Shell_SSH_V_ssh_Reverse_SSH_Tunnel_Remote_Port_Forwarding.php>
     - All credit for SSH tunelling diagrams goes here; they are simply too good to pass up
+- <https://www.youtube.com/watch?v=Yp4oxoQIBAM>
