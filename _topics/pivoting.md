@@ -15,6 +15,7 @@ With meterpreter session on dual homed machine
 portfwd add -l [LOCAL PORT] -p [TARGET PORT] -r [TARGET IP]
 ```
 - `-R` for reverse
+
 ```shell
 portfwd list  # List
 ```
