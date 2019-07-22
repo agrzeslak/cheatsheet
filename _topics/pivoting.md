@@ -12,9 +12,15 @@ tags:
 ## Metasploit
 With meterpreter session on dual homed machine
 ```shell
-portfwd add -l 4445 -p 4443 -r 10.10.10.10
+portfwd add -l [LOCAL PORT] -p [TARGET PORT] -r [TARGET IP]
 ```
 - `-R` for reverse
+```shell
+portfwd list  # List
+```
+```shell
+portfwd flush  # Clear
+```
 
 ## SSH Tunneling
 From within SSH session `~C` to access options, otherwise restructure as `ssh [TUNNELING COMMANDS] user@10.10.10.10`
