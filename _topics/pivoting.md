@@ -82,7 +82,7 @@ socat TCP4-LISTEN:[LOCAL PORT],fork TCP4:[TARGET IP]:[TARGET PORT]
 - Forwards `[LOCAL PORT]` to `[TARGET IP]:[TARGET PORT]`
 
 ## Chisel
-- SSH, but reversed; you are the Chisel server, remote host is the client
+SSH, but reversed; you are the Chisel server, remote host is the client
 
 ### Local Pivot
 - Remote port (client) -> local port (server)
