@@ -10,17 +10,28 @@ tags:
 ---
 # Pivoting
 ## Metasploit
+### Port forwarding
 With meterpreter session on dual homed machine
 ```shell
-portfwd add -l [LOCAL PORT] -p [TARGET PORT] -r [TARGET IP]
+portfwd add -l [LOCAL PORT] -p [TARGET PORT] -r [TARGET IP]  # Add port forwarding
 ```
 - `-R` for reverse
 
 ```shell
+portfwd delete -l [LOCAL PORT] -p [TARGET PORT] -r [TARGET IP]  # Delete specific forwarding
 portfwd list  # List
-```
-```shell
 portfwd flush  # Clear
+```
+
+### Dynamic forwarding
+With meterpreter session on dual homed machine
+```shell
+run autoroute -s [TARGET SUBNET]
+run autoroute -p  # Show active routes
+route  # View accessible networks
+route add 10.10.10.0 255.255.255.0 1  # Add route to 10.10.10.0/24 via session 1
+route delete 10.10.10.0 255.255.255.0 1  # Delete specific route
+route flush  # Delete all routes
 ```
 
 ## SSH Tunneling
@@ -114,8 +125,19 @@ Run remotely (client)
 chisel client [SERVER IP]:[SERVER PORT] R:[TUNNEL LISTEN PORT ON SERVER]:[TUNNEL TARGET]:[TUNNEL PORT]
 ```
 
+## ProxyChains
+Configure `/etc/proxychains.conf` to use a SOCKS5 proxy
+```shell
+socks5 127.0.0.1 1080
+```
+Run commands through proxychains
+```shell
+proxychains nmap -Pn -sT ...
+```
+
 ## References
 - <https://raw.githubusercontent.com/21y4d/Notes/master/Pivoting.txt>
 - <https://www.bogotobogo.com/Linux/linux_Secure_Shell_SSH_V_ssh_Reverse_SSH_Tunnel_Remote_Port_Forwarding.php>
     - All credit for SSH tunelling diagrams goes here; they are simply too good to pass up
 - <https://www.youtube.com/watch?v=Yp4oxoQIBAM>
+- <https://highon.coffee/blog/ssh-meterpreter-pivoting-techniques/>
