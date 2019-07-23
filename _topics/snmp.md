@@ -6,7 +6,7 @@ tags:
     - simple network management protocol
     - UDP
 ---
-# SMTP
+# SNMP
 snmp-check
 ```shell
 snmp-check 10.10.10.10
