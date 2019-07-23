@@ -19,19 +19,19 @@ portfwd add -l [LOCAL PORT] -p [TARGET PORT] -r [TARGET IP]  # Add port forwardi
 
 ```shell
 portfwd delete -l [LOCAL PORT] -p [TARGET PORT] -r [TARGET IP]  # Delete specific forwarding
-portfwd list  # List
-portfwd flush  # Clear
+portfwd list                                                    # List
+portfwd flush                                                   # Delete all forwardings
 ```
 
 ### Dynamic forwarding
 With meterpreter session on dual homed machine
 ```shell
 run autoroute -s [TARGET SUBNET]
-run autoroute -p  # Show active routes
-route  # View accessible networks
-route add 10.10.10.0 255.255.255.0 1  # Add route to 10.10.10.0/24 via session 1
+run autoroute -p                         # Show active routes
+route                                    # View accessible networks
+route add 10.10.10.0 255.255.255.0 1     # Add route to 10.10.10.0/24 via session 1
 route delete 10.10.10.0 255.255.255.0 1  # Delete specific route
-route flush  # Delete all routes
+route flush                              # Delete all routes
 ```
 
 ## SSH Tunneling
@@ -81,7 +81,7 @@ service ssh start
 
 Remotely
 ```shell
-plink.exe [SSH IP] -P 22 -C -N -L [LOCAL PORT]:[TARGET IP]:[REMOTE PORT] -l user -pw pass  # Local
+plink.exe [SSH IP] -P 22 -C -N -L [LOCAL PORT]:[TARGET IP]:[REMOTE PORT] -l user -pw pass   # Local
 plink.exe [SSH IP] -P 22 -C -N -R [REMOTE PORT]:[TARGET IP]:[TARGET PORT] -l user -pw pass  # Remote
 ```
 
