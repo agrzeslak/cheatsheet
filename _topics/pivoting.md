@@ -85,7 +85,7 @@ socat TCP4-LISTEN:[LOCAL PORT],fork TCP4:[TARGET IP]:[TARGET PORT]
 SSH, but reversed; you are the Chisel server and the remote host is the client
 
 ### Local Pivot
-- Remote port (client) -> local port (server)
+- Remote port (client) → local port (server)
 - We are listening (we are the server)
 - Useful for forwarding reverse shells from remote host to our machine
 
@@ -100,7 +100,7 @@ chisel client [SERVER IP]:[SERVER PORT] [TUNNEL LISTEN PORT ON CLIENT]:[TUNNEL T
 ```
 
 ### Reverse Pivot
-- Local port (server) -> remote port (client)
+- Local port (server) → remote port (client)
 - We are listening (we are the server)
 - Useful for reaching machines through a remote host
 
