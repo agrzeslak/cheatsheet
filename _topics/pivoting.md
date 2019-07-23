@@ -26,7 +26,7 @@ portfwd flush                                                   # Delete all for
 ### Dynamic forwarding
 With meterpreter session on dual homed machine
 ```shell
-run autoroute -s [TARGET SUBNET]
+run autoroute -s [TARGET SUBNET]         # Adds route for [TARGET SUBNET]
 run autoroute -p                         # Show active routes
 route                                    # View accessible networks
 route add 10.10.10.0 255.255.255.0 1     # Add route to 10.10.10.0/24 via session 1
