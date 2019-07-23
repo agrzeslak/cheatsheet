@@ -46,7 +46,6 @@ From within SSH session `~C` to access options, otherwise restructure as `ssh [T
 ![local forwarding](../ssh-local.png)
 
 ![local forwarding](../ssh-local2.png)
-- see references
 
 ### Remote forwarding
 ```shell
