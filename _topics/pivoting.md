@@ -44,7 +44,7 @@ On new line, in existing SSH session
 Without interactive SSH session
 ```shell
 ssh <tunneling> [user@]<ip>                       # Tunnel and create interactive session
-ssh -fN <tunneling> [user@]<ip>                   # Tunnel without creating interactive session, close with kill
+ssh -fN <tunneling> [user@]<ip>                   # Tunnel without interactive session, close with kill
 ssh -fNMS /tmp/file-sock <tunneling> [user@]<ip>  # Tunnel without interactive session, with master socket
 ssh -S /tmp/file-sock -O exit                     # Close tunnel which uses a master socket
 ```
