@@ -41,7 +41,7 @@ On new line, in existing SSH session
 ~#  # List currently configured tunnels
 ```
 
-Without interactive SSH session
+Without existing SSH session
 ```shell
 ssh <tunneling> [user@]<ip>                       # Tunnel and create interactive session
 ssh -fN <tunneling> [user@]<ip>                   # Tunnel without interactive session, close with kill
