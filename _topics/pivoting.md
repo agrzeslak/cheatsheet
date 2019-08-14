@@ -37,7 +37,7 @@ route flush                              # Delete all routes
 ## SSH Tunneling
 On new line, in existing SSH session
 ```shell
-~C  # Access tunneling options from within SSH session
+~C  # Configure tunneling
 ~#  # List currently configured tunnels
 ```
 
