@@ -35,7 +35,19 @@ route flush                              # Delete all routes
 ```
 
 ## SSH Tunneling
-From within SSH session `~C` to access options, otherwise restructure as `ssh <tunneling commands> user@10.10.10.10`
+On new line, in existing SSH session
+```shell
+~C  # Access tunneling options from within SSH session
+~#  # List currently configured tunnels
+```
+
+Without interactive SSH session
+```shell
+ssh <tunneling> [user@]<ip>                       # Tunnel and create interactive session
+ssh -fN <tunneling> [user@]<ip>                   # Tunnel without creating interactive session, close with kill
+ssh -fNMS /tmp/file-sock <tunneling> [user@]<ip>  # Tunnel without interactive session, with master socket
+ssh -S /tmp/file-sock -O exit                     # Close tunnel which uses a master socket
+```
 
 ### Local forwarding
 ```shell
