@@ -137,13 +137,14 @@ chisel client <server ip>:<server port> R:<tunnel listen port on server>:<tunnel
 ```
 
 ## ProxyChains
-Configure `/etc/proxychains.conf` to use a SOCKS5 proxy
+Configure `/etc/proxychains.conf` to use a proxy, e.g. SOCKS4/5, HTTP, etc.
 ```shell
 socks5 127.0.0.1 1080
+<proxy type> <ip> <port> [username] [password]
 ```
 Run commands through proxychains
 ```shell
-proxychains nmap -Pn -sT ...
+proxychains <command to proxy>
 ```
 
 ## References
