@@ -9,14 +9,14 @@ tags:
 # SQL
 ## CLI Tools
 ```shell
-sqsh -S 10.10.10.10 -U [USERNAME] -P [PASSWORD/HASH]
+sqsh -S 10.10.10.10 -U <username> -P <password/hash>
 ```
 - Supports Kerberos but don't know of way to use Windows authentication
 
 ## MSSQL
 Impacket CLI Client
 ```shell
-/usr/share/doc/python-impacket/examples/mssqlclient.py [USER]@10.10.10.10
+/usr/share/doc/python-impacket/examples/mssqlclient.py <user>@10.10.10.10
 ```
 - `[[domain/]username[:password]@]10.10.10.10`
 - If you provide the password as part of the target then it's treated as an LDAP query; use the prompt otherwise
@@ -59,7 +59,7 @@ FROM    sys.dm_server_services AS DSS
 
 List tables in database
 ```sql
-USE [DATABASE]
+USE <database name>
 SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE='BASE TABLE'
 ```
 

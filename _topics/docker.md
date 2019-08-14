@@ -52,17 +52,17 @@ sudo docker ps -a
 
 Spawn shell inside container
 ```shell
-sudo docker exec -it [CONTAINER] /bin/sh
+sudo docker exec -it <container> /bin/sh
 ```
 
 Get container settings for a single container
 ```shell
-sudo docker inspect [CONTAINER]
+sudo docker inspect <container>
 ```
 
 Get IP address
 ```shell
-sudo docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' [CONTAINER]
+sudo docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <container>
 ```
 
 Get container settings for all containers
@@ -94,6 +94,6 @@ sudo docker ps -q | xargs -I% sh -c 'echo %; sudo docker exec % netstat -ntlp | 
 
 ### Enumeration within Container
 ```shell
-for port in {1..65535}; do timeout 1 bash -c "echo > /dev/tcp/[HOST]/$port" >& /dev/null && echo "$port open"; done
+for port in {1..65535}; do timeout 1 bash -c "echo > /dev/tcp/<host>/$port" >& /dev/null && echo "$port open"; done
 ```
 {% endraw %}

@@ -55,7 +55,7 @@ smbclient -U <user>%<hash> --pw-nt-hash //10.10.10.10/<directory>
 ### Regular usage
 Mount
 ```shell
-mount -t cifs -o username=[USERNAME] //10.10.10.10/ /mnt/smb/
+mount -t cifs -o username=<username> //10.10.10.10/ /mnt/smb/
 ```
 
 SMBMap
@@ -64,6 +64,6 @@ smbmap -H 10.10.10.10
 ```
 
 ```shell
-smbmap -H 10.10.10.10 -u [USERNAME] 
+smbmap -H 10.10.10.10 -u <username> 
 ```
 - Sometimes adding anything to the `-u` field will return results

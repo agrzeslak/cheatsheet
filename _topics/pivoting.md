@@ -13,12 +13,12 @@ tags:
 ### Port forwarding
 With meterpreter session on dual homed machine
 ```shell
-portfwd add -l [LOCAL PORT] -p [TARGET PORT] -r [TARGET IP]  # Add port forwarding
+portfwd add -l <local port> -p <target port> -r <target ip>  # Add port forwarding
 ```
 - `-R` for reverse
 
 ```shell
-portfwd delete -l [LOCAL PORT] -p [TARGET PORT] -r [TARGET IP]  # Delete specific forwarding
+portfwd delete -l <local port> -p <target port> -r <target ip>  # Delete specific forwarding
 portfwd list                                                    # List
 portfwd flush                                                   # Delete all forwardings
 ```
@@ -26,7 +26,7 @@ portfwd flush                                                   # Delete all for
 ### Dynamic forwarding
 With meterpreter session on dual homed machine
 ```shell
-run autoroute -s [TARGET SUBNET]         # Adds route for [TARGET SUBNET]
+run autoroute -s <target subnet>         # Adds route for <target subnet>
 run autoroute -p                         # Show active routes
 route                                    # View accessible networks
 route add 10.10.10.0 255.255.255.0 1     # Add route to 10.10.10.0/24 via session 1
@@ -35,11 +35,11 @@ route flush                              # Delete all routes
 ```
 
 ## SSH Tunneling
-From within SSH session `~C` to access options, otherwise restructure as `ssh [TUNNELING COMMANDS] user@10.10.10.10`
+From within SSH session `~C` to access options, otherwise restructure as `ssh <tunneling commands> user@10.10.10.10`
 
 ### Local forwarding
 ```shell
--L [LOCAL PORT]:[TARGET IP]:[REMOTE PORT]
+-L <local port>:<target ip>:<remote port>
 ```
 - Forwards a local port to a remote `ip:port`
 
@@ -49,7 +49,7 @@ From within SSH session `~C` to access options, otherwise restructure as `ssh [T
 
 ### Remote forwarding
 ```shell
--R [REMOTE PORT]:[TARGET IP]:[TARGET PORT]
+-R <remote port>:<target ip>:<target port>
 ```
 - Forwards a remote port to a `ip:port` reachable by you (may be `localhost`)
 
@@ -68,7 +68,7 @@ service ssh start
 ```
 - Open SSH session from remote host 
 ```shell
-ssh -R [REMOTE PORT]:[TARGET IP]:[KALI PORT] pentest@10.10.10.10
+ssh -R <remote port>:<target ip>:<kali port> pentest@10.10.10.10
 ```
 
 ## Plink (PuTTY Link)
@@ -80,16 +80,16 @@ service ssh start
 
 Remotely
 ```shell
-plink.exe [SSH IP] -P 22 -C -N -L [LOCAL PORT]:[TARGET IP]:[REMOTE PORT] -l user -pw pass   # Local
-plink.exe [SSH IP] -P 22 -C -N -R [REMOTE PORT]:[TARGET IP]:[TARGET PORT] -l user -pw pass  # Remote
+plink.exe <ssh ip> -P 22 -C -N -L <local port>:<target ip>:<remote port> -l user -pw pass   # Local
+plink.exe <ssh ip> -P 22 -C -N -R <remote port>:<target ip>:<target port> -l user -pw pass  # Remote
 ```
 
 ## SOCAT (Linux)
 On dual-homed host
 ```shell
-socat TCP4-LISTEN:[LOCAL PORT],fork TCP4:[TARGET IP]:[TARGET PORT]
+socat TCP4-LISTEN:<local port>,fork TCP4:<target ip>:<target port>
 ```
-- Forwards `[LOCAL PORT]` to `[TARGET IP]:[TARGET PORT]`
+- Forwards `<local port>` to `<target ip>:<target port>`
 
 ## Chisel
 SSH, but reversed; you are the Chisel server and the remote host is the client
@@ -101,12 +101,12 @@ SSH, but reversed; you are the Chisel server and the remote host is the client
 
 Run locally (server)
 ```shell
-chisel server -p [LISTEN PORT]
+chisel server -p <listen port>
 ```
 
 Run remotely (client)
 ```shell
-chisel client [SERVER IP]:[SERVER PORT] [TUNNEL LISTEN PORT ON CLIENT]:[TUNNEL TARGET]:[TUNNEL PORT]
+chisel client <server ip>:<server port> <tunnel listen port on client>:<tunnel target>:<tunnel port>
 ```
 
 ### Reverse Pivot
@@ -116,12 +116,12 @@ chisel client [SERVER IP]:[SERVER PORT] [TUNNEL LISTEN PORT ON CLIENT]:[TUNNEL T
 
 Run locally (server)
 ```shell
-chisel server -p [LISTEN PORT] -reverse
+chisel server -p <listen port> -reverse
 ```
 
 Run remotely (client)
 ```shell
-chisel client [SERVER IP]:[SERVER PORT] R:[TUNNEL LISTEN PORT ON SERVER]:[TUNNEL TARGET]:[TUNNEL PORT]
+chisel client <server ip>:<server port> R:<tunnel listen port on server>:<tunnel target>:<tunnel port>
 ```
 
 ## ProxyChains

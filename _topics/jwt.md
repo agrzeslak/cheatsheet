@@ -28,7 +28,7 @@ Change the `alg` within the header to `none`/`None` (based on implementation)
 ## HS256 Brute Force
 Test whether a weak secret has been used
 ```shell
-hashcat -m 16500 [JWT] /usr/share/wordlists/rockyou.txt
+hashcat -m 16500 <jwt> /usr/share/wordlists/rockyou.txt
 ```
 
 ## RSA/HMAC Alg Confusion

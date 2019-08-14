@@ -11,16 +11,12 @@ tags:
 # DNS
 Zone transfer
 ```shell
-dig axfr @[DNS SERVER]
-```
-
-```shell
-dig axfr [DOMAIN] @[DNS SERVER]
+dig axfr <domain> @<dns server>
 ```
 
 Zone transfer + other checks
 ```shell
-fierce -dns [DOMAIN] -dnsserver [DNS SERVER]
+fierce -dns <domain> -dnsserver <dns server>
 ```
 - Tools such as dnsenum, dnsrecon, etc. can all achieve the same goal
 

@@ -74,7 +74,7 @@ Additional options:
 Scripts
 
 ```shell
-nmap -p [PORT] --script [SCRIPT NAME] -Pn 10.10.10.10
+nmap -p <port> --script <script> -Pn 10.10.10.10
 ```
 
 ```shell

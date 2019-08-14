@@ -46,7 +46,7 @@ fg
 reset
 export SHELL=bash
 export TERM=xterm-256color
-stty rows [ROWS] columns [COLS]
+stty rows <rows> columns <cols>
 ```
 
 ### Enumeration Scripts
@@ -235,7 +235,7 @@ getcap -r / 2>/dev/null
 
 Files modified in last _n_ days
 ```shell
-find / -type f -mtime -[DAYS] -printf "%M %u %g %TR %TD %p\n" 2>/dev/null
+find / -type f -mtime -<days> -printf "%M %u %g %TR %TD %p\n" 2>/dev/null
 ```
 - can also use `-exec ls -al {} \;`, but it's slower due to subshells spawning
 
@@ -271,7 +271,7 @@ lsof -i
 ```
 
 ```shell
-lsof -i :[PORT]
+lsof -i :<port>
 ```
 - `-i` can take `[46][protocol][@hostname|hostaddr][:service|port]` (where `[46]` determines IPv4/6)
 
@@ -360,11 +360,11 @@ lsof -i
 
 Packet sniffing
 ```shell
-tcpdump -i [INTERFACE]
+tcpdump -i <interface>
 ```
 
 ```shell
-tcpdump tcp dst [IP] [PORT]
+tcpdump tcp dst <ip> <port>
 ```
 
 ARP cache
