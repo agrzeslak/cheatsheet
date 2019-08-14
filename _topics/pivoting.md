@@ -73,8 +73,8 @@ ssh -S /tmp/file-sock -O exit                     # Close tunnel which uses a ma
 If you don't have an SSH session, create an SSH session with your machine
 - Create local user
 ```shell
-useradd -M pentest  # no home directory
-usermod -L pentest  # lock account
+useradd -M pentest             # no home directory
+usermod -L pentest             # lock account
 usermod -s /bin/false pentest  # set shell to /bin/false
 service ssh start
 ```

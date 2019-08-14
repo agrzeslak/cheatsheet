@@ -236,8 +236,8 @@ getcap -r / 2>/dev/null
 Files modified in last _n_ days
 ```shell
 find / -type f -mtime -<days> -printf "%M %u %g %TR %TD %p\n" 2>/dev/null
+find / -type f -mtime -<days> -exec ls -al {} \; 2>/dev/null  # Slower due to subshells spawning
 ```
-- can also use `-exec ls -al {} \;`, but it's slower due to subshells spawning
 
 Readable files in /etc/
 ```shell
