@@ -77,7 +77,12 @@ sudo docker inspect -f '{{printf "%.12s" .Id}} {{range .NetworkSettings.Networks
 
 One liner for interesting info
 ```shell
-sudo docker inspect -f '{{printf "%.12s" .Id}} User:{{.Config.User}} Priv:{{.HostConfig.Privileged}} IPs:{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}} Ports:{{ .NetworkSettings.Ports }}' $(sudo docker ps -aq)
+sudo docker ps -q | xargs sudo docker inspect -f '[{{printf "%.12s" .Id}} {{.Name}}] NetworkMode={{.HostConfig.NetworkMode}} PidMode={{.HostConfig.PidMode}} Privileged={{.HostConfig.Privileged}} User={{.Config.User}} AppArmorProfile={{.AppArmorProfile}} SecurityOpt={{.HostConfig.SecurityOpt}} RORootFS={{.HostConfig.ReadonlyRootfs}} UserNSMode={{.HostConfig.UsernsMode}} CapAdd={{.HostConfig.CapAdd}} CapDrop={{.HostConfig.CapDrop}}'
+```
+
+User namespace support enabled? (Are root users within container mapped to less than root on the host?)
+```shell
+sudo docker ps -q | xargs -I% sh -c 'echo -e "[%]"; ps -p $(sudo docker inspect -f "{{.State.Pid}}" %) -o pid,user'
 ```
 
 Execute command in all containers (e.g. all listening port)

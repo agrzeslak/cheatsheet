@@ -12,13 +12,14 @@ tags:
 Zone transfer
 ```shell
 dig axfr <domain> @<dns server>
+dnsrecon -d <domain> -t axfr
 ```
 
 Zone transfer + other checks
 ```shell
+dnsenum <domain>
 fierce -dns <domain> -dnsserver <dns server>
 ```
-- Tools such as dnsenum, dnsrecon, etc. can all achieve the same goal
 
 ## DNS on TCP?
 - Used when response is >512 bytes
