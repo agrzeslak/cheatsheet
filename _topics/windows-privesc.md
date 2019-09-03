@@ -10,6 +10,22 @@ tags:
     - system
 ---
 # Windows Privesc
+Setting up a lower priv user for authenticated assessments
+```shell
+net user [username] [password] /add     # Create new user
+net localgroup [group] [username] /add  # Add to desired group, may need a localgroup to allow logon
+runas /user:[username] powershell.exe   # Run powershell as user
+net user [username] /delete             # Delete when finished
+```
+## Automated Checks
+### PowerUp
+PowerUp.ps1.b64
+```powershell
+powershell.exe -nop -exec bypass
+IEX([System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String((Get-Content -Path .\PowerUp.ps1.b64))))
+Invoke-AllChecks -ErrorAction SilentlyContinue | Out-File -Encoding ASCII powerup.log
+```
+## Manual Checks
 ### OS
 
 General details
