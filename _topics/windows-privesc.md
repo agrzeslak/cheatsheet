@@ -68,7 +68,7 @@ arp -A
 
 Network connections
 ```powershell
-netstat -ano
+netstat -ano  # -anob if admin
 ```
 
 Firewall rules
