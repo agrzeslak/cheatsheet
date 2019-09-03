@@ -52,17 +52,17 @@ sudo docker ps -a
 
 Spawn shell inside container
 ```shell
-sudo docker exec -it <container> /bin/sh
+sudo docker exec -it [container] /bin/sh
 ```
 
 Get container settings for a single container
 ```shell
-sudo docker inspect <container>
+sudo docker inspect [container]
 ```
 
 Get IP address
 ```shell
-sudo docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <container>
+sudo docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' [container]
 ```
 
 Get container settings for all containers
