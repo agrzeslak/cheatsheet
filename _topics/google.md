@@ -6,7 +6,7 @@ tags:
     - Search Engine
 ---
 # Google
-
+## 
 Operator | Description | Example
 --- | --- | ---
 - | Exclude term | -term or -"query with spaces"
@@ -29,4 +29,5 @@ link: | Link to query | Link:domain.com
 location: | Results based around geographic region | Location:Sydney
 site: | Search in that site | Site:domain.com
 
-[Google Dorks](https://www.exploit-db.com/google-hacking-database)
+### Google Dorks
+- <https://www.exploit-db.com/google-hacking-database>
