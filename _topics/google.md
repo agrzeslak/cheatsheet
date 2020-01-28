@@ -6,7 +6,8 @@ tags:
     - Search Engine
 ---
 # Google
-## 
+### Search Operators
+
 Operator | Description | Example
 --- | --- | ---
 - | Exclude term | -term or -"query with spaces"
