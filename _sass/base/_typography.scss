@@ -12,27 +12,27 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 2rem;
+  font-size: 1.8rem;
 }
 
 h2 {
-  margin-top: 1rem;
-  font-size: 1.5rem;
+  margin-top: 0.9rem;
+  font-size: 1.35rem;
 }
 
 h3 {
-  margin-top: 1.5rem;
-  font-size: 1.25rem;
+  margin-top: 1.35rem;
+  font-size: 1.125rem;
 }
 
 h4, h5, h6 {
-  margin-top: 1rem;
-  font-size: 1rem;
+  margin-top: 0.9rem;
+  font-size: 0.9rem;
 }
 
 p {
-  margin-top: 1rem;
-  margin-bottom: 0.2rem;
+  margin-top: 0.9rem;
+  margin-bottom: 0.18rem;
 }
 
 strong {
@@ -61,7 +61,7 @@ hr {
 }
 
 abbr {
-  font-size: 85%;
+  font-size: 75%;
   font-weight: bold;
   color: #555;
   text-transform: uppercase;
@@ -104,8 +104,8 @@ a[href^="#fnref:"] {
 
 // List of footnotes
 .footnotes {
-  margin-top: 2rem;
-  font-size: 85%;
+  margin-top: 1.8rem;
+  font-size: 75%;
 }
 
 // Custom type
@@ -113,6 +113,6 @@ a[href^="#fnref:"] {
 // Extend paragraphs with `.lead` for larger introductory text.
 
 .lead {
-  font-size: 1.25rem;
-  font-weight: 300;
+  font-size: 1.1rem;
+  font-weight: 270;
 }
