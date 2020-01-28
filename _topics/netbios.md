@@ -11,7 +11,7 @@ tags:
 nbtscan 10.10.10.125
 ```
 
-```powershell
+```shell
 nbtstat -a 10.10.10.10
 ```
 
