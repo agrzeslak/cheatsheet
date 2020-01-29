@@ -68,3 +68,9 @@
     @include prefix(animation-name, hvr-ripple-out);
   }
 }
+
+@keyframes rainbow { 
+    0%{background-position:0% 50%}
+    50%{background-position:100% 25%}
+    100%{background-position:0% 50%}
+}
