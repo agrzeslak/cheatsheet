@@ -79,9 +79,6 @@ python linuxprivchecker.py
 Distribution details
 ```shell
 cat /proc/version
-```
-
-```shell
 cat /etc/issue
 ```
 
@@ -137,26 +134,14 @@ cat ~/.*_history
 SSH keys
 ```shell
 ls -alR ~/.ssh/
-```
-
-```shell
 cat ~/.ssh/*
-```
-
-```shell
 ls -alR /etc/ssh/
-```
-
-```shell
 cat /etc/ssh/*
 ```
 
 Who else is logged in?
 ```shell
 w
-```
-
-```shell
 who
 ```
 
@@ -169,34 +154,16 @@ last
 Running services
 ```shell
 ps -ef  # standard syntax
-```
-
-```shell
 ps aux  # BSD syntax
 ```
 
 Installed applications
 ```shell
 ls -al /usr/bin
-```
-
-```shell
 ls -al /sbin
-```
-
-```shell
-dpkg -l
-```
-
-```shell
-rpm -qa
-```
-
-```shell
+dpkg -l  # Debian and derivatives
+rpm -qa  # Red Hat, Fedora, CentOS, etc.
 ls -al /var/cache/apt/archives
-```
-
-```shell
 ls -al /var/cache/yum
 ```
 
@@ -204,40 +171,25 @@ ls -al /var/cache/yum
 Check home directories
 ```shell
 ls -alR /root/
-```
-
-```shell
 ls -alR /home/
 ```
 
 Configs
 ```shell
 find /etc/ -iname *.conf -exec ls -al {} \;
-```
-
-```shell
 find /opt/ -iname *.conf -exec ls -al {} \;
 ```
 
 Cron jobs
 ```shell
 crontab -l
-```
-
-```shell
 ls -al /etc/cron* 
-```
-
-```shell
 cat /etc/cron* 
 ```
 
 SUID/SGID
 ```shell
 find / -perm -g=s -type f 2>/dev/null
-```
-
-```shell
 find / -perm -u=s -type f 2>/dev/null
 ```
 
@@ -265,25 +217,13 @@ find /etc/ -writable -type f 2>/dev/null
 Writable/executable directories (/tmp, /var/tmp and /dev/shm are standard)
 ```shell
 find / -writable -type d 2>/dev/null
-```
-- writable
-
-```shell
 find / -executable -type d 2>/dev/null
-```
-- executable
-
-```shell
 find / -writable -executable -type d 2>/dev/null
 ```
-- writable and executable
 
 What files are being accessed?
 ```shell
 lsof -i
-```
-
-```shell
 lsof -i :<port>
 ```
 - `-i` can take `[46][protocol][@hostname|hostaddr][:service|port]` (where `[46]` determines IPv4/6)
@@ -291,13 +231,7 @@ lsof -i :<port>
 Log files
 ```shell
 find /etc/ -type f -iname "*log" 2>/dev/null
-```
-
-```shell
 find /var/ -type f -iname "*log" 2>/dev/null
-```
-
-```shell
 ls -al /var/log/
 ```
 
@@ -309,9 +243,6 @@ grep -iR pass /
 Mounted file systems
 ```shell
 mount
-```
-
-```shell
 df
 ```
 
@@ -324,17 +255,8 @@ cat /etc/fstab
 NIC(s) and other networks
 ```shell
 ifconfig -a
-```
-
-```shell
 cat /etc/network/interfaces
-```
-
-```shell
 cat /etc/sysconfig/network
-```
-
-```shell
 cat /etc/networks
 ```
 
@@ -346,13 +268,7 @@ netstat -antup
 DNS
 ```shell
 cat /etc/resolv.conf
-```
-
-```shell
 dnsdomainname
-```
-
-```shell
 hostname
 ```
 
@@ -374,9 +290,6 @@ lsof -i
 Packet sniffing
 ```shell
 tcpdump -i <interface>
-```
-
-```shell
 tcpdump tcp dst <ip> <port>
 ```
 
