@@ -8,6 +8,7 @@ tags:
 ---
 # Tool Substitutes
 ### netstat
+{% raw %}
 ```shell
 awk 'function hextodec(str,ret,n,i,k,c){
     ret = 0
@@ -34,7 +35,6 @@ NR > 1 {{if(NR==2)print "Local - Remote";local=getIP($2);remote=getIP($3)}{print
 
 ### id
 ```shell
-{% raw %}
 awk -F: 'END {print "uid:"u" gid:"g" groups:"gg}{if($1=="Uid"){split($2,a," ");u=a[1]}if($1=="Gid"){split($2,a," ");g=a[1]}if($1=="Groups"){gg=$2}}' /proc/self/status
 {% endraw %}
 ```
