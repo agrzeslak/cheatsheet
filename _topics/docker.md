@@ -28,14 +28,14 @@ find / -iname "docker.sock" 2>/dev/null
 docker version
 sudo docker container ls -a                # List all running containers
 sudo docker ps -a                          # List all containers
-sudo docker exec -it [container] /bin/sh   # Spawn shell inside container
-sudo docker inspect [container]            # Get container settings for a single container
+sudo docker exec -it <container> /bin/sh   # Spawn shell inside container
+sudo docker inspect <container>            # Get container settings for a single container
 sudo docker inspect $(sudo docker ps -aq)  # Get container settings for all containers
 ```
 
 Get IP address
 ```shell
-sudo docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' [container]
+sudo docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <container>
 ```
 
 Get all IP addresses and ports
