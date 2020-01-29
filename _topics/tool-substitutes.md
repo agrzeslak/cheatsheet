@@ -34,6 +34,8 @@ NR > 1 {{if(NR==2)print "Local - Remote";local=getIP($2);remote=getIP($3)}{print
 
 ### id
 ```shell
+{% raw %}
 awk -F: 'END {print "uid:"u" gid:"g" groups:"gg}{if($1=="Uid"){split($2,a," ");u=a[1]}if($1=="Gid"){split($2,a," ");g=a[1]}if($1=="Groups"){gg=$2}}' /proc/self/status
+{% endraw %}
 ```
 - <https://gist.githubusercontent.com/staaldraad/640b22ac11f8f37872cdddf7c4bdf11f/raw/4336f20ce16e357789aac2ca762c4098df5210b4/uid_awk.sh>
