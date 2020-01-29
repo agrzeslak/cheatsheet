@@ -28,46 +28,23 @@ cat /proc/1/sched | head -n 1
 ### Is the Docker socket mounted?
 ```shell
 ls -al /var/run/docker.sock
-```
-
-```shell
 find / -iname "docker.sock" 2>/dev/null
 ```
-- if so, check if the Docker client is available or installable
+- if so, check if the Docker client is available, installable or you can transfer the binary
 
 ### Useful Docker commands
 ```shell
 docker version
-```
-
-List all running containers
-```shell
-sudo docker container ls -a
-```
-
-List all containers
-```shell
-sudo docker ps -a
-```
-
-Spawn shell inside container
-```shell
-sudo docker exec -it [container] /bin/sh
-```
-
-Get container settings for a single container
-```shell
-sudo docker inspect [container]
+sudo docker container ls -a                # List all running containers
+sudo docker ps -a                          # List all containers
+sudo docker exec -it [container] /bin/sh   # Spawn shell inside container
+sudo docker inspect [container]            # Get container settings for a single container
+sudo docker inspect $(sudo docker ps -aq)  # Get container settings for all containers
 ```
 
 Get IP address
 ```shell
 sudo docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' [container]
-```
-
-Get container settings for all containers
-```shell
-sudo docker inspect $(sudo docker ps -aq)
 ```
 
 Get all IP addresses and ports
