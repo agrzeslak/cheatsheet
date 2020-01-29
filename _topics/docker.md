@@ -11,19 +11,10 @@ tags:
 ### Are we in a Docker container?
 ```shell
 ls -al /.dockerenv
-ls -al /.dockerinit  # pre-v1.11
+ls -al /.dockerinit  # Pre-v1.11
+cat /proc/1/cgroup   # Some control groups will belong to docker if inside container (same for LXC)
+cat /proc/1/sched | head -n 1  # init = not a container; bash, etc. = container
 ```
-
-```shell
-cat /proc/1/cgroup
-```
-- some control groups will belong to docker if inside container (same for LXC)
-
-```shell
-cat /proc/1/sched | head -n 1
-```
-- init = not a container
-- bash, etc. = container
 
 ### Is the Docker socket mounted?
 ```shell
