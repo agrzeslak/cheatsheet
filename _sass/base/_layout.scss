@@ -4,7 +4,7 @@
  */
 
 .container {
-  max-width: 65%;
+  max-width: calc(100% - $sidenav-width * 2);
   padding-left:  1.5rem;
   padding-right: 1.5rem;
   margin: 1rem auto 5rem auto;
@@ -31,7 +31,7 @@
 
 .sidenav {
   height: 100%;
-  width: 250px;
+  width: $sidenav-width;
   position: fixed;
   z-index: 1;
   top: 0;
