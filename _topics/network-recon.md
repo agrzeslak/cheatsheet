@@ -30,7 +30,6 @@ nmap -PR -oA nmap 10.10.10.10/24
 ```
 
 ## Port Scanning
-
 TCP scan
 ```shell
 nmap -sV -sC -vv -p- -oA full-tcp 10.10.10.10

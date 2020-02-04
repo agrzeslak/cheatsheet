@@ -13,7 +13,7 @@ tags:
     - smbmap
 ---
 # SMB
-### Nmap scripts
+## Nmap scripts
 Safe vulnerability scan
 ```shell
 nmap -p 445 -sT -Pn --script=smb-vuln-ms06-025,smb-vuln-ms07-029,smb-vuln-ms08-067,smb-vuln-ms10-061,smb-vuln-ms17-010,smb-vuln-cve-2017-7494 <ip>
@@ -34,7 +34,7 @@ CVE-2010-2550 memory corruption check (_**BSOD if successful**_)
 nmap -p 445 -sT -Pn --script=smb-vuln-ms10-054 <ip>
 ```
 
-### Pass-the-hash
+## Pass-the-hash
 List directories
 ```shell
 smbclient -U <user>%<hash> --pw-nt-hash -L <ip>
@@ -52,7 +52,7 @@ Open specific directory
 smbclient -U <user>%<hash> --pw-nt-hash //<ip>/<directory>
 ```
 
-### Regular usage
+## Regular usage
 Mount
 ```shell
 mount -t cifs -o username=<username> //<ip>/ /mnt/smb/

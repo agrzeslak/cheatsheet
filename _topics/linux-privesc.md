@@ -9,7 +9,7 @@ tags:
     - unix
 ---
 # Linux Privesc
-### Upgrading Shells
+## Upgrading Shells
 Spawning shells
 ```shell
 python -c 'import pty;pty.spawn("/bin/bash")'
@@ -62,7 +62,7 @@ export TERM=xterm-256color
 stty rows <rows> columns <cols>
 ```
 
-### Enumeration Scripts
+## Enumeration Scripts
 [LinEnum.sh](https://github.com/rebootuser/LinEnum)
 ```shell
 ./LinEnum.sh -r report -e /tmp/ -t
@@ -75,7 +75,7 @@ stty rows <rows> columns <cols>
 python linuxprivchecker.py
 ```
 
-### OS
+## OS
 Distribution details
 ```shell
 cat /proc/version
@@ -87,7 +87,7 @@ Kernel
 uname -a
 ```
 
-### Users
+## Users
 Who are we?
 ```shell
 id
@@ -150,7 +150,7 @@ Last logged in users
 last
 ```
 
-### Applications
+## Applications
 Running services
 ```shell
 ps -ef  # standard syntax
@@ -167,7 +167,7 @@ ls -al /var/cache/apt/archives
 ls -al /var/cache/yum
 ```
 
-### File system
+## File system
 Check home directories
 ```shell
 ls -alR /root/
@@ -298,7 +298,7 @@ ARP cache
 arp
 ```
 
-### Kernel exploits
+## Kernel exploits
 [Dirty Cow](https://dirtycow.ninja/)
 - < 4.8.0-26.28 for Ubuntu 16.10
 - < 4.4.0-45.66 for Ubuntu 16.04 LTS
@@ -308,7 +308,7 @@ arp
 - < 3.2.82-1 for Debian 7
 - < 4.7.8-1 for Debian unstable 4.8
 
-### Useful links
+## Useful links
 - <https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/>
 - <https://blog.ropnop.com/upgrading-simple-shells-to-fully-interactive-ttys/#method3upgradingfromnetcatwithmagic>
 - <https://blog.pentests.pl>

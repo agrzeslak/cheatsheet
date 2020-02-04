@@ -6,7 +6,7 @@ tags:
     - 443
 ---
 # Web Application Checklist
-### Mapping the Application
+## Mapping the Application
 - Explore Visible Content
 - Consult Public Resources
 - Discover Hidden Content
@@ -14,31 +14,31 @@ tags:
 - Enumerate Identifier-Specified Functions
 - Test for Debug Parameters
 
-### Analyse the Application
+## Analyse the Application
 - Identify Functionality
 - Identify Data Entry Points
 - Identify the Technologies Used
 - Map the Attack Surface
 
-### Test Client-side Controls
+## Test Client-side Controls
 - Test Transmission of Data via the Client
 - Test CLient-side Control Over user Input
 - Test Thick-client Components
 
-### Test Access Controls
+## Test Access Controls
 - Understand the Access Control Requirements
 - Testing with Multiple Accounts
 - Testing with Limited Access
 - Test for Insecure Access Control Methods
 
-### Test for Logic Flaws
+## Test for Logic Flaws
 - Identify the Key Attack Surface
 - Test Multistage Processes
 - Test Handling of Incomplete Input
 - Test Trust Boundaries
 - Test Transaction Logic
 
-### Test the Authentication Mechanism
+## Test the Authentication Mechanism
 - Understand the Mechanism
 - Test Password Quality
 - Test for Username Enumeration
@@ -52,7 +52,7 @@ tags:
 - Test for Logic Flaws
 - Exploit Any Vulnerabilities to Gain Unauthorised Access
 
-### Test the Session Management Mechanism
+## Test the Session Management Mechanism
 - Understand the Mechanism
 - Test tokens for Meaning
 - Test tokens for Predictability
@@ -64,7 +64,7 @@ tags:
 - Check for XSRF
 - Check Cookie Scope
 
-### Test for Web Server Vulnerabilities
+## Test for Web Server Vulnerabilities
 - Test for Default Credentials
 - Test for Default Content
 - Test for Dangerous HTTP Methods
@@ -72,7 +72,7 @@ tags:
 - Test for Virtual Hosting Misconfiguration
 - Test for Web Server Software Bugs
 
-### Test for Input-Based Vulnerabilities
+## Test for Input-Based Vulnerabilities
 - Fuzz All Request Parameters
 - Test for SQL Injection
 - Test for XSS and Other Response Injection
@@ -81,12 +81,12 @@ tags:
 - Test for Script Injection
 - Test for File Inclusion
 
-### Miscellaneous Checks
+## Miscellaneous Checks
 - Check for DOM-based Attacks
 - Check for Frame Injection
 - Check for Local Privacy Vulnerabilities
 - Follow Up Any Information Leakage
 - Check for Weak SSL Ciphers
 
-### Useful links:
+## Useful links:
 <http://mdsec.net/wahh/tasks.html>

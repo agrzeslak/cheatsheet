@@ -8,7 +8,7 @@ tags:
 ---
 {% raw %}
 # Docker
-### Are we in a Docker container?
+## Are we in a Docker container?
 ```shell
 ls -al /.dockerenv
 ls -al /.dockerinit  # Pre-v1.11
@@ -16,14 +16,14 @@ cat /proc/1/cgroup   # Some control groups will belong to docker if inside conta
 cat /proc/1/sched | head -n 1  # init = not a container; bash, etc. = container
 ```
 
-### Is the Docker socket mounted?
+## Is the Docker socket mounted?
 ```shell
 ls -al /var/run/docker.sock
 find / -iname "docker.sock" 2>/dev/null
 ```
 - if so, check if the Docker client is available, installable or you can transfer the binary
 
-### Useful Docker commands
+## Useful Docker commands
 ```shell
 docker version
 sudo docker container ls -a                # List all running containers
@@ -58,14 +58,14 @@ Execute command in all containers (e.g. all listening port)
 sudo docker ps -q | xargs -I% sh -c 'echo %; sudo docker exec % netstat -ntlp | grep -i listen;'
 ```
 
-### CVE-2019-5736 runc Docker escape
+## CVE-2019-5736 runc Docker escape
 - Docker versions < 18.09.2 (`docker version`)
 - runc versions <= 1.0-rc6 (`docker-runc -version`)
 - <https://github.com/Frichetten/CVE-2019-5736-PoC>
 - <https://www.exploit-db.com/exploits/46369>
 
 
-### Enumeration within Container
+## Enumeration within Container
 ```shell
 for port in {1..65535}; do timeout 1 bash -c "echo > /dev/tcp/<host>/$port" >& /dev/null && echo "$port open"; done
 ```

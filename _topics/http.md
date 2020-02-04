@@ -13,7 +13,7 @@ tags:
     - wpscan
 ---
 # HTTP(S)
-### Gobuster
+## Gobuster
 ```shell
 gobuster -u 10.10.10.10 -w /usr/share/SecLists/Discovery/Web_Content/common.txt -o gobuster
 ```
@@ -41,12 +41,12 @@ Some other wordlists:
 - `/usr/share/dirbuster/wordlists/directory-list-2.3-small.txt`
 - `/usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt`
 
-### Nikto
+## Nikto
 ```shell
 nikto -h 10.10.10.10
 ```
 
-### wfuzz
+## wfuzz
 GET request
 
 ```shell
@@ -69,7 +69,7 @@ Additional options:
 - `--sc/sl/sw/sh`: show responses with specified code/lines/words/chars
 - `--ss/hs`: show/hide responses with specified regex
 
-### wpscan
+## wpscan
 
 ```shell
 wpscan -u 10.10.10.10/wp/

