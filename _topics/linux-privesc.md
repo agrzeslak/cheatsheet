@@ -251,7 +251,7 @@ Unmounted file systems
 cat /etc/fstab
 ```
 
-### Networking
+## Networking
 NIC(s) and other networks
 ```shell
 ifconfig -a
