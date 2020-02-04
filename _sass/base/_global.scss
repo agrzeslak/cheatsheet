@@ -25,11 +25,6 @@ body {
 a {
   color: $link-color;
   text-decoration: none;
-  background-image: repeating-linear-gradient(45deg, violet, indigo, blue, green, yellow, orange, red 50%);
-  background-size: 800% 800%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: rainbow 8s ease infinite;
 
   &:hover,
   &:focus {
