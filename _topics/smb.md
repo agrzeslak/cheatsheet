@@ -67,3 +67,9 @@ smbmap -H <ip>
 smbmap -H <ip> -u <username> 
 ```
 - Sometimes adding anything to the `-u` field will return results
+
+## Locally
+What is exposed?
+```powershell
+net share
+```
