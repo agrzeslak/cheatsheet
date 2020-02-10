@@ -8,7 +8,6 @@ tags:
     - transfer
 ---
 # FTP
-
 Recursively download all files
 ```shell
 wget -m ftp://username:password@10.10.10.10/
