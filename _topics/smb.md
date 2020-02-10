@@ -71,5 +71,6 @@ smbmap -H <ip> -u <username>
 ## Locally
 What is exposed?
 ```powershell
-net share
+net share          # List shares
+net share <share>  # Info about share
 ```

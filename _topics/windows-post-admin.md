@@ -1,7 +1,8 @@
 ---
 layout: default
-title: Windows Credential Extraction
+title: Windows Post-Admin
 tags:
+    - administrator
     - certificates private keys
     - credentials
     - in memory
@@ -12,9 +13,10 @@ tags:
     - pass-the-hash
     - passwords
     - procdump
-    - windows
+    - root
+    - nt\system
 ---
-# Windows Credential Extraction
+# Windows Post-Admin
 ## Mimikatz
 ### Offline
 Dump LSASS
