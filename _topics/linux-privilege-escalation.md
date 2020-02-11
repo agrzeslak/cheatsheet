@@ -8,7 +8,7 @@ tags:
     - root
     - unix
 ---
-# Linux Privesc
+# Linux Privilege Escalation
 ## Upgrading Shells
 Spawning shells
 ```shell

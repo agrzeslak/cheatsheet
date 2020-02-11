@@ -7,7 +7,7 @@ tags:
     - nt\system
     - privesc
 ---
-# Windows Privesc
+# Windows Privilege Escalation
 Setting up a lower priv user for authenticated assessments
 ```shell
 net user [username] [password] /add     # Create new user
