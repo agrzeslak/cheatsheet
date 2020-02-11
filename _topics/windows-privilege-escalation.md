@@ -1,13 +1,11 @@
 ---
 layout: default
-title: Windows Privesc
+title: Windows Privilege Escalation
 tags:
     - administrator
-    - escalation
     - microsoft
-    - nt
-    - privilege
-    - system
+    - nt\system
+    - privesc
 ---
 # Windows Privesc
 Setting up a lower priv user for authenticated assessments
@@ -102,6 +100,12 @@ DRIVERQUERY
 ```
 
 ### File system
+Unquoted service paths
+```powershell
+wmic service get name,displayname,pathname,startmode |findstr /i “auto” |findstr /i /v “c:\windows\\” |findstr /i /v “””  # CMD
+wmic service get name,displayname,pathname,startmode |findstr /i 'auto' |findstr /i /v 'c:\windows\' |findstr /i /v '\"'  # PowerShell
+```
+
 Files modified in last _n_ days
 ```powershell
 forfiles /P directory /S /D +(today'date - [DAYS] days)

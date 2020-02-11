@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Linux Privesc
+title: Linux Prilige Escalation
 tags:
     - escalation
     - openbsd
