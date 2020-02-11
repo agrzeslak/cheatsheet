@@ -109,11 +109,10 @@ wmic service get name,displayname,pathname,startmode |findstr /i 'auto' |findstr
 Search for string (e.g. passwords)
 ```powershell
 Get-ChildItem -Path <path> -Recurse | Select-String -Pattern <pattern> | Select path,linenumber,line
-Get-ChildItem -Path <path> -Recurse | Select-String -Pattern <pattern> | Select path,linenumber,line
 ```
 - Select-String can:
     - `-Include` files as a comma separated list, e.g. `'*.txt','*.csv'`
-    - `-Excluse` files as a comma separated list, e.g. `'*.exe','*.dll','*.msi','*.java'`; useful for ignoring binaries
+    - `-Excluse` files as a comma separated list, e.g. `'*.exe','*.dll','*.msi','*.java','*.jar'`; useful for ignoring binaries
 
 Files modified in last _n_ days
 ```powershell
