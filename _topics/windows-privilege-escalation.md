@@ -106,6 +106,13 @@ wmic service get name,displayname,pathname,startmode |findstr /i “auto” |fin
 wmic service get name,displayname,pathname,startmode |findstr /i 'auto' |findstr /i /v 'c:\windows\' |findstr /i /v '\"'  # PowerShell
 ```
 
+Search for string (e.g. passwords)
+```powershell
+Get-ChildItem -Path <path> -Recurse | Select-String -Pattern <pattern> | Select path,linenumber,line
+Get-ChildItem -Path <path> -Recurse | Select-String -Pattern <pattern> -Include <included files> | Select path,linenumber,line
+```
+- Included files are a comma separated list, e.g. `"*.txt","*.csv"`
+
 Files modified in last _n_ days
 ```powershell
 forfiles /P directory /S /D +(today'date - [DAYS] days)
