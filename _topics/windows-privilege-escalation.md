@@ -123,9 +123,40 @@ Get-ChildItem -Path <path> -Recurse -Force -ErrorAction SilentlyContinue -Includ
 Get-Acl | Format-List  # -Path <path> for directory other than current
 icacls <path>
 ```
-| Type | Abbreviation | Full |
-|--- | --- | --- |
-| Inheritance Settings | OI | Object Inherit |
+ Type | Abbreviation | Full
+--- | --- | --- |
+Inheritance Settings | OI | Object Inherit
+ | CI | Container Inherit
+ | IO | Inherit Only
+ | NP | Don't propagate inherit
+ | I | Permission inherited from parent container
+Basic Access Permissions | D | Delete
+ | F | Full
+ | N | No
+ | M | Modify
+ | RX | Read and Execute
+ | R | Read-only
+ | W | Write-only
+Detailed Permissions | DE | Delete
+ | RC | Read Control
+ | WDAC | Write DAC
+ | WO | Write Owner
+ | S | Synchronise
+ | AS | Access System Securit
+ | MA | Maximum Allowed Permissions
+ | GR | Generic Read
+ | GW | Generic Write
+ | GE | Generic Execute
+ | GA | Generic All
+ | RD | Read Data/List Directory
+ | WD | Write Data/Add File
+ | AD | Append Data/Add Subdirectory
+ | REA | Read Extended Attributes
+ | WEA | Write Extended Attributes
+ | X | Execute/Traverse
+ | DC | Delete Child
+ | RA | Read Attributes
+ | WA | Write Attributes
 
 Files modified in last _n_ days
 ```powershell
