@@ -13,8 +13,8 @@ tags:
 ### Are we in a Docker container?
 ```shell
 ls -al /.dockerenv
-ls -al /.dockerinit  # Pre-v1.11
-cat /proc/1/cgroup   # Some control groups will belong to docker if inside container (same for LXC)
+ls -al /.dockerinit            # Pre-v1.11
+cat /proc/1/cgroup             # Some control groups will belong to docker if inside container (same for LXC)
 cat /proc/1/sched | head -n 1  # init = not a container; bash, etc. = container
 ```
 
