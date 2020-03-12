@@ -26,12 +26,12 @@ find / -iname "docker.sock" 2>/dev/null
 - if so, check if the Docker client is available, installable or you can transfer the binary
 
 ### Is the Docker REST API exposed?
-- Port 2375 Plaintext
-- Port 2376 SSL
 ```shell
 docker [--tls] -H <host>:<port> <command>
 docker [--tls] -H <host>:<port> exec -it <container> <shell command>  # Execute shell commands
 ```
+- Port 2375 Plaintext
+- Port 2376 SSL
 
 ### Useful Docker commands
 ```shell
