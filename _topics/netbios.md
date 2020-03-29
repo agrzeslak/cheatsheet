@@ -8,20 +8,16 @@ tags:
 # NetBIOS
 ## Information Gathering
 ```shell
-nbtscan 10.10.10.125
-```
-
-```shell
-nbtstat -a 10.10.10.10
+nbtscan <ip or ip range>
 ```
 
 ## Nmap scripts
 Retrieve target's NetBIOS names and MAC address
 ```shell
-nmap -p 139 -vv --script nbstat 10.10.10.10
+nmap -p 139 -vv --script nbstat <ip>
 ```
 
 CVE-2012-1182 root RCE < 3.6.3 (safe)
 ```shell
-nmap -p 139 -vv --script samba-vuln-cve-2012-1182 10.10.10.10
+nmap -p 139 -vv --script samba-vuln-cve-2012-1182 <ip>
 ```
