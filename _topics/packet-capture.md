@@ -7,7 +7,7 @@ tags:
 ---
 # Packet Capture
 ## tcpdump
-General usage
+**General usage**
 ```shell
 tcpdump -i <interface> <filter>
 tcpdump -i <interface> -l <filter> | etc...  # Line buffered mode to process line by line for piping (-C is packet buffered)
@@ -19,7 +19,7 @@ tcpdump -i <interface> -W <file> -G <seconds> -C <>       # Rotating output file
 - `-s<n>` snap length, size of packet to capture, `-s0` is unlimited, needed to pull binaries/files
 - `-A` outputs only ascii text
 
-Rotating output files
+**Rotating output files**
 ```shell
 tcpdump -i <interface> -w <file> [-C <max file size (bytes)>] [-G <seconds>] [-W <num max files>] <filter>
 ```
