@@ -14,20 +14,21 @@ snmp-check <ip>
 ```
 Community Strings
 ```shell
-snmpwalk -v1 -c public <ip>
-snmpwalk -v1 -c public <ip> 1.3.6.1.4.1.77.1.2.25     # User accounts
-snmpwalk -v1 -c public <ip> 1.3.6.1.2.1.25.1.6.0      # System processes
-snmpwalk -v1 -c public <ip> 1.3.6.1.2.1.25.4.2.1.2    # Running programs
-snmpwalk -v1 -c public <ip> 1.3.6.1.2.1.25.4.2.1.4    # Process paths
-snmpwalk -v1 -c public <ip> 1.3.6.1.2.1.25.2.3.1.4    # Storage units
-snmpwalk -v1 -c public <ip> 1.3.6.1.2.1.1.5           # Hostname
-snmpwalk -v1 -c public <ip> 1.3.6.1.4.1.77.1.2.3.1.1  # Share information
-snmpwalk -v1 -c public <ip> 1.3.6.1.4.1.77.1.2.27     # Share information
-snmpwalk -v1 -c public <ip> 1.3.6.1.2.1.6.13.1.3      # TCP ports
-snmpwalk -v1 -c public <ip> 1.3.6.1.2.1.25.6.3.1.2    # Software names
-onesixtyone -c <dictionary> <ip>  # /usr/share/doc/onesixtyone/dict.txt is default dictionary
+snmpwalk -v1 -c <community string> <ip>
+snmpwalk -v1 -c <community string> <ip> 1.3.6.1.4.1.77.1.2.25     # User accounts
+snmpwalk -v1 -c <community string> <ip> 1.3.6.1.2.1.25.1.6.0      # System processes
+snmpwalk -v1 -c <community string> <ip> 1.3.6.1.2.1.25.4.2.1.2    # Running programs
+snmpwalk -v1 -c <community string> <ip> 1.3.6.1.2.1.25.4.2.1.4    # Process paths
+snmpwalk -v1 -c <community string> <ip> 1.3.6.1.2.1.25.2.3.1.4    # Storage units
+snmpwalk -v1 -c <community string> <ip> 1.3.6.1.2.1.1.5           # Hostname
+snmpwalk -v1 -c <community string> <ip> 1.3.6.1.4.1.77.1.2.3.1.1  # Share information
+snmpwalk -v1 -c <community string> <ip> 1.3.6.1.4.1.77.1.2.27     # Share information
+snmpwalk -v1 -c <community string> <ip> 1.3.6.1.2.1.6.13.1.3      # TCP ports
+snmpwalk -v1 -c <community string> <ip> 1.3.6.1.2.1.25.6.3.1.2    # Software names
+onesixtyone -c <dictionary> <ip>  # /usr/share/doc/onesixtyone/dict.txt is default dictionary (bruteforce community strings)
 snmp-check <ip>
 ```
+- SecLists also has a list of community strings at `Discovery/SNMP/common-snmp-community-strings.txt`
 
 ## How does SNMP work?
 - SNMP exposes management details of a host stored in the MIB (Management Information Base)
@@ -35,3 +36,4 @@ snmp-check <ip>
 - Different locations are expressed using a subset of Abstract Syntax Notation One (ASN.1) called [Structure of Management Information Version 2 (SMIv2)](https://tools.ietf.org/html/rfc2578)
     - The common `1.3.6.1` prefix corresponds to `iso > org > dod > internet`, see [here](https://www.iana.org/assignments/smi-numbers/smi-numbers.xhtml)
     - Can explore the tree online <https://oidref.com/>, e.g. <https://oidref.com/1.3.6.1.2.1.25.1.6> for system processes
+- Community strings are similar to user IDs or passwords and are sent along with SNMP Get-Request to allow access for querying details
