@@ -58,12 +58,17 @@ Mount
 mount -t cifs -o username=<username> //<ip>/ /mnt/smb/
 ```
 
-SMBMap
+Enumerate
 ```shell
 smbmap -H <ip>
 smbmap -H <ip> -u <username>  # adding anything as the <username> will sometimes return results
+enum4linux -v <ip>            # wrapper around tools such as rpcclient that gives lots of info
 rpcclient -U <username> <ip>  # "" <username> for null sessions, empty password when prompted
 ```
+- Commands while connected via rpcclient:
+    - `srvinfo` gives server details
+    - `enumdomuser` gives configured users
+    - `getdompwinfo` gives domain password policy
 
 ## Locally
 What is exposed?
