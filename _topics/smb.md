@@ -61,12 +61,9 @@ mount -t cifs -o username=<username> //<ip>/ /mnt/smb/
 SMBMap
 ```shell
 smbmap -H <ip>
+smbmap -H <ip> -u <username>  # adding anything as the <username> will sometimes return results
+rpcclient -U <username> <ip>  # "" <username> for null sessions, empty password when prompted
 ```
-
-```shell
-smbmap -H <ip> -u <username> 
-```
-- Sometimes adding anything to the `-u` field will return results
 
 ## Locally
 What is exposed?
