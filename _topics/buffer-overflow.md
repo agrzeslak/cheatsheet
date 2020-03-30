@@ -3,7 +3,11 @@ layout: default
 title: Buffer Overflow
 tags:
     - binary exploitation
-    - gdb
+    - binary ninja
+    - evan's debugger (edb)
+    - gnu debugger (gdb)
+    - hopper
+    - ida
     - immunity debugger
     - ollydbg
     - peda
@@ -20,7 +24,7 @@ pattern_create.rb <length of string (bytes)>  # Generate unique string
 pattern_offset.rb <hex string to match>       # Locate offset of hex value within string
 ```
 
-Instructions to op codes
+Convert instructions to op codes
 ```shell
 nasm_shell.rb
 ```
@@ -29,3 +33,16 @@ nasm_shell.rb
 Common bad characters:
 - `00` null byte (terminates strings and hence truncates payload)
 - `0D` carraige return (can terminate fields such as password inputs where return terminates it)
+
+## Concepts
+### ASLR
+- Address Space Layout Randomisation
+- Randomly offsets the location of modules and in-memory structures
+- Aims to prevent exploits from reliably locating sections of code
+- Can be bypassed if the location of certain memory regions (especially DLL mappings) can be predicted, controlled or discovered
+- Absence of DEP can allow the use of heap spraying to place code in predictable locations
+
+### DEP
+- Data Execution Prevention
+- Prevents areas of memory such as the stack from being executed
+- In most cases is not robust enough without ASLR

