@@ -83,6 +83,13 @@ stty rows <rows> columns <cols>
 python linuxprivchecker.py
 ```
 
+[unix-privesc-check](https://github.com/pentestmonkey/unix-privesc-check)
+```shell
+unix-privesc-check {standard | detailed}
+```
+- `standard` - speed-optimised check
+- `detailed` - same as standard, but also checks perms of open file handles and called files (slow)
+
 ## OS
 Distribution details
 ```shell
