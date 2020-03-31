@@ -1,15 +1,7 @@
 ---
 layout: default
-title: MSFvenom
-tags:
-    - bind
-    - metasploit
-    - meterpreter
-    - msfpayload
-    - obfuscation
-    - reverse
-    - shell
----
+title: MSFVenom
+----
 
 # MSFvenom
 {: .no_toc }

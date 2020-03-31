@@ -1,9 +1,6 @@
 ---
 layout: default
 title: Google
-tags:
-    - Dorks
-    - Search Engine
 ---
 
 # Google

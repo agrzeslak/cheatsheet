@@ -1,12 +1,6 @@
 ---
 layout: default
 title: Docker
-tags:
-    - 2375
-    - 2376
-    - breakout
-    - containerisation
-    - kubernetes
 ---
 
 # Docker

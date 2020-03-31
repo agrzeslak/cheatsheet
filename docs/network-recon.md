@@ -1,18 +1,7 @@
 ---
 layout: default
 title: Network Recon
-tags:
-    - discovery
-    - enumeration
-    - netdiscover
-    - network
-    - nmap
-    - ports
-    - scanning
-    - tcp 
-    - udp
-    - unicornscan
----
+----
 
 # Network Recon
 {: .no_toc }

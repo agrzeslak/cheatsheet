@@ -1,17 +1,6 @@
 ---
 layout: default
 title: Reverse Shells
-tags:
-    - bash
-    - java
-    - netcat
-    - nc
-    - perl
-    - php
-    - python
-    - ruby
-    - telnet
-    - xterm
 ---
 
 # Reverse Shells

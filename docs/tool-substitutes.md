@@ -1,10 +1,6 @@
 ---
 layout: default
 title: Tool Substitutes
-tags:
-    - id
-    - netstat
-
 ---
 
 # Tool Substitutes

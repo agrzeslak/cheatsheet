@@ -1,9 +1,6 @@
 ---
 layout: default
 title: Packet Capture
-tags:
-    - tcpdump
-    - wireshark
 ---
 
 # Packet Capture
