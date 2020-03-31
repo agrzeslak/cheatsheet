@@ -192,7 +192,7 @@ nc -lvnp <port>
 
 --- 
 
-## Useful links
+## References
 - <http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet>
 - <http://bernardodamele.blogspot.com/2011/09/reverse-shells-one-liners.html>
 - <https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Reverse%20Shell%20Cheatsheet.md>

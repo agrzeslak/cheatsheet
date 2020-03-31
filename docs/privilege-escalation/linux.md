@@ -333,7 +333,7 @@ arp
 
 ---
 
-## Useful links
+## References
 - <https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/>
 - <https://blog.ropnop.com/upgrading-simple-shells-to-fully-interactive-ttys/#method3upgradingfromnetcatwithmagic>
 - <https://blog.pentests.pl>
