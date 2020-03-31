@@ -17,7 +17,7 @@ title: Cheatsheet
 email: 
 description: >- # this means to ignore newlines until "baseurl:"
   A cheatsheet of various learnings and resources I've compiled
-baseurl: "" # the subpath of your site, e.g. /blog
+baseurl: "/cheatsheet" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: 
 github_username:  agrzeslak
