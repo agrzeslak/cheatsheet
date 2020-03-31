@@ -19,7 +19,7 @@ Setting up a lower priv user for authenticated assessments
 ```shell
 net user [username] [password] /add     # Create new user
 net localgroup [group] [username] /add  # Add to desired group, may need a localgroup to allow logon
-runas /user:[username] powershell.exe   # Run powershell as user
+runas /user:[username] powershell.exe   # Run PowerShell as user
 net user [username] /delete             # Delete when finished
 ```
 ## Automated Checks

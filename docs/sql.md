@@ -75,7 +75,7 @@ SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE='BASE TABLE'
 ---
 
 ## PowerUpSQL
-_Must run from Windows; issues with Powershell for Linux_
+_Must run from Windows; issues with PowerShell for Linux_
 
 <https://github.com/NetSPI/PowerUpSQL>
 
