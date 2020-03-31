@@ -8,4 +8,6 @@ title: Cheatsheet
 ---
 
 # Cheatsheet
-This cheatsheet is a compilation of various learnings and resources I've compiled
+This cheatsheet is a compilation of various learnings and resources which I've compiled.
+
+If you notice any issues or would like to contribute, the GitHub repository may be found at <https://github.com/agrzeslak/cheatsheet>.
