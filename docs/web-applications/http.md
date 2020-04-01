@@ -17,48 +17,41 @@ parent: Web Applications
 
 ## Gobuster
 ```shell
-gobuster -u 10.10.10.10 -w /usr/share/SecLists/Discovery/Web_Content/common.txt -o gobuster
+gobuster dir -u <url> -w <wordlist> -o <output file>
 ```
-
-Additional options:
-- `-a`: User-Agent
-- `-s`: positive status codes (default "`200,204,301,302,307,403`")
-- `-t`: threads
-- `-x`: file extension(s) to search for e.g. "`.txt,.php`"
-
-[recursive-gobuster](https://github.com/epi052/recursive-gobuster) wrapper by epi
-```shell
-./recursive-gobuster.pyz -w /usr/share/SecLists/Discovery/Web_Content/common.txt -x html,php 10.10.10.10
-```
+- `-a <user-agent>`
+- `-c <cookies>`
+- `-s <positive status codes>` default "`200,204,301,302,307,403`"
+- `-t <threads>`
+- `-x <extensions>` e.g. "`.txt,.php`"
 
 Generating a custom wordlist
 ```shell
-cewl http://10.10.10.10 -w original.cewl
+cewl <url> -w original.cewl
 john --wordlist=original.cewl --rules --stdout > transformed.cewl
 cat /usr/share/SecLists/Discovery/Web_Content/common.txt >> transformed.cewl
 ```
 
-Some other wordlists:
+Other wordlists:
 - `/usr/share/dirb/wordlists/common.txt`
 - `/usr/share/dirbuster/wordlists/directory-list-2.3-small.txt`
 - `/usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt`
 
 ## Nikto
 ```shell
-nikto -h 10.10.10.10
+nikto -h <ip>
 ```
 
 ## wfuzz
 GET request
-
 ```shell
-wfuzz -c -w users.txt -w pass.txt https://10.10.10.10/login?user=FUZZ&pass=FUZ2Z
+wfuzz -c -w <wordlist> -w <wordlist> <url>/login?user=FUZZ&pass=FUZ2Z
 ```
 
 POST request
 
 ```shell
-wfuzz -c -w users.txt -w pass.txt -d "login=FUZZ&pwd=FUZ2Z" https://10.10.10.10/
+wfuzz -c -w <wordlist> -w <wordlist> -d "login=FUZZ&pwd=FUZ2Z" <url>
 ```
 
 Additional options:
@@ -72,7 +65,6 @@ Additional options:
 - `--ss/hs`: show/hide responses with specified regex
 
 ## wpscan
-
 ```shell
-wpscan -u 10.10.10.10/wp/
+wpscan -u <ip>/wp/
 ```

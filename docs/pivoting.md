@@ -15,20 +15,29 @@ title: Pivoting
 ---
 
 ## Metasploit
-### Port forwarding
+### Port Forwarding
 With meterpreter session on dual homed machine
 ```shell
 portfwd add -l <local port> -p <target port> -r <target ip>  # Add port forwarding
 ```
 - `-R` for reverse
 
+Useful commands
 ```shell
 portfwd delete -l <local port> -p <target port> -r <target ip>  # Delete specific forwarding
 portfwd list                                                    # List
 portfwd flush                                                   # Delete all forwardings
 ```
 
-### Dynamic forwarding
+rinetd can be used for port forwarding 
+- E.g. if a compromised machine is blocked from reaching certain ports, but can reach your machine
+
+```shell
+vim /etc/rinetd.conf        # Setup port forwarding
+/etc/init.d/rinetd restart  # Restart rinetd service to use new config
+```
+
+### Dynamic Forwarding
 With meterpreter session on dual homed machine
 ```shell
 run autoroute -s <target subnet>         # Adds route for <target subnet>
@@ -56,7 +65,7 @@ ssh -fNMS /tmp/file-sock <tunneling> [user@]<ip>  # Tunnel without interactive s
 ssh -S /tmp/file-sock -O exit                     # Close tunnel which uses a master socket
 ```
 
-### Local forwarding
+### Local Forwarding
 ```shell
 -L <local port>:<target ip>:<remote port>
 ```
@@ -66,7 +75,7 @@ ssh -S /tmp/file-sock -O exit                     # Close tunnel which uses a ma
 
 ![local forwarding](/assets/images/ssh-local2.png)
 
-### Remote forwarding
+### Remote Forwarding
 ```shell
 -R <remote port>:<target ip>:<target port>
 ```
@@ -76,18 +85,24 @@ ssh -S /tmp/file-sock -O exit                     # Close tunnel which uses a ma
 
 ![remote forwarding](/assets/images/ssh-remote2.png)
 
+### Dynamic Forwarding
+On dual-homed host
+```shell
+-D <port to listen on>
+```
+
 ### SSH from remote to local machine
 If you don't have an SSH session, create an SSH session with your machine
 - Create local user
 ```shell
-useradd -M pentest             # no home directory
-usermod -L pentest             # lock account
-usermod -s /bin/false pentest  # set shell to /bin/false
+useradd -M pentest             # No home directory
+usermod -L pentest             # Lock account
+usermod -s /bin/false pentest  # Set shell to /bin/false
 service ssh start
 ```
 - Open SSH session from remote host 
 ```shell
-ssh -R <remote port>:<target ip>:<kali port> pentest@10.10.10.10
+ssh -R <remote port>:<target ip>:<kali port> pentest@<ip>
 ```
 
 ---
@@ -101,8 +116,8 @@ service ssh start
 
 Remotely
 ```shell
-plink.exe <ssh ip> -P 22 -C -N -L <local port>:<target ip>:<remote port> -l user -pw pass   # Local
-plink.exe <ssh ip> -P 22 -C -N -R <remote port>:<target ip>:<target port> -l user -pw pass  # Remote
+plink.exe <ssh ip> -P 22 -C -N -L <local port>:<target ip>:<remote port> -l user -pw <password>   # Local
+plink.exe <ssh ip> -P 22 -C -N -R <remote port>:<target ip>:<target port> -l user -pw <password>  # Remote
 ```
 
 ---

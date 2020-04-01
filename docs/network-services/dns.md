@@ -1,6 +1,5 @@
 ---
 layout: default
-nav-order: 1
 title: DNS
 parent: Network Services
 ---

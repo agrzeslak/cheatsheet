@@ -1,6 +1,5 @@
 ---
 layout: default
-nav-order: 1
 title: SNMP
 parent: Network Services
 ---

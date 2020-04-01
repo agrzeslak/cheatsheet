@@ -1,6 +1,5 @@
 ---
 layout: default
-nav-order: 1
 title: FTP
 parent: Network Services
 ---
@@ -21,3 +20,12 @@ parent: Network Services
 wget -m ftp://username:password@10.10.10.10/
 ```
 - `--no-passive-ftp` to use active FTP
+
+## Brute-Forcing Credentials
+```shell
+hydra -v [options] <ip> ftp
+```
+- `-l <username>`
+- `-p <password>`
+- `-L <usernames file>`
+- `-P <passwords file>`

