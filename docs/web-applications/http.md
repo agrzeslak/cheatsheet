@@ -20,8 +20,9 @@ parent: Web Applications
 gobuster dir -u <url> -w <wordlist> -o <output file>
 ```
 - `-a <user-agent>`
+- `-b <blacklisted status codes>`
 - `-c <cookies>`
-- `-s <positive status codes>` default "`200,204,301,302,307,403`"
+- `-s <whitelisted status codes>` default "`200,204,301,302,307,403`"
 - `-t <threads>`
 - `-x <extensions>` e.g. "`.txt,.php`"
 

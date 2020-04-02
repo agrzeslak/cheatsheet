@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Linux Binary Exploitation
-parent: Binary Exploitation
+title: Linux
+parent: File Transfers
 ---
 
-# Linux Binary Exploitation
+# Linux File Transfers
 {: .no_toc }
 
 ## Table of contents
