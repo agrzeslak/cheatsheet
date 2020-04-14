@@ -15,6 +15,14 @@ parent: Post-Admin/Root
 
 ---
 
+## Manual Checks
+### Is Credential Guard Enabled?
+Windows Defender Credential Guard prohibits dumping of LSASS
+```powershell
+Get-CimInstance -ClassName Win32_DeviceGuard -Namespace root\Microsoft\Windows\DeviceGuard
+```
+- Check `SecurityServicesConfigured` and `SecurityServicesRunning` are set to `1`
+
 ## Mimikatz
 ### Offline
 Dump LSASS
