@@ -35,30 +35,32 @@ msfvenom -l payloads
 
 ### Linux
 ```shell
-linux/x64/meterpreter/bind_tcp            # Bind Meterpreter
-linux/x64/meterpreter_bind_tcp            # Bind Meterpreter (stageless)
-linux/x64/meterpreter/reverse_tcp         # Reverse Meterpreter
-linux/x64/meterpreter_reverse_tcp         # Reverse Meterpreter (stageless)
+linux/x64/meterpreter/bind_tcp            # Bind Meterpreter (staged)
+linux/x64/meterpreter_bind_tcp            # Bind Meterpreter
+linux/x64/meterpreter/reverse_tcp         # Reverse Meterpreter (staged)
+linux/x64/meterpreter_reverse_tcp         # Reverse Meterpreter
 
-linux/x64/shell/bind_tcp                  # Bind shell
-linux/x64/shell/reverse_tcp               # Reverse shell
+linux/x64/shell/bind_tcp                  # Bind shell (staged)
+linux/x64/shell_bind_tcp                  # Bind shell
+linux/x64/shell/reverse_tcp               # Reverse shell (staged)
+linux/x64/shell_reverse_tcp               # Reverse shell
 ```
 - `x86` also available
 
 ### Windows
 ```shell
-windows/x64/meterpreter/reverse_tcp       # Reverse Meterpreter
-windows/x64/meterpreter_reverse_tcp       # Reverse Meterpreter (stageless)
-windows/x64/meterpreter/bind_tcp          # Bind Meterpreter
-windows/x64/meterpreter_bind_tcp          # Bind Meterpreter (stageless)
+windows/x64/meterpreter/reverse_tcp       # Reverse Meterpreter (staged)
+windows/x64/meterpreter_reverse_tcp       # Reverse Meterpreter
+windows/x64/meterpreter/bind_tcp          # Bind Meterpreter (staged)
+windows/x64/meterpreter_bind_tcp          # Bind Meterpreter
 
-windows/x64/shell/reverse_tcp             # Reverse shell
-windows/x64/shell_reverse_tcp             # Reverse shell (stageless)
-windows/x64/shell/bind_tcp                # Bind shell
-windows/x64/shell_bind_tcp                # Bind shell (stageless)
+windows/x64/shell/reverse_tcp             # Reverse shell (staged)
+windows/x64/shell_reverse_tcp             # Reverse shell
+windows/x64/shell/bind_tcp                # Bind shell (staged)
+windows/x64/shell_bind_tcp                # Bind shell
 
-windows/x64/powershell_bind_tcp           # Bind PowerShell (stageless)
-windows/x64/powershell_reverse_tcp        # Reverse PowerShell (stageless)
+windows/x64/powershell_bind_tcp           # Bind PowerShell
+windows/x64/powershell_reverse_tcp        # Reverse PowerShell
 
 windows/x64/exec                          # Execute command; use CMD=<cmd>
 ```

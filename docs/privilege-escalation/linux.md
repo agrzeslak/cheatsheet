@@ -103,47 +103,19 @@ uname -a
 ```
 
 ## Users
-Who are we?
 ```shell
-id
-```
-
-Legacy password management?
-```shell
-cat /etc/passwd
-```
-
-Shadow access?
-```shell
-cat /etc/shadow
-```
-
-Groups
-```shell
-cat /etc/group
-```
-
-Sudo permissions
-```shell
-sudo -l
-```
-
-```shell
+id                   # Who are we?
+cat /etc/passwd      # Legacy password management?
+cat /etc/shadow      # Shadow access?
+cat /etc/group       # Groups
+sudo -l              # Sudo permissions
 cat /etc/sudoers
-```
-
-Environment variables
-```shell
-env
-```
-
-History
-```shell
-cat ~/.bash_history
-```
-
-```shell
+env                  # Environment variables
+cat ~/.bash_history  # History
 cat ~/.*_history
+w                    # Who else is logged in?
+who
+last                 # Last logged in users
 ```
 
 SSH keys
@@ -152,17 +124,6 @@ ls -alR ~/.ssh/
 cat ~/.ssh/*
 ls -alR /etc/ssh/
 cat /etc/ssh/*
-```
-
-Who else is logged in?
-```shell
-w
-who
-```
-
-Last logged in users
-```shell
-last
 ```
 
 ---
@@ -281,9 +242,12 @@ cat /etc/sysconfig/network
 cat /etc/networks
 ```
 
-Network connections
 ```shell
-netstat -antup
+netstat -antup  # Network connections
+iptables -L     # Packet filtering and NAT
+route           # Routing
+lsof -i         # Communications with other users and hosts
+arp             # ARP cache
 ```
 
 DNS
@@ -293,30 +257,10 @@ dnsdomainname
 hostname
 ```
 
-Packet filtering and NAT
-```shell
-iptables -L
-```
-
-Routing
-```shell
-route
-```
-
-Communications with other users and hosts
-```shell
-lsof -i
-```
-
 Packet sniffing
 ```shell
 tcpdump -i <interface>
 tcpdump tcp dst <ip> <port>
-```
-
-ARP cache
-```shell
-arp
 ```
 
 ---

@@ -35,78 +35,29 @@ Invoke-AllChecks -ErrorAction SilentlyContinue | Out-File -Encoding ASCII poweru
 
 ## Manual Checks
 ### OS
-
-General details
 ```powershell
 systeminfo
-```
-
-```powershell
 hostname
-```
-
-Our user and their permissions
-```powershell
-echo %username%
-```
-
-```powershell
-net users
-```
-
-```powershell
-net user [USERNAME]
+net users            # Users
+net user <username>  # User information
 ```
 
 ### Networking
-Network interfaces
 ```powershell
-ipconfig /all
-```
-
-Routing table
-```powershell
-route print
-```
-
-ARP cache for all interfaces
-```powershell
-arp -A
-```
-
-Network connections
-```powershell
-netstat -ano  # -anob if admin
-```
-
-Firewall rules
-```powershell
-netsh firewall show state
-```
-
-```powershell
+ipconfig /all              # Network interfaces
+route print                # Routing table
+arp -A                     # ARP cache for all interfaces
+netstat -ano               # Network connections; -anob if admin
+netsh firewall show state  # Firewall rules
 netsh firewall show config
 ```
 
 ### Applications
-Scheduled tasks
 ```powershell
-schtasks /query /fo LIST /v
-```
-
-Running processes and services
-```powershell
-tasklist /SVC
-```
-
-Windows services
-```powershell
-net start
-```
-
-Drivers can have vulns
-```powershell
-DRIVERQUERY
+schtasks /query /fo LIST /v  # Scheduled tasks
+tasklist /SVC                # Running processes and services
+net start                    # Windows services
+DRIVERQUERY                  # Drivers
 ```
 
 ### File system
@@ -129,6 +80,7 @@ Search filesystem (case insensitive)
 Get-ChildItem -Path <path> -Recurse -Force -ErrorAction SilentlyContinue -Include <search>  # -File to only search for files
 ```
 
+Access control lists (permissions)
 ```powershell
 Get-Acl | Format-List  # -Path <path> for directory other than current
 icacls <path>
@@ -169,20 +121,10 @@ icacls <path>
 | | RA | Read Attributes |
 | | WA | Write Attributes |
 
-Files modified in last _n_ days
 ```powershell
-forfiles /P directory /S /D +(today'date - [DAYS] days)
+forfiles /P directory /S /D +<dd/mm/yyyy>  # Files modified since date (date /t or echo %date% to check date format)
+Dir <root directory> -r | ? {! $_.PSIsContainer -AND $_.lastwritetime -ge '<dd/mm/yy>'} 
 ```
-
-Files modified since date
-```powershell
-forfiles /P directory /S /D +dd/mm/yyyy
-```
-
-```powershell
-Dir C:\ -r | ? {! $_.PSIsContainer -AND $_.lastwritetime -ge 'dd/mm/yy'} 
-```
-- check date format on machine; you might be dealing with Americans
 
 ### WMIC
 [FuzzySecurity .bat script for extracting relevant info using WMIC](http://www.fuzzysecurity.com/tutorials/files/wmic_info.rar)
