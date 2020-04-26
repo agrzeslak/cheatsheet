@@ -90,6 +90,85 @@ unix-privesc-check {standard | detailed}
 - `standard` - speed-optimised check
 - `detailed` - same as standard, but also checks perms of open file handles and called files (slow)
 
+---
+
+## Daemons
+
+---
+
+## Kernel
+
+---
+
+## Password Mining
+### Logs
+
+---
+
+### Memory
+
+---
+
+### History
+
+---
+
+### Configuration Files
+
+---
+
+## Sudo
+### Shell Escape Sequences
+
+---
+
+### Abuse Intended Functionality
+
+---
+
+### LD_PRELOAD/LD_LIBRARY_PATH
+
+---
+
+## NFS
+
+---
+
+## Cron
+### Path
+
+---
+
+### Wildcards
+
+---
+
+### File Overwrite
+
+---
+
+## File Permissions
+### SUID Binaries
+#### Shared Object Notation
+
+---
+
+#### Symlink
+
+---
+
+#### Evnironment Variables
+
+---
+
+### Startup Scripts
+
+---
+
+### Configuration Files
+
+---
+
 ## OS
 Distribution details
 ```shell
