@@ -47,6 +47,11 @@ Import-Module <path to Get-NonstandardService.ps1>
 Get-NonstandardService
 ```
 
+<https://powershelladministrator.com/2014/04/28/get-all-non-default-windows-services/>
+```powershell
+$NonDefaultServices = Get-wmiobject win32_service | where { $_.Caption -notmatch "Windows" -and $_.PathName -notmatch "Windows" -and $_.PathName -notmatch "policyhost.exe" -and $_.Name -ne "LSM" -and $_.PathName -notmatch "OSE.EXE" -and $_.PathName -notmatch "OSPPSVC.EXE" -and $_.PathName -notmatch "Microsoft Security Client" }
+```
+
 ---
 
 ### DLL Hijacking
