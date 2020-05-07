@@ -73,9 +73,10 @@ smbclient -U <user>%<hash> --pw-nt-hash //<ip>/<directory>
 ---
 
 ## Regular usage
-Mount
 ```shell
-mount -t cifs -o username=<username> //<ip>/ /mnt/smb/
+mount -t cifs -o username=<username> //<ip>/ /mnt/smb/  # Mount
+smbclient -L //<ip>/ -U <username>%<password>           # List shares
+smbclient //<ip>/<directory> -U <username>%<password>   # Interactively browse directory
 ```
 
 ---
