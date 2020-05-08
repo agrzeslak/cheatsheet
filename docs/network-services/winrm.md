@@ -16,6 +16,7 @@ parent: Network Services
 ---
 
 ## [evil-winrm](https://github.com/Hackplayers/evil-winrm)
+Allows for non-admin RCE
 ```shell
 gem install evil-winrm
 evil-winrm -i <ip> -u <username> -p <password>

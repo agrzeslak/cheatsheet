@@ -81,6 +81,24 @@ smbclient //<ip>/<directory> -U <username>%<password>   # Interactively browse d
 
 ---
 
+## Administrator RCE
+psexec
+```shell
+python psexec.py [domain/]<username>[:password]@<host> [command]  # impacket
+psexec.exe -nobanner -accepteula \\<host> -u [domain\]<username> -r [service name] [command]
+```
+
+[CrackMapExec](https://github.com/byt3bl33d3r/CrackMapExec)
+```shell
+crackmapexec <ip> -u <username> -p <password> -x <command>
+```
+Attempts (in order):
+- wmiexec (WMI)
+- atexec (Task Scheduler)
+- smbexec (Creating and running service)
+
+---
+
 ## Local Checks
 What is exposed?
 ```powershell
