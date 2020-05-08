@@ -1,9 +1,9 @@
 ---
 layout: default
-title: Pivoting
+title: Pivoting/Tunneling
 ---
 
-# Pivoting
+# Pivoting/Tunneling
 {: .no_toc }
 
 ## Table of contents
@@ -178,6 +178,14 @@ proxychains <command to proxy>
 ```
 
 ---
+
+## HTTP(S) Tunneling
+[reGeorg](https://github.com/sensepost/reGeorg)
+- Upload tunnel.(aspx|ashx|jsp|php)
+```shell
+python reGeorgSocksProxy.py -l <listen address> -p <listen port> --url <url of tunnel file>
+proxychains <command>  # After configuring /etc/proxychains.conf to use "socks5 127.0.0.1 <listening port>"
+```
 
 ## References
 - <https://raw.githubusercontent.com/21y4d/Notes/master/Pivoting.txt>
