@@ -153,7 +153,7 @@ Check registry permissions for ability to add/remove/update
 ```powershell
 Get-Acl <path> | fl
 Get-Acl hklm:\System\CurrentControlSet\services\* | select Path,AccessToString | fl
-Get-Acl -Path hklm:\System\CurrentControlSet\services\* | fl | Out-String -Stream | sls "Users Allow  FullControl" -Context 5,5
+Get-Acl hklm:\System\CurrentControlSet\services\* | fl | Out-String -Stream | sls "Users Allow  FullControl" -Context 5,5
 accesschk[64].exe [username] -wvuks hklm\System\CurrentControlSet\services  # recurse, username can be a group e.g. "Everyone"
 ```
 
