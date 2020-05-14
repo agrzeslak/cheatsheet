@@ -128,8 +128,9 @@ whoami /priv
 ```powershell
 secedit /export /areas USER_RIGHTS /cfg <output file>  # Output as SIDs, not usernames
 wmic useraccount where sid='<sid>' get name            # CMD, local user SID
-Get-ADUser -Identity <sid>                             # PS, AD user SID
+Get-ADUser -Identity <sid>                             # PS, AD user SID (requires RSAT tools)
 ```
+- [Well knows SIDs](https://support.microsoft.com/en-au/help/243330/well-known-security-identifiers-in-windows-operating-systems)
 
 Exploit using [pipeserverimpersonate.ps1](https://github.com/decoder-it/pipeserverimpersonate)
 ```powershell
