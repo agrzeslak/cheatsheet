@@ -120,8 +120,15 @@ sc start <service>
 
 ### Named Pipes
 Requires SeImpersonatePrivilege
+- Check for current user
 ```powershell
 whoami /priv
+```
+- Check for all users ([converting SIDs](http://woshub.com/hot-to-convert-sid-to-username-and-vice-versa/))
+```powershell
+secedit /export /areas USER_RIGHTS /cfg <output file>  # Output as SIDs, not usernames
+wmic useraccount where sid='<sid>' get name            # CMD, local user SID
+Get-ADUser -Identity <sid>                             # PS, AD user SID
 ```
 
 Exploit using [pipeserverimpersonate.ps1](https://github.com/decoder-it/pipeserverimpersonate)
