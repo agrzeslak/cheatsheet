@@ -211,6 +211,13 @@ Check for "SERVICE_CHANGE_CONFIG" permission
 accesschk[64].exe [username] -wvuc [service|*]  # username can be a group e.g. "Everyone"
 Get-ModifiableService                           # PowerUp.ps1
 ```
+- Look out for:
+    - `SERVICE_CHANGE_CONFIG`
+    - `SERVICE_ALL_ACCESS`
+    - `GENERIC_WRITE`
+    - `GENERIC_ALL`
+    - `WRITE_DAC`
+    - `WRITE_OWNER`
 
 Change binPath to exploit
 ```powershell
