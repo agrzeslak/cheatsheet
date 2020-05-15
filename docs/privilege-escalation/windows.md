@@ -458,8 +458,7 @@ Search for modifiable directories which have autoruns
 
 ```powershell
 Get-ModifiableRegistryAutoRun  # PowerUp.ps1
-Autoruns[64].exe               # SysinternalsSuite GUI
-autorunsc[64].exe              # SysinternalsSuite CLI
+autorunsc[64].exe              # SysinternalsSuite
 reg query "HKLM\Software\Microsoft\Windows\CurrentVersion\R"
 reg query "HKLM\Software\Microsoft\Windows\CurrentVersion\Run"
 reg query "HKLM\Software\Microsoft\Windows\CurrentVersion\RunOnce"
@@ -470,6 +469,13 @@ reg query "HKLM\Software\Microsoft\Windows\CurrentVersion\RunOnceService"
 reg query "HKLM\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunService"
 reg query "HKLM\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunOnceService"
 ```
+
+GUI 
+```powerhshell`
+Autoruns[64].exe  # SysinternalsSuite
+```
+- Yellow highlighting = file not found
+- Red highlighting = file found, but publisher string is empty of not verified
 
 ```powershell
 accesschk[64].exe -wvu <autorun .exe>
