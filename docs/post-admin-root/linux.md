@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Linux Post-Root
+title: Linux
 parent: Post-Admin/Root
 ---
 
-# Linux Post-Root
+# Linux
 {: .no_toc }
 
 ## Table of contents
