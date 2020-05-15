@@ -516,7 +516,7 @@ Get-ModifiableScheduledTaskFile  # PowerUp.ps1
 
 Check if you have write access to the binary
 ```powershell
-accesschk[64].exe -w <missing binary directory>
+accesschk[64].exe -w <binary>
 ```
 
 Create binary payload
