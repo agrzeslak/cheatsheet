@@ -338,7 +338,7 @@ cmdkey /list
 
 ### RDP Files
 ```powershell
-dir /s *.rdp
+dir /s /b *.rdp
 ```
 
 ---
@@ -415,7 +415,7 @@ certutil -decode <input file> <output file> >nul & type <output file>
 ```
 
 SiteList.xml
-- `%AllUsersProfile%Application Data\McAfee\Common Framework\SiteList.xml`
+- `%AllUsersProfile%\Application Data\McAfee\Common Framework\SiteList.xml`
 ```powershell
 Get-SiteListPassword  # PowerUp.ps1
 ```
@@ -426,21 +426,21 @@ Get-SiteListPassword  # PowerUp.ps1
 
 web.config
 ```powershell
-dir /s C:\inetpub\*web.config
+dir /s /b C:\inetpub\*web.config
 Get-Webconfig  # PowerUp.ps1
 ```
 
 vnc.ini  (may be base64-encoded)
 ```powershell
-dir c:\*vnc.ini /s /b
-dir c:\*ultravnc.ini /s /b 
-dir c:\ /s /b | findstr /si *vnc.ini
+dir /s /b c:\*vnc.ini
+dir /s /b c:\*ultravnc.ini
+dir /s /b c:\ | findstr /si *vnc.ini
 ```
 
 General
 ```powershell
 findstr /si passw *.bat *.cmd *.csv *.dat *.eml *.evt *.inf *.ini *.log *.ps1 *.sav *.sys *.txt *.vbs *.xml
-dir /s *pass* == *cred* == *vnc* == *.config*
+dir /s /b *pass* == *cred* == *vnc* == *.config*
 ```
 
 ---
