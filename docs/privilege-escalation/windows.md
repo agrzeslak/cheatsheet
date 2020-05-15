@@ -458,14 +458,14 @@ Search for modifiable directories which have autoruns
 
 ```powershell
 Get-ModifiableRegistryAutoRun  # PowerUp.ps1
-reg query "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run"
-reg query "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce"
-reg query "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Run"
-reg query "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\RunOnce"
-reg query "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\RunService"
-reg query "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnceService"
-reg query "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\RunService"
-reg query "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\RunOnceService"
+reg query "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run"
+reg query "HKLM\Software\Microsoft\Windows\CurrentVersion\RunOnce"
+reg query "HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Run"
+reg query "HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\RunOnce"
+reg query "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\RunService"
+reg query "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnceService"
+reg query "HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\RunService"
+reg query "HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\RunOnceService"
 ```
 
 ```powershell
