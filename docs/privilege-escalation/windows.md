@@ -460,8 +460,10 @@ dir /s /b *pass* == *cred* == *vnc* == *.config*
 ## Registry
 ### Autorun
 Search for modifiable directories which have autoruns
-- Autoruns[64].exe [Sysinternal Suite](https://docs.microsoft.com/en-us/sysinternals/downloads/sysinternals-suite)
-    - Logon tab, view the configured autoruns noting their paths to check permissions
+- `Autoruns[64].exe` [Sysinternal Suite](https://docs.microsoft.com/en-us/sysinternals/downloads/sysinternals-suite)
+    - View the configured autoruns noting their paths to check permissions (logon tab is usually interesting)
+    - Yellow highlighting = file not found
+    - Red highlighting = file found, but publisher string is empty of not verified
 
 ```powershell
 Get-ModifiableRegistryAutoRun  # PowerUp.ps1
@@ -477,17 +479,10 @@ reg query "HKLM\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunService
 reg query "HKLM\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunOnceService"
 ```
 
-GUI 
-```powerhshell`
-Autoruns[64].exe  # SysinternalsSuite
-```
-- Yellow highlighting = file not found
-- Red highlighting = file found, but publisher string is empty of not verified
-
+Check whether you can modify the file
 ```powershell
 accesschk[64].exe -wvu <autorun .exe>
 ```
-- Check whether you can modify the file
 
 Exploit
 ```powershell
