@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Meterpreter Post-Admin/Root
+title: Meterpreter
 parent: Post-Admin/Root
 ---
 
-# Meterpreter Post-Admin/Root
+# Meterpreter
 {: .no_toc }
 
 ## Table of contents
