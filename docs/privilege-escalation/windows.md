@@ -295,7 +295,7 @@ PuTTY
 ```powershell
 reg query "HKCU\Software\SimonTatham\PuTTY\Sessions\BWP123F42" /v ProxyUsername
 reg query "HKCU\Software\SimonTatham\PuTTY\Sessions\BWP123F42" /v ProxyPassword
-reg query" HKCU\Software\SimonTatham\PuTTY\Sessions"
+reg query "HKCU\Software\SimonTatham\PuTTY\Sessions"
 ```
 
 AutoLogon
