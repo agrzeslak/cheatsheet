@@ -338,7 +338,8 @@ cmdkey /list
 
 ### RDP Files
 ```powershell
-dir /s /b *.rdp
+gci C:\ -recurse -include "*.rdp"
+dir /s /b C:\*.rdp
 ```
 
 ---
@@ -400,6 +401,12 @@ Misc | Dropbox Microsoft Onedrive AWS Web Services Slack Twitter Facebook
 
 ### Configuration/Log Files
 unattend.xml
+```powershell
+gci C:\ -recurse -include "*unattend.xml"
+gci C:\ -recurse -include "*unattend.xml" | sls passw -context 3
+dir /s /b C:\*unattend.xml
+findstr /si passw C:\*unattend.xml
+```
 - `C:\unattend.xml`
 - `C:\Windows\Panther\Unattend.xml`
 - `C:\Windows\Panther\Unattend\Unattend.xml`
@@ -426,15 +433,15 @@ Get-SiteListPassword  # PowerUp.ps1
 
 web.config
 ```powershell
+gci C:\inetpub -recurse -include "*web.config"
 dir /s /b C:\inetpub\*web.config
 Get-Webconfig  # PowerUp.ps1
 ```
 
 vnc.ini  (may be base64-encoded)
 ```powershell
-dir /s /b c:\*vnc.ini
-dir /s /b c:\*ultravnc.ini
-dir /s /b c:\ | findstr /si *vnc.ini
+gci C:\ -recurse -include "*vnc.ini"
+dir /s /b C:\*vnc.ini
 ```
 
 General
