@@ -263,6 +263,11 @@ find / -type f -mtime -<days> -printf "%M %u %g %TR %TD %p\n" 2>/dev/null
 find / -type f -mtime -<days> -exec ls -al {} \; 2>/dev/null  # Slower due to subshells spawning
 ```
 
+Files modified between dates
+```shell
+find / -typef -newermt 'YYYY-MM-DD' ! -newermt 'YYYY-MM-DD'
+```
+
 Readable files in /etc/
 ```shell
 find /etc/ -readable -type f 2>/dev/null
