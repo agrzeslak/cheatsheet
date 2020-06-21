@@ -45,4 +45,4 @@ parent: Privilege Escalation
     - History files such as `~/.bash_history`?
     - Config files?
     - Logs?
-    - Memory?
+    - A running program's memory in our user's context?
