@@ -23,7 +23,9 @@ twitter_username:
 github_username:  agrzeslak
 
 # Build settings
-markdown: CommonMarkGhPages
+markdown: kramdown
+kramdown:
+  parse_block_html: true
 theme: "just-the-docs"
 plugins:
   - jekyll-feed
