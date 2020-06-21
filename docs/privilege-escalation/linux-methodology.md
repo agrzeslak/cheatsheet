@@ -26,24 +26,23 @@ parent: Privilege Escalation
     - Does our user have special permissions for that software?
 - What files do we have access to? Anything interesting/non-standard?
 - Sudo
-    - Shell Escape Sequences
-    - Abuse Intended Functionality
-    - `LD_PRELOAD`/`LD_LIBRARY_PATH`
+    - Is `LD_PRELOAD`/`LD_LIBRARY_PATH` enabled?
+    - Is a static, writable `RPATH` defined?
 - Cron jobs
-    - Path
-    - Wildcards
-    - File overwrite
+    - Has the cron config redefined the `$PATH` env var to be abusable?
+    - Is globbing used such that we can have our own files take preference over the intended files?
+    - Can we overwrite files used for cron jobs?
 - File permissions
     - SUID binaries
-        - Shared Object Injection
-        - Symlink
-        - Environment Variables
-    - Startup Scripts
-    - Configuration Files
-- NFS
-- Daemons
-- Passwords
-    - History
-    - Config files
-    - Logs
-    - Memory ???
+        - Are there missing/writable Shared Objects which we can add/replace?
+        - Are there references to other files/symlinks which we can add/replace?
+        - Are environment variables (namely `$PATH`) used in an abusable manner (can we make our payload take precendence/overwrite)?
+    - Are there any abusable startup scripts (writable/replacable)?
+    - Are there any configuration files which are writable/addable or misconfigured?
+- Are there NFS shares with root squashing disabled
+- Are Daemons appropriately patched?
+- Are there passwords stored in
+    - History files such as `~/.bash_history`?
+    - Config files?
+    - Logs?
+    - Memory?
